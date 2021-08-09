@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { ImageRequireSource, Platform, StyleSheet, Image } from "react-native"
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps" // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView, { Camera, PROVIDER_GOOGLE } from "react-native-maps" // remove PROVIDER_GOOGLE import if not using Google Maps
 import Geolocation from "@react-native-community/geolocation"
 import { debounce } from "lodash"
 import { moderateScale } from "../../theme/scalingUtil"
+
 const pinIcon = require("../../../assets/images/pin.png") as ImageRequireSource
 
 const styles = StyleSheet.create({
@@ -28,9 +29,20 @@ interface Coordinates {
   longitudeDelta?: number
 }
 
+// reference: https://juhanajauhiainen.com/posts/make-custom-marker-displaying-users-location-and-direction
+
 const MapsView = () => {
   const [geoLocation, setGeoLocation] = useState<Coordinates>({ longitude: 0, latitude: 0 })
   const debounceSetCoordinates = useCallback(debounce(setGeoLocation, 500), [])
+  const [cameraHeading, setCameraHeading] = React.useState(0)
+  const mapRef = React.useRef(null);
+
+  function updateCameraHeading() {
+    const map = mapRef.current
+    map.getCamera().then((info: Camera) => {
+      setCameraHeading(info.heading)
+    })
+  }
 
   useEffect(() => {
     Geolocation.getCurrentPosition((info) =>
@@ -43,7 +55,6 @@ const MapsView = () => {
       <MapView
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
-        onTouchEnd={(ev) => console.log(ev)}
         initialRegion={{
           latitude: geoLocation.latitude,
           longitude: geoLocation.longitude,
@@ -78,10 +89,26 @@ const MapsView = () => {
         }}
         scrollEnabled
         showsUserLocation
-        rotateEnabled={false}
+        rotateEnabled={true}
         showsIndoorLevelPicker={false}
         userLocationPriority={"high"}
+
+        ref={mapRef}
+        onTouchEnd={() => {
+          updateCameraHeading();
+        }}
+        onTouchCancel={() => {
+          updateCameraHeading();
+        }}
+        onTouchStart={() => {
+          updateCameraHeading();
+        }}
+        onTouchMove={() => {
+          updateCameraHeading();
+        }}
       ></MapView>
+      {/* <Car fill="black" /> */}
+
       <Image
         source={pinIcon}
         style={[
