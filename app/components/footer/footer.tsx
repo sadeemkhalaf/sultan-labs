@@ -27,9 +27,9 @@ const FOOTER_CONTENT: ViewStyle = {
   paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
 }
-export const Footer = () => {
+export const Footer = (props) => {
   const navigation = useNavigation()
-  const nextScreen = () => navigation.navigate("demo")
+  const nextScreen = () => navigation.navigate("home")
   return (
     <SafeAreaView style={FOOTER}>
       <View style={FOOTER_CONTENT}>
@@ -37,7 +37,7 @@ export const Footer = () => {
           testID="next-screen-button"
           style={CONTINUE}
           textStyle={CONTINUE_TEXT}
-          tx="welcomeScreen.continue"
+          tx={props.text ? props.text : "welcomeScreen.continue"}
           onPress={nextScreen}
         />
       </View>

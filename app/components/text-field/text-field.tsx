@@ -1,21 +1,32 @@
-import React from "react"
+import React, { useState } from "react"
 import { StyleProp, TextInput, TextInputProps, TextStyle, View, ViewStyle } from "react-native"
 import { color, spacing, typography } from "../../theme"
 import { translate, TxKeyPath } from "../../i18n"
 import { Text } from "../text/text"
+import { moderateScale, verticalScale } from "../../theme/scalingUtil"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
-  paddingVertical: spacing[3],
+  paddingBottom: spacing[3],
 }
 
 // the base styling for the TextInput
 const INPUT: TextStyle = {
-  fontFamily: typography.primary,
   color: color.text,
-  minHeight: 44,
-  fontSize: 18,
+  fontFamily: typography.primary,
+  height: verticalScale(42),
+  fontSize: moderateScale(16),
   backgroundColor: color.palette.white,
+  borderBottomColor: color.palette.lighterGrey,
+  borderBottomWidth: moderateScale(1),
+  paddingHorizontal: moderateScale(24),
+
+  // borderRadius: moderateScale(13),
+
+}
+
+const focusedInput: ViewStyle = {
+  borderBottomColor: color.palette.orange,
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
@@ -82,15 +93,23 @@ export function TextField(props: TextFieldProps) {
   const inputStyles = [INPUT, inputStyleOverride]
   const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
 
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = (current) => {
+    setFocused(current);
+  }
+
   return (
     <View style={containerStyles}>
-      <Text preset="fieldLabel" tx={labelTx} text={label} />
+      <Text preset="fieldLabel" style={{marginBottom: moderateScale(8)}} tx={labelTx} text={label} />
       <TextInput
+        onFocus={() => handleFocus(true)}
+        onBlur={() => handleFocus(false)}
         placeholder={actualPlaceholder}
         placeholderTextColor={color.palette.lighterGrey}
         underlineColorAndroid={color.transparent}
         {...rest}
-        style={inputStyles}
+        style={[inputStyles, focused && {...focusedInput}]}
         ref={forwardedRef}
       />
     </View>

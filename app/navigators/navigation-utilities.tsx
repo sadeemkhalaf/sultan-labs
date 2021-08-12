@@ -119,9 +119,11 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
     }
   }
 
-  useEffect(() => {
-    if (isRestoringNavigationState) restoreState()
-  }, [isRestoringNavigationState])
+  // uncomment if user should go back to user's last navigation
+
+  // useEffect(() => {
+  //   if (isRestoringNavigationState) restoreState()
+  // }, [isRestoringNavigationState])
 
   return { onNavigationStateChange, restoreState, initialNavigationState }
 }

@@ -6,7 +6,9 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { HomeScreen, DemoScreen, DemoListScreen } from "../screens"
+import { HomeScreen } from "../screens"
+import { LoginScreen, SignUpScreen, ForgotPasswordScreen, OtpScreen, ConfirmAccountScreen } from "../screens/auth"
+
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -24,6 +26,11 @@ export type PrimaryParamList = {
   home: undefined
   demo: undefined
   demoList: undefined
+  signup: undefined
+  login: undefined
+  forgotPassword: undefined
+  otp: undefined
+  confirmAccount: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -35,11 +42,15 @@ export function MainNavigator() {
       screenOptions={{
         cardStyle: { backgroundColor: "transparent" },
         headerShown: false,
+        cardOverlayEnabled: true
       }}
     >
+      <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
-      <Stack.Screen name="demo" component={DemoScreen} />
-      <Stack.Screen name="demoList" component={DemoListScreen} />
+      <Stack.Screen name="signup" component={SignUpScreen} />
+      <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="otp" component={OtpScreen} />
+      <Stack.Screen name="confirmAccount" component={ConfirmAccountScreen} />
     </Stack.Navigator>
   )
 }

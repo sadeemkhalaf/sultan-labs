@@ -1,11 +1,10 @@
 import React from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { Header, Screen, Wallpaper } from "../../components"
-import { color, spacing, typography } from "../../theme"
-import MapsView from "../map"
-import { Footer } from "../../components/footer/footer"
-import { useNavigation } from "@react-navigation/native"
+import { Wallpaper, Screen, Header } from "../../../components"
+import { Footer } from "../../../components/footer/footer"
+import { color, spacing, typography } from "../../../theme"
+import MapsView from "../../map"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -34,13 +33,13 @@ const HEADER_TITLE: TextStyle = {
 
 
 
-export const HomeScreen = observer(function HomeScreen() {
-  const navigation = useNavigation();
+export const ConfirmAccountScreen = observer(function ConfirmAccountScreen() {
+
   return (
-    <View testID="HomeScreen" style={FULL}>
+    <View testID="ConfirmAccountScreen" style={FULL}>
       <Wallpaper />
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
-        <Header onLeftPress={() => navigation.goBack()} leftIcon={'back'} headerText='Where do you want to go?'/>
+        <Header headerText='Confirm Account'/>
         <MapsView />
       </Screen>
       <Footer />

@@ -9,7 +9,7 @@ describe("Example", () => {
   })
 
   it("should have welcome screen", async () => {
-    await expect(element(by.id("WelcomeScreen"))).toBeVisible()
+    await expect(element(by.id("HomeScreen"))).toBeVisible()
   })
 
   it("should go to next screen after tap", async () => {

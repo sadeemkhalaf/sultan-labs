@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { ImageRequireSource, Platform, StyleSheet, Image } from "react-native"
-import MapView, { Camera, PROVIDER_GOOGLE } from "react-native-maps" // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps" // remove PROVIDER_GOOGLE import if not using Google Maps
 import Geolocation from "@react-native-community/geolocation"
-import { debounce } from "lodash"
+import { debounce } from "lodash";
 import { moderateScale } from "../../theme/scalingUtil"
 
 const pinIcon = require("../../../assets/images/pin.png") as ImageRequireSource
@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   pin: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    zIndex: 5,
     height: moderateScale(24),
-    width: moderateScale(24),
+    left: "50%",
+    position: "absolute",
     resizeMode: "center",
+    top: "50%",
+    width: moderateScale(24),
+    zIndex: 5,
   },
 })
 
@@ -34,25 +34,19 @@ interface Coordinates {
 const MapsView = () => {
   const [geoLocation, setGeoLocation] = useState<Coordinates>({ longitude: 0, latitude: 0 })
   const debounceSetCoordinates = useCallback(debounce(setGeoLocation, 500), [])
-  const [cameraHeading, setCameraHeading] = React.useState(0)
   const mapRef = React.useRef(null);
 
-  function updateCameraHeading() {
-    const map = mapRef.current
-    map.getCamera().then((info: Camera) => {
-      setCameraHeading(info.heading)
-    })
-  }
 
   useEffect(() => {
-    Geolocation.getCurrentPosition((info) =>
-      setGeoLocation({ latitude: info.coords.latitude, longitude: info.coords.longitude }),
+    Geolocation.getCurrentPosition((geo) =>
+      setGeoLocation({ latitude: geo.coords.latitude, longitude: geo.coords.longitude }),
     )
   }, [])
 
   return (
     <>
       <MapView
+        ref={mapRef}
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         initialRegion={{
@@ -92,23 +86,7 @@ const MapsView = () => {
         rotateEnabled={true}
         showsIndoorLevelPicker={false}
         userLocationPriority={"high"}
-
-        ref={mapRef}
-        onTouchEnd={() => {
-          updateCameraHeading();
-        }}
-        onTouchCancel={() => {
-          updateCameraHeading();
-        }}
-        onTouchStart={() => {
-          updateCameraHeading();
-        }}
-        onTouchMove={() => {
-          updateCameraHeading();
-        }}
       ></MapView>
-      {/* <Car fill="black" /> */}
-
       <Image
         source={pinIcon}
         style={[
