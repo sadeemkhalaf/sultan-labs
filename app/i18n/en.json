@@ -2,7 +2,10 @@
   "common": {
     "ok": "OK!",
     "cancel": "Cancel",
-    "back": "Back"
+    "back": "Back",
+    "schedule": "Book In-house test",
+    "lab": "Lab",
+    "viewMap": "View Map"
   },
   "errors": {
     "invalidEmail": "Invalid email address."
@@ -13,7 +16,12 @@
     "continue": "CONTINUE"
   },
   "auth": {
-    "login": "Login"
+    "login": "Login",
+    "signup": "Signup",
+    "logout": "Logout",
+    "appleSignUp": "Signup with AppleID",
+    "googleSignUp": "Signup with Google",
+    "loginWithEmail": "Login with E-mail"
   },
   "demoScreen": {
     "howTo": "HOW TO",

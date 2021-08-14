@@ -1,6 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { Close } from '../../../assets/images/svg';
 import { SvgIconButton, TextField } from '../../components';
+import { color } from '../../theme';
+import { scaleByDeviceWidth } from '../../theme/scalingUtil';
 
 
 const style = StyleSheet.create({
@@ -49,5 +53,32 @@ const TextInputField = (text, setText, label = '', inputRef) => {
         />
     )
 }
+
+
+const CLOSE_STYLE: ViewStyle = {
+    backgroundColor: color.palette.offWhite,
+    zIndex: 100,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 48,
+    right: 32,
+    height: scaleByDeviceWidth(48),
+    width: scaleByDeviceWidth(48),
+    borderRadius: scaleByDeviceWidth(30)
+  }
+
+export const CloseButton = ({ text = '' }) => {
+    const navigate = useNavigation();
+  
+    return (
+      <TouchableOpacity style={CLOSE_STYLE} 
+      onPress={() => { 
+        text.length > 0 ? navigate.navigate(text) : navigate.goBack() }}>
+        <Close height={16} width={16} fill={color.palette.black} />
+      </TouchableOpacity>
+    );
+  };
 
 export { PasswordInputField, EmailInputField, TextInputField };

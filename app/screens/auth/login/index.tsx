@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite"
 import { Screen, Header, Text } from "../../../components"
 import { Footer } from "../../../components/footer/footer"
 import { color, spacing, typography } from "../../../theme"
-import { EmailInputField, PasswordInputField } from "../shared-components";
+import { CloseButton, EmailInputField, PasswordInputField } from "../shared-components";
 import { styles } from './styles';
 import { useNavigation } from "@react-navigation/native"
 
@@ -47,11 +47,13 @@ export const LoginScreen = observer(function LoginScreen() {
   return (
     <View testID="LoginScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
+
+        <CloseButton text={'authOptions'} />
         <Header style={HEADER} headerText={'Login'} headerTx={'auth.login'} titleStyle={HEADER_TITLE} />
         <View style={styles.inputWrapper}>
           {EmailInputField(email, setEmail, emailRef)}
           {PasswordInputField(password, setPassword, passwrordRef)}
-          <Text style={{ color: color.palette.deepPurple }} text={'Create Account'} onPress={() => navigate.navigate('signup')} />
+          <Text style={{ color: color.palette.secondary }} text={'Create Account'} onPress={() => navigate.navigate('signup')} />
         </View>
       </Screen>
       <Footer text={'auth.login'} />

@@ -6,8 +6,9 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { HomeScreen } from "../screens"
-import { LoginScreen, SignUpScreen, ForgotPasswordScreen, OtpScreen, ConfirmAccountScreen } from "../screens/auth"
+import { HomeScreen, MapScreen } from "../screens"
+import { LoginScreen, SignUpScreen, ForgotPasswordScreen, OtpScreen, ConfirmAccountScreen, AuthOptionsScreen } from "../screens/auth"
+import { LabDetailsScreen } from "../screens/lab/lab-details"
 
 
 /**
@@ -26,11 +27,14 @@ export type PrimaryParamList = {
   home: undefined
   demo: undefined
   demoList: undefined
-  signup: undefined
   login: undefined
+  authOptions: undefined
+  signup: undefined
+  confirmAccount: undefined
   forgotPassword: undefined
   otp: undefined
-  confirmAccount: undefined
+  map: undefined
+  labDetails: {id?: string}
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -42,15 +46,17 @@ export function MainNavigator() {
       screenOptions={{
         cardStyle: { backgroundColor: "transparent" },
         headerShown: false,
-        cardOverlayEnabled: true
       }}
     >
       <Stack.Screen name="login" component={LoginScreen} />
+      <Stack.Screen name="authOptions" component={AuthOptionsScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
+      <Stack.Screen name="map" component={MapScreen} />
       <Stack.Screen name="signup" component={SignUpScreen} />
       <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name="otp" component={OtpScreen} />
       <Stack.Screen name="confirmAccount" component={ConfirmAccountScreen} />
+      <Stack.Screen name="labDetails" component={LabDetailsScreen} />
     </Stack.Navigator>
   )
 }

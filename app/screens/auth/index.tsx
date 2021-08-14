@@ -3,3 +3,4 @@ export * from "./signup";
 export * from "./confirmAccount";
 export * from "./otp";
 export * from "./forgotPassword";
+export * from "./authOptions"
