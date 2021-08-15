@@ -53,7 +53,7 @@ export const LoginScreen = observer(function LoginScreen() {
         <View style={styles.inputWrapper}>
           {EmailInputField(email, setEmail, emailRef)}
           {PasswordInputField(password, setPassword, passwrordRef)}
-          <Text style={{ color: color.palette.secondary }} text={'Create Account'} onPress={() => navigate.navigate('signup')} />
+          <Text style={{ color: color.palette.secondary }} text={'Create Account'} onPress={() => navigate.navigate('authStack' , {screen: 'signup'})} />
         </View>
       </Screen>
       <Footer text={'auth.login'} />

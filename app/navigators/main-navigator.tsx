@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { HomeScreen, MapScreen } from "../screens"
 import { LoginScreen, SignUpScreen, ForgotPasswordScreen, OtpScreen, ConfirmAccountScreen, AuthOptionsScreen } from "../screens/auth"
 import { LabDetailsScreen } from "../screens/lab/lab-details"
+import { TestDetailsScreen } from "../screens/test-details/test-details-screen"
 
 
 /**
@@ -23,25 +24,86 @@ import { LabDetailsScreen } from "../screens/lab/lab-details"
  *   https://reactnavigation.org/docs/params/
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
-export type PrimaryParamList = {
-  home: undefined
-  demo: undefined
-  demoList: undefined
+
+export type AuthParamList = {
   login: undefined
   authOptions: undefined
   signup: undefined
   confirmAccount: undefined
   forgotPassword: undefined
   otp: undefined
+}
+
+export type PrimaryParamList = {
+  home: undefined
+  demo: undefined
+  demoList: undefined
   map: undefined
-  labDetails: {id?: string}
-  testDetails: {id?: string}
+  labDetails: { id?: string }
+  testDetails: { id?: string }
+  auth: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
+const Auth = createStackNavigator<AuthParamList>()
 const Stack = createStackNavigator<PrimaryParamList>()
 
+/*
+
+const Navigator = props => {
+const baseHeaderSettings = { ......... }
+     
+   const mainStack = () => {
+        return(
+         <Stack.Navigator screenOptions={baseHeaderOptions}>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Details" component={DetailsScreen}/>
+         </Stack.Navigator>
+      )
+   }
+const secondStack = () => { //Import the other screens you use!
+        return(
+         <Stack.Navigator screenOptions={baseHeaderOptions}>
+          <Stack.Screen name="Other" component={OtherScreen} />
+          <Stack.Screen name="Screens" component={DiffScreen}/>
+         </Stack.Navigator>
+      )
+   }
+
+return (
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Main" component={mainStack} />
+          <Drawer.Screen name="Second" component={secondStack}/>
+        </Tabs.Navigator>
+      </NavigationContainer>
+   )
+}
+
+*/
+
+export const AuthStack = () => {
+  return (
+    <Auth.Navigator
+      screenOptions={{
+        cardStyle: { backgroundColor: "transparent" },
+        cardOverlayEnabled: true,
+        cardShadowEnabled: true,
+        headerShown: false,
+      }}
+    >
+      <Auth.Screen name="login" component={LoginScreen} />
+      <Auth.Screen name="authOptions" component={AuthOptionsScreen} />
+      <Auth.Screen name="signup" component={SignUpScreen} />
+      <Auth.Screen name="forgotPassword" component={ForgotPasswordScreen} />
+      <Auth.Screen name="otp" component={OtpScreen} />
+      <Auth.Screen name="confirmAccount" component={ConfirmAccountScreen} />
+    </Auth.Navigator>
+  )
+}
+
 export function MainNavigator() {
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -49,16 +111,11 @@ export function MainNavigator() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="login" component={LoginScreen} />
-      <Stack.Screen name="authOptions" component={AuthOptionsScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="map" component={MapScreen} />
-      <Stack.Screen name="testDetails" component={HomeScreen} />
-      <Stack.Screen name="signup" component={SignUpScreen} />
-      <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
-      <Stack.Screen name="otp" component={OtpScreen} />
-      <Stack.Screen name="confirmAccount" component={ConfirmAccountScreen} />
+      <Stack.Screen name="testDetails" component={TestDetailsScreen} />
       <Stack.Screen name="labDetails" component={LabDetailsScreen} />
+
     </Stack.Navigator>
   )
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { Header, Screen, Wallpaper } from "../../components"
+import { Card, Header, Screen, Wallpaper } from "../../components"
 import { color, spacing, typography } from "../../theme"
 import MapsView from "../map"
 import { Footer } from "../../components/footer/footer"
@@ -41,7 +41,7 @@ export const TestDetailsScreen = observer(function TestDetailsScreen() {
       <Wallpaper />
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
         <Header onLeftPress={() => navigation.goBack()} leftIcon={'back'} headerText='Blood Type Test'/>
-        <MapsView />
+        {Card('Book a test now!', '')}
       </Screen>
       <Footer />
     </View>

@@ -14,6 +14,12 @@ export interface TextProps extends TextProperties {
    */
   tx?: TxKeyPath
 
+
+  /**
+   * Color of text
+   */
+  textColor?: string,
+
   /**
    * Optional options to pass to i18n. Useful for interpolation
    * as well as explicitly setting locale or translation fallbacks.

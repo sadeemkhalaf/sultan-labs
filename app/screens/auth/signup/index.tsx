@@ -36,7 +36,7 @@ export const SignUpScreen = observer(function WelcomeScreen() {
           {EmailInputField(email, setEmail, emailRef)}
           {TextInputField(mobile, setMobile, 'Mobile', mobRef)}
           {PasswordInputField(password, setPassword, passwrordRef)}
-          <Text style={{ color: color.palette.secondary }} text={'Already have an account'} onPress={() => navigate.navigate('login')} />
+          <Text style={{ color: color.palette.secondary }} text={'Already have an account'} onPress={() => navigate.navigate('authStack', {screen: 'login'})} />
         </View>
       </Screen>
       <Footer text={'auth.login'} />

@@ -67,18 +67,19 @@ const CLOSE_STYLE: ViewStyle = {
     height: scaleByDeviceWidth(48),
     width: scaleByDeviceWidth(48),
     borderRadius: scaleByDeviceWidth(30)
-  }
+}
 
 export const CloseButton = ({ text = '' }) => {
     const navigate = useNavigation();
-  
+
     return (
-      <TouchableOpacity style={CLOSE_STYLE} 
-      onPress={() => { 
-        text.length > 0 ? navigate.navigate(text) : navigate.goBack() }}>
-        <Close height={16} width={16} fill={color.palette.black} />
-      </TouchableOpacity>
+        <TouchableOpacity style={CLOSE_STYLE}
+            onPress={() => {
+                text.length > 0 ? navigate.navigate('authStack', { screen: text }) : navigate.goBack()
+            }}>
+            <Close height={16} width={16} fill={color.palette.black} />
+        </TouchableOpacity>
     );
-  };
+};
 
 export { PasswordInputField, EmailInputField, TextInputField };

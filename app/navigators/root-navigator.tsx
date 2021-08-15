@@ -7,7 +7,7 @@
 import React from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import { MainNavigator } from "./main-navigator"
+import { AuthStack, MainNavigator } from "./main-navigator"
 import { color } from "../theme"
 
 /**
@@ -22,6 +22,7 @@ import { color } from "../theme"
  */
 export type RootParamList = {
   mainStack: undefined
+  authStack: undefined
 }
 
 const Stack = createStackNavigator<RootParamList>()
@@ -34,6 +35,9 @@ const RootStack = () => {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="authStack" component={AuthStack} options={{
+        headerShown: false,
+      }} />
       <Stack.Screen
         name="mainStack"
         component={MainNavigator}

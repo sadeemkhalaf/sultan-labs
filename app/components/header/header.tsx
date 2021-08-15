@@ -1,11 +1,12 @@
 import React from "react"
-import { View, ViewStyle, TextStyle } from "react-native"
+import { View, ViewStyle, TextStyle, ImageStyle } from "react-native"
 import { HeaderProps } from "./header.props"
 import { Button } from "../button/button"
 import { Text } from "../text/text"
 import { Icon } from "../icon/icon"
 import { spacing } from "../../theme"
 import { translate } from "../../i18n/"
+import { moderateScale } from "../../theme/scalingUtil"
 
 // static styles
 const ROOT: ViewStyle = {
@@ -16,6 +17,13 @@ const ROOT: ViewStyle = {
   paddingBottom: spacing[5],
   justifyContent: "flex-start",
 }
+
+const ICON_SIZE: ImageStyle =
+{
+  height: moderateScale(22),
+  width: moderateScale(22)
+};
+
 const TITLE: TextStyle = { textAlign: "center" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
 const LEFT: ViewStyle = { width: 32 }
@@ -41,7 +49,7 @@ export function Header(props: HeaderProps) {
     <View style={[ROOT, style]}>
       {leftIcon ? (
         <Button preset="link" onPress={onLeftPress}>
-          <Icon icon={leftIcon} />
+          <Icon icon={leftIcon} style={ICON_SIZE} />
         </Button>
       ) : (
         <View style={LEFT} />
@@ -51,7 +59,7 @@ export function Header(props: HeaderProps) {
       </View>
       {rightIcon ? (
         <Button preset="link" onPress={onRightPress}>
-          <Icon icon={rightIcon} />
+          <Icon icon={rightIcon} style={ICON_SIZE} />
         </Button>
       ) : (
         <View style={RIGHT} />

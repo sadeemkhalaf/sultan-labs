@@ -11,7 +11,7 @@ import { translate } from "../../i18n"
  */
 export function Text(props: TextProps) {
   // grab the props
-  const { preset = "default", tx, txOptions, text, children, style: styleOverride, ...rest } = props
+  const { preset = "default", tx, txOptions, textColor, text, children, style: styleOverride, ...rest } = props
 
   // figure out which content to use
   const i18nText = tx && translate(tx, txOptions)
@@ -21,7 +21,7 @@ export function Text(props: TextProps) {
   const styles = [style, styleOverride]
 
   return (
-    <ReactNativeText {...rest} style={styles}>
+    <ReactNativeText {...rest} style={[styles, textColor && {color: textColor}]}>
       {content}
     </ReactNativeText>
   )
