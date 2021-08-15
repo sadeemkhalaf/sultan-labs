@@ -35,6 +35,7 @@ export type PrimaryParamList = {
   otp: undefined
   map: undefined
   labDetails: {id?: string}
+  testDetails: {id?: string}
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -52,6 +53,7 @@ export function MainNavigator() {
       <Stack.Screen name="authOptions" component={AuthOptionsScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="map" component={MapScreen} />
+      <Stack.Screen name="testDetails" component={HomeScreen} />
       <Stack.Screen name="signup" component={SignUpScreen} />
       <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name="otp" component={OtpScreen} />
