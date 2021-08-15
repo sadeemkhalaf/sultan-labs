@@ -31,6 +31,7 @@ export type PrimaryParamList = {
   forgotPassword: undefined
   otp: undefined
   confirmAccount: undefined
+  testDetails: {id?: string}
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -47,6 +48,7 @@ export function MainNavigator() {
     >
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
+      <Stack.Screen name="testDetails" component={HomeScreen} />
       <Stack.Screen name="signup" component={SignUpScreen} />
       <Stack.Screen name="forgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name="otp" component={OtpScreen} />
