@@ -7,7 +7,7 @@ import { color } from '../../theme';
 import { scaleByDeviceWidth } from '../../theme/scalingUtil';
 
 
-const style = StyleSheet.create({
+export const sharedStyle = StyleSheet.create({
     svgIconStyle: {
         bottom: 24,
         position: 'absolute',
@@ -27,7 +27,7 @@ const PasswordInputField = (password, setPassword, inputRef) => {
                 label={'Password'}
                 secureTextEntry={true}
             />
-            <SvgIconButton type={'show'} size={16} viewStyle={style.svgIconStyle} />
+            <SvgIconButton type={'show'} size={16} viewStyle={sharedStyle.svgIconStyle} />
         </View>
     );
 }

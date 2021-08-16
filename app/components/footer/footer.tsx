@@ -31,7 +31,7 @@ const FOOTER_CONTENT: ViewStyle = {
   paddingHorizontal: spacing[4],
 }
 
-export const foorterNavButton = (text = '', screen, buttonStyle?: ViewStyle) => {
+export const footerNavButton = (text = '', screen, buttonStyle?: ViewStyle) => {
   const navigation = useNavigation()
   const nextScreen = () => navigation.navigate(screen)
   return (<Button

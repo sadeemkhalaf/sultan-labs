@@ -4,10 +4,9 @@ import { observer } from "mobx-react-lite"
 import { Screen, Header, Text } from "../../../components"
 import { Footer } from "../../../components/footer/footer"
 import { color, spacing, typography } from "../../../theme"
-import { CloseButton, EmailInputField, PasswordInputField } from "../shared-components";
-import { styles } from './styles';
+import { EmailInputField, PasswordInputField } from "../shared-components"
+import { styles } from "./styles"
 import { useNavigation } from "@react-navigation/native"
-
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -31,32 +30,38 @@ const HEADER_TITLE: TextStyle = {
   lineHeight: 15,
   textAlign: "center",
   letterSpacing: 1.5,
-  color: color.primary
+  color: color.primary,
 }
 
-
-
 export const LoginScreen = observer(function LoginScreen() {
-
-  const navigate = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const emailRef = useRef(null);
-  const passwrordRef = useRef(null);
+  const navigate = useNavigation()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const emailRef = useRef(null)
+  const passwrordRef = useRef(null)
 
   return (
     <View testID="LoginScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
-
-        <CloseButton text={'authOptions'} />
-        <Header style={HEADER} headerText={'Login'} headerTx={'auth.login'} titleStyle={HEADER_TITLE} />
+        <Header
+          style={HEADER}
+          headerText={"Login"}
+          headerTx={"auth.login"}
+          titleStyle={HEADER_TITLE}
+          rightIcon={"close"}
+          onRightPress={() => navigate.navigate("authStack", { screen: "authOptions" })}
+        />
         <View style={styles.inputWrapper}>
           {EmailInputField(email, setEmail, emailRef)}
           {PasswordInputField(password, setPassword, passwrordRef)}
-          <Text style={{ color: color.palette.secondary }} text={'Create Account'} onPress={() => navigate.navigate('authStack' , {screen: 'signup'})} />
+          <Text
+            style={{ color: color.palette.secondary }}
+            text={"Create Account"}
+            onPress={() => navigate.navigate("authStack", { screen: "signup" })}
+          />
         </View>
       </Screen>
-      <Footer text={'auth.login'} />
+      <Footer text={"auth.login"} />
     </View>
   )
 })

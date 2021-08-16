@@ -1,28 +1,19 @@
 import React from "react"
-import { View, ViewStyle, TextStyle, ImageStyle } from "react-native"
+import { View, ViewStyle, TextStyle } from "react-native"
 import { HeaderProps } from "./header.props"
-import { Button } from "../button/button"
+
 import { Text } from "../text/text"
-import { Icon } from "../icon/icon"
-import { spacing } from "../../theme"
+import { SvgIconButton } from "../icon/icon"
 import { translate } from "../../i18n/"
-import { moderateScale } from "../../theme/scalingUtil"
+import { color } from "../../theme"
+import { scaleByDeviceWidth } from "../../theme/scalingUtil"
 
 // static styles
 const ROOT: ViewStyle = {
   flexDirection: "row",
-  paddingHorizontal: spacing[4],
   alignItems: "center",
-  paddingTop: spacing[5],
-  paddingBottom: spacing[5],
-  justifyContent: "flex-start",
+  marginTop: scaleByDeviceWidth(16)
 }
-
-const ICON_SIZE: ImageStyle =
-{
-  height: moderateScale(22),
-  width: moderateScale(22)
-};
 
 const TITLE: TextStyle = { textAlign: "center" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
@@ -48,9 +39,7 @@ export function Header(props: HeaderProps) {
   return (
     <View style={[ROOT, style]}>
       {leftIcon ? (
-        <Button preset="link" onPress={onLeftPress}>
-          <Icon icon={leftIcon} style={ICON_SIZE} />
-        </Button>
+        <SvgIconButton type={leftIcon} size={20} onPress={onLeftPress} />
       ) : (
         <View style={LEFT} />
       )}
@@ -58,9 +47,22 @@ export function Header(props: HeaderProps) {
         <Text style={[TITLE, titleStyle]} text={header} />
       </View>
       {rightIcon ? (
-        <Button preset="link" onPress={onRightPress}>
-          <Icon icon={rightIcon} style={ICON_SIZE} />
-        </Button>
+        <View>
+          <SvgIconButton onPress={onRightPress} type={rightIcon} size={20} />
+          {rightIcon === "heart" && (
+            <View
+              style={{
+                height: scaleByDeviceWidth(8),
+                width: scaleByDeviceWidth(8),
+                borderRadius: 4,
+                backgroundColor: color.palette.primaryRed,
+                position: "absolute",
+                top: -2,
+                right: -2,
+              }}
+            />
+          )}
+        </View>
       ) : (
         <View style={RIGHT} />
       )}

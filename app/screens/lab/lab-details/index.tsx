@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite"
 import { useNavigation } from "@react-navigation/native"
 import { Wallpaper, Screen, Header } from "../../../components"
 import { color, spacing } from "../../../theme"
-import { foorterNavButton } from "../../../components/footer/footer"
+import { footerNavButton } from "../../../components/footer/footer"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -19,7 +19,7 @@ export const LabDetailsScreen = observer(function LabDetailsScreen() {
             <Wallpaper />
             <Screen style={CONTAINER} preset="scroll" backgroundColor={color.background}>
                 <Header onLeftPress={() => navigation.goBack()} leftIcon={'back'} headerText='Lab Details' />
-                {foorterNavButton('common.schedule', 'home')}
+                {footerNavButton('common.schedule', 'home')}
             </Screen>
         </View>
     )

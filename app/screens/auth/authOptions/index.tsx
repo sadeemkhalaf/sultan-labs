@@ -2,7 +2,7 @@ import React from "react"
 import { View, ViewStyle } from "react-native"
 
 import { Screen } from "../../../components"
-import { foorterNavButton } from "../../../components/footer/footer";
+import { footerNavButton } from "../../../components/footer/footer";
 
 import { color, spacing } from "../../../theme"
 import { styles } from './styles';
@@ -30,9 +30,9 @@ export const AuthOptionsScreen = () => {
     <View testID="AuthOptionsScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
         <View style={styles.inputWrapper}>
-          {foorterNavButton('auth.appleSignUp', 'login', BUTTON_STYLE)}
-          {foorterNavButton('auth.googleSignUp', 'login', BUTTON_STYLE)}
-          {foorterNavButton('auth.loginWithEmail', 'login', LIGHT_BUTTON_STYLE)}
+          {footerNavButton('auth.appleSignUp', 'login', BUTTON_STYLE)}
+          {footerNavButton('auth.googleSignUp', 'login', BUTTON_STYLE)}
+          {footerNavButton('auth.loginWithEmail', 'login', LIGHT_BUTTON_STYLE)}
         </View>
       </Screen>
     </View>

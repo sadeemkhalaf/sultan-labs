@@ -35,6 +35,16 @@ export const fontStyles = StyleSheet.create({
     fontWeight: 'normal',
     lineHeight: scaleByDeviceWidth(26),
   },
+  bodyTitleBold: {
+    fontSize: scaleByDeviceWidth(16),
+    fontWeight: 'bold',
+    lineHeight: scaleByDeviceWidth(22),
+  },
+  bodyTitleRegular: {
+    fontSize: scaleByDeviceWidth(16),
+    fontWeight: 'normal',
+    lineHeight: scaleByDeviceWidth(22),
+  },
   bodyBold: {
     fontSize: scaleByDeviceWidth(14),
     fontWeight: 'bold',

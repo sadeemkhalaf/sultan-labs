@@ -1,14 +1,16 @@
 import React from "react"
 import { View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { Header, Screen, Wallpaper, Text, Card } from "../../components"
+import { Header, Screen, Text, Card, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
-import { foorterNavButton } from "../../components/footer/footer"
+import { footerNavButton } from "../../components/footer/footer"
 import { styles } from "../auth/login/styles"
 import { fontStyles } from "../../theme/fonts"
 import { useNavigation } from "@react-navigation/native"
+import { ScrollView } from "react-native-gesture-handler"
+import { moderateScale, scaleByDeviceWidth, verticalScale } from "../../theme/scalingUtil"
 
-const FULL: ViewStyle = { flex: 1 }
+const FULL: ViewStyle = { flexGrow: 1, flex: 1 }
 const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
@@ -22,26 +24,133 @@ const LIGHT_BUTTON_STYLE: ViewStyle = {
 }
 
 export const HomeScreen = observer(function HomeScreen() {
-
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
     <View testID="HomeScreen" style={FULL}>
-      <Wallpaper />
-      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.background}>
-        <Header headerText='What do you want to do?' rightIcon={'heart'} leftIcon={'pin'} onLeftPress={() => navigation.navigate('mainStack', {screen: "map"})}
-        onRightPress={() => console.log('on going tests')}/>
-        <View style={styles.inputWrapper}>
-          {Card('COVID-19', 'get to know more about covid-19 insights')}
-          <Text style={fontStyles.subHeadRegular} textColor={color.palette.lightGrey}>{'Tests'}</Text>
+      <Screen style={[CONTAINER]} preset="fixed" backgroundColor={color.background}>
+        <Header
+          rightIcon={"heart"}
+          leftIcon={"pin"}
+          onLeftPress={() => navigation.navigate("mainStack", { screen: "map" })}
+          onRightPress={() => console.log("on going tests")}
+        />
 
-          {Card('Test', 'book a test now!', () => {navigation.navigate('mainStack', {screen: 'testDetails'})})}
-
-          {foorterNavButton('common.lab', 'labDetails', LIGHT_BUTTON_STYLE)}
-
+        {/* Greeting */}
+        <View
+          style={{
+            flexDirection: "row",
+            display: "flex",
+            marginTop: moderateScale(16),
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View style={{ flexDirection: "row" }}>
+            <Text textColor={color.palette.darkBlue} style={[fontStyles.largeTitleRegular]}>
+              {"Welcome, "}
+            </Text>
+            <Text textColor={color.palette.darkBlue} style={[fontStyles.largeTitleBold]}>
+              {"User 1"}
+            </Text>
+          </View>
+          <Text textColor={color.palette.darkBlue} style={[fontStyles.bodyBold]}>
+            {"User 1"}
+          </Text>
         </View>
 
-        {foorterNavButton('auth.logout', 'login', BUTTON_STYLE)}
+        <Text
+          textColor={color.palette.lightBlue}
+          style={[fontStyles.bodyRegular, { marginTop: moderateScale(16) }]}
+        >
+          {"On-going Tests"}
+        </Text>
+
+        {/* horizontal view */}
+        <View style={{ flexDirection: "row" }}>
+          <ScrollView
+            horizontal={true}
+            style={{ paddingVertical: moderateScale(8) }}
+            showsHorizontalScrollIndicator={false}
+          >
+            <View
+              style={{
+                display: "flex",
+                borderRadius: moderateScale(20),
+                backgroundColor: color.palette.white,
+                shadowOffset: { width: 3, height: 1 },
+                shadowColor: color.palette.lightGrey,
+                shadowOpacity: 0.12,
+                padding: moderateScale(8),
+                justifyContent: "center",
+                alignItems: "flex-start",
+                height: verticalScale(60),
+                width: scaleByDeviceWidth(200),
+              }}
+            >
+              <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
+                {"PCR Test"}
+              </Text>
+              <Text textColor={color.palette.lightBlue} style={fontStyles.bodyRegular}>
+                {"test 1"}
+              </Text>
+            </View>
+            <View
+              style={{
+                display: "flex",
+                borderRadius: moderateScale(20),
+                backgroundColor: color.palette.white,
+                shadowOffset: { width: 3, height: 3 },
+                shadowColor: color.palette.lightGrey,
+                shadowOpacity: 0.2,
+                padding: moderateScale(8),
+                justifyContent: "center",
+                alignItems: "flex-start",
+                height: verticalScale(60),
+                width: scaleByDeviceWidth(200),
+                marginHorizontal: moderateScale(16),
+              }}
+            >
+              <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
+                {"PCR Test"}
+              </Text>
+              <Text textColor={color.palette.lightBlue} style={fontStyles.bodyRegular}>
+                {"test 1"}
+              </Text>
+            </View>
+          </ScrollView>
+        </View>
+
+        {/* content scroll */}
+        <View style={styles.inputWrapper}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Text style={fontStyles.bodyTitleBold} textColor={color.palette.darkBlue}>
+              {"COVID-19"}
+            </Text>
+            {Card("COVID-19", "get to know more about covid-19 insights", color.palette.lightRed)}
+
+            <Text
+              style={[fontStyles.bodyTitleBold, { marginTop: moderateScale(8) }]}
+              textColor={color.palette.darkBlue}
+            >
+              {"Most Viewd Tests"}
+            </Text>
+            {Card("Test", "book a test now!", color.palette.primaryRed, () => {
+              navigation.navigate("mainStack", { screen: "testDetails" })
+            })}
+
+            {Card("COVID-19", "get to know more about covid-19 insights")}
+            <Text style={fontStyles.subHeadRegular} textColor={color.palette.lightGrey}>
+              {"Tests"}
+            </Text>
+
+            {Card("Test", "book a test now!", color.palette.primaryRed, () => {
+              navigation.navigate("mainStack", { screen: "testDetails" })
+            })}
+            {footerNavButton("common.lab", "labDetails", LIGHT_BUTTON_STYLE)}
+            {footerNavButton("auth.logout", "login", BUTTON_STYLE)}
+          </ScrollView>
+        </View>
       </Screen>
     </View>
   )
