@@ -4,7 +4,6 @@ import { observer } from "mobx-react-lite"
 import { Header, Screen, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
 import MapsView from "../map"
-import { Footer } from "../../components/footer/footer"
 import { useNavigation } from "@react-navigation/native"
 import { CloseButton } from "../auth/shared-components"
 
@@ -24,7 +23,7 @@ export const MapScreen = observer(function HomeScreen() {
         <Header onLeftPress={() => navigation.goBack()} leftIcon={'back'} headerText='Where do you want to go?' />
         <MapsView />
       </Screen>
-      <Footer />
+      {/* <Footer /> */}
     </View>
   )
 })

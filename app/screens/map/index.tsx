@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { ImageRequireSource, Platform, StyleSheet, Image } from "react-native"
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps" // remove PROVIDER_GOOGLE import if not using Google Maps
+import { ImageRequireSource, Platform, StyleSheet, Image, View, ViewStyle } from "react-native"
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps" // remove PROVIDER_GOOGLE import if not using Google Maps
 import Geolocation from "@react-native-community/geolocation"
 import { debounce } from "lodash";
-import { moderateScale } from "../../theme/scalingUtil"
+import { moderateScale, scaleByDeviceWidth, width } from "../../theme/scalingUtil"
+import { color } from "../../theme";
 
 const pinIcon = require("../../../assets/images/pin.png") as ImageRequireSource
 
@@ -29,6 +30,23 @@ interface Coordinates {
   longitudeDelta?: number
 }
 
+const LocationBar: ViewStyle =
+{
+  position: 'absolute',
+  bottom: 56,
+  right: 0,
+  left: 0,
+  width: (width - 48),
+  height: scaleByDeviceWidth(120),
+  marginHorizontal: scaleByDeviceWidth(24),
+  backgroundColor: color.palette.white,
+  borderRadius: scaleByDeviceWidth(32),
+  shadowOffset: { width: 3, height: 3 },
+  shadowColor: color.palette.lightGrey,
+  shadowOpacity: 0.2,
+}
+
+
 // reference: https://juhanajauhiainen.com/posts/make-custom-marker-displaying-users-location-and-direction
 
 const MapsView = () => {
@@ -42,6 +60,16 @@ const MapsView = () => {
       setGeoLocation({ latitude: geo.coords.latitude, longitude: geo.coords.longitude }),
     )
   }, [])
+
+
+
+  // {"latitude": 37.785834, "longitude": -122.406417}
+
+  const MarkersLocation = [
+    { "latitude": 37.791054410463644, "longitude": -122.40705801174043 },
+    { "latitude": 37.78398170324023, "longitude": -122.40793710574508 }
+  ]
+
 
   return (
     <>
@@ -86,7 +114,18 @@ const MapsView = () => {
         rotateEnabled={true}
         showsIndoorLevelPicker={false}
         userLocationPriority={"high"}
-      ></MapView>
+      >
+        <View style={LocationBar}></View>
+        {MarkersLocation.map((coords, index) =>
+          <Marker
+            key={index}
+            coordinate={coords}
+            title={'MedLab'}
+            description={'Medlab Jordan'}
+
+          />
+        )}
+      </MapView>
       <Image
         source={pinIcon}
         style={[

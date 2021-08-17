@@ -1,13 +1,13 @@
 import React from "react"
 import { View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { Header, Screen, Text, Card, Wallpaper } from "../../components"
+import { useNavigation } from "@react-navigation/native"
+import { ScrollView } from "react-native-gesture-handler"
+import { Header, Screen, Text, Card } from "../../components"
 import { color, spacing } from "../../theme"
 import { footerNavButton } from "../../components/footer/footer"
 import { styles } from "../auth/login/styles"
 import { fontStyles } from "../../theme/fonts"
-import { useNavigation } from "@react-navigation/native"
-import { ScrollView } from "react-native-gesture-handler"
 import { moderateScale, scaleByDeviceWidth, verticalScale } from "../../theme/scalingUtil"
 
 const FULL: ViewStyle = { flexGrow: 1, flex: 1 }
@@ -47,15 +47,15 @@ export const HomeScreen = observer(function HomeScreen() {
           }}
         >
           <View style={{ flexDirection: "row" }}>
-            <Text textColor={color.palette.darkBlue} style={[fontStyles.largeTitleRegular]}>
+            <Text textColor={color.palette.darkBlue} style={fontStyles.subHeadRegular}>
               {"Welcome, "}
             </Text>
-            <Text textColor={color.palette.darkBlue} style={[fontStyles.largeTitleBold]}>
+            <Text textColor={color.palette.darkBlue} style={fontStyles.subHeadBold}>
               {"User 1"}
             </Text>
           </View>
-          <Text textColor={color.palette.darkBlue} style={[fontStyles.bodyBold]}>
-            {"User 1"}
+          <Text textColor={color.palette.primaryRed} style={fontStyles.bodyBold} onPress={() => navigation.navigate("mainStack", { screen: "map" })}>
+            {"Discover Labs"}
           </Text>
         </View>
 
@@ -140,13 +140,7 @@ export const HomeScreen = observer(function HomeScreen() {
             })}
 
             {Card("COVID-19", "get to know more about covid-19 insights")}
-            <Text style={fontStyles.subHeadRegular} textColor={color.palette.lightGrey}>
-              {"Tests"}
-            </Text>
 
-            {Card("Test", "book a test now!", color.palette.primaryRed, () => {
-              navigation.navigate("mainStack", { screen: "testDetails" })
-            })}
             {footerNavButton("common.lab", "labDetails", LIGHT_BUTTON_STYLE)}
             {footerNavButton("auth.logout", "login", BUTTON_STYLE)}
           </ScrollView>
