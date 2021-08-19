@@ -78,14 +78,14 @@ const MapsView = () => {
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         initialRegion={{
-          latitude: geoLocation.latitude,
-          longitude: geoLocation.longitude,
+          latitude: geoLocation.latitude || 37.785834,
+          longitude: geoLocation.longitude || -122.406417,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}
         region={{
-          latitude: geoLocation.latitude,
-          longitude: geoLocation.longitude,
+          latitude: 37.785834,
+          longitude: -122.406417,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}

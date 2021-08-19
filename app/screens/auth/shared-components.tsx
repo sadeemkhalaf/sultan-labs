@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Close } from '../../../assets/images/svg';
 import { SvgIconButton, TextField } from '../../components';
 import { color } from '../../theme';
