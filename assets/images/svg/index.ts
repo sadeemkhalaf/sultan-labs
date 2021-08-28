@@ -9,8 +9,12 @@ import Search from "./search.svg"
 import ArrowBack from "./right-arrow.svg"
 import Heart from "./heart.svg"
 import Pin from "./pin.svg"
+import Facebook from './facebook.svg';
+import Google from './google.svg';
 
-export { 
+export {
+    Facebook,
+    Google,
     Pin,
     Car,
     Next,

@@ -17,7 +17,7 @@
   },
   "auth": {
     "login": "Login",
-    "signup": "Signup",
+    "signup": "Sign up",
     "logout": "Logout",
     "appleSignUp": "Signup with AppleID",
     "googleSignUp": "Signup with Google",
