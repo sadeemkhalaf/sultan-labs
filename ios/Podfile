@@ -7,6 +7,7 @@ platform :ios, '10.0'
 # React Native Maps dependencies
 rn_maps_path = '../node_modules/react-native-maps'
 pod 'react-native-google-maps', :path => rn_maps_path
+pod 'GoogleSignIn', '~> 5.0.2'
 
 target 'sultanLabs' do
   use_unimodules!

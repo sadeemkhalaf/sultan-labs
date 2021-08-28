@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useRef, useState } from "react"
 import { View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
@@ -12,6 +13,7 @@ import { t } from "i18n-js"
 import { ROW } from ".."
 import { Facebook, Google } from "../../../../assets/images/svg"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
+import { signinWithGoogleAccount } from "../../../utils/auth/auth-api"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
@@ -33,7 +35,7 @@ export const LoginScreen = observer(function LoginScreen() {
   const passwrordRef = useRef(null);
   const [keyboardOpen] = useKeyboard();
 
-  const renderSocialButton = (socialMediaType: 'facebook' | 'google') => {
+  const renderSocialButton = (socialMediaType: 'facebook' | 'google', handleOnPress) => {
 
     const Icon = (icon) => {
       switch (icon) {
@@ -45,9 +47,11 @@ export const LoginScreen = observer(function LoginScreen() {
     }
 
     return (
-      <Button style={SOCIALBUTTON} text={t('auth.login')}>{Icon(socialMediaType)}</Button>
+      <Button onPress={handleOnPress} style={SOCIALBUTTON} text={t('auth.login')}>{Icon(socialMediaType)}</Button>
     )
   }
+
+  const handleGoogleSignin = async () => await signinWithGoogleAccount()
 
   return (
     <View testID="LoginScreen" style={FULL}>
@@ -61,8 +65,8 @@ export const LoginScreen = observer(function LoginScreen() {
         {!keyboardOpen && <>
           <Text textColor={color.palette.black} style={[fontStyles.caption1Regular, { textAlign: 'center', marginVertical: scaleByDeviceWidth(32) }]}>{'Or, Login with'}</Text>
           <View style={[ROW, { width: '100%', justifyContent: 'space-between' }]}>
-            {renderSocialButton('google')}
-            {renderSocialButton('facebook')}
+            {renderSocialButton('google', handleGoogleSignin)}
+            {renderSocialButton('facebook', () => true)}
           </View>
         </>}
       </View>
