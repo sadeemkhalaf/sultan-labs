@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Close } from '../../../assets/images/svg';
@@ -18,6 +18,9 @@ export const sharedStyle = StyleSheet.create({
 
 const PasswordInputField = (password, setPassword, inputRef) => {
 
+    const [show, setShow] = useState(true);
+    const handleShow = () => setShow(!show)
+
     return (
         <View>
             <TextField
@@ -25,38 +28,42 @@ const PasswordInputField = (password, setPassword, inputRef) => {
                 value={password}
                 onChangeText={setPassword}
                 label={'Password'}
-                secureTextEntry={true}
+                secureTextEntry={show}
             />
-            <SvgIconButton type={'show'} size={16} viewStyle={sharedStyle.svgIconStyle} />
+            <SvgIconButton type={'show'} size={16} viewStyle={sharedStyle.svgIconStyle} onPress={handleShow} />
         </View>
     );
 }
 
 const EmailInputField = (email, setEmail, inputRef) => {
     return (
-        <TextField
-            forwardedRef={inputRef}
-            value={email}
-            onChangeText={setEmail}
-            label={'Email'}
-        />
+        <View>
+            <TextField
+                forwardedRef={inputRef}
+                value={email}
+                onChangeText={setEmail}
+                label={'Email'}
+            />
+        </View>
     )
 }
 
 const TextInputField = (text, setText, label = '', inputRef) => {
     return (
-        <TextField
-            forwardedRef={inputRef}
-            value={text}
-            onChangeText={setText}
-            label={label}
-        />
+        <View>
+            <TextField
+                forwardedRef={inputRef}
+                value={text}
+                onChangeText={setText}
+                label={label}
+            />
+        </View>
     )
 }
 
 
 const CLOSE_STYLE: ViewStyle = {
-    backgroundColor: color.palette.offWhite,
+    backgroundColor: color.palette.white,
     zIndex: 100,
     display: 'flex',
     alignItems: 'center',

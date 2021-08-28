@@ -12,7 +12,8 @@ import { scaleByDeviceWidth } from "../../theme/scalingUtil"
 const ROOT: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
-  marginTop: scaleByDeviceWidth(16)
+  marginTop: scaleByDeviceWidth(16),
+  paddingBottom: scaleByDeviceWidth(16)
 }
 
 const TITLE: TextStyle = { textAlign: "center" }

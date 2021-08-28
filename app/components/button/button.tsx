@@ -1,5 +1,6 @@
 import * as React from "react"
-import { TouchableOpacity } from "react-native"
+import { TouchableOpacity, ViewStyle } from "react-native"
+import { scaleByDeviceWidth } from "../../theme/scalingUtil"
 import { Text } from "../text/text"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
@@ -9,6 +10,12 @@ import { ButtonProps } from "./button.props"
  *
  * This component is a HOC over the built-in React Native one.
  */
+
+const buttonContainer: ViewStyle = {
+  height: scaleByDeviceWidth(48),
+  borderRadius: scaleByDeviceWidth(13)
+}
+
 export function Button(props: ButtonProps) {
   // grab the props
   const {
@@ -29,7 +36,7 @@ export function Button(props: ButtonProps) {
   const content = children || <Text tx={tx} text={text} style={textStyles} />
 
   return (
-    <TouchableOpacity style={viewStyles} {...rest}>
+    <TouchableOpacity style={[viewStyles, buttonContainer]} {...rest}>
       {content}
     </TouchableOpacity>
   )

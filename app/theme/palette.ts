@@ -1,7 +1,6 @@
 export const palette = {
-  black: "#131313",
+  black: "#43475F",
   lightGrey: "#373737",
-  lighterGrey: "#D9D9D9",
   white: "#FFFFFF",
   offWhite: "#faf5f5",
   orange: "#FE7162",
@@ -14,6 +13,8 @@ export const palette = {
 
   // new colors
   darkBlue: '#43475F',
+  lighterBlue: '#C7CADB',
+  lighterGrey: '#9095A5',
   lightRed: '#F59696',
   primaryRed: '#F27B7B',
   fieldGrey: '#F8F9FD',

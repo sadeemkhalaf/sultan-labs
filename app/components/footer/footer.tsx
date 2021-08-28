@@ -25,7 +25,7 @@ const CONTINUE_TEXT: TextStyle = {
   letterSpacing: 2,
 }
 
-const FOOTER: ViewStyle = { backgroundColor: color.palette.offWhite }
+const FOOTER: ViewStyle = { backgroundColor: color.palette.white }
 const FOOTER_CONTENT: ViewStyle = {
   paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],

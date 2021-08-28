@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native"
+import { moderateScale } from "../../../theme/scalingUtil"
 
 const styles = StyleSheet.create({
   inputWrapper: {
-    display: "flex",
-    height: "100%",
-    justifyContent: "center",
+    flex: 1,
+    flexGrow: 1,
+    paddingBottom: moderateScale(56),
+    marginBottom: moderateScale(16)
   },
 })
 
