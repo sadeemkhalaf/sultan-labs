@@ -1,40 +1,72 @@
-import React from "react"
+import { useNavigation } from "@react-navigation/native";
+import { t } from "i18n-js";
+import React, { useState } from "react"
 import { View, ViewStyle } from "react-native"
-
-import { Screen } from "../../../components"
-import { footerNavButton } from "../../../components/footer/footer";
-
-import { color, spacing } from "../../../theme"
-import { styles } from './styles';
+import { Header, Screen, Text } from "../../../components"
+import { color } from "../../../theme"
+import { fontStyles } from "../../../theme/fonts";
+import { scaleByDeviceWidth } from "../../../theme/scalingUtil";
+import { LoginScreen } from "../login";
+import { SignUpScreen } from "../signup";
 
 
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
-  backgroundColor: color.transparent,
-  paddingHorizontal: spacing[4],
+  backgroundColor: color.palette.white,
+  paddingHorizontal: scaleByDeviceWidth(24),
+}
+export const ROW: ViewStyle = {
+  flexDirection: 'row',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center'
 }
 
-const BUTTON_STYLE: ViewStyle = {
-  backgroundColor: color.palette.secondary,
+const SELECTED: ViewStyle = {
+  borderBottomColor: color.palette.primaryRed,
+  borderBottomWidth: scaleByDeviceWidth(1),
 }
 
-const LIGHT_BUTTON_STYLE: ViewStyle = {
-  backgroundColor: color.palette.lightGrey,
+type StatePage = 'login' | 'signup';
+const renderCopyrights = () => {
+  return (
+    <View style={{ backgroundColor: color.palette.white, paddingBottom: scaleByDeviceWidth(48) }}>
+      <Text textColor={color.palette.lightBlue} style={[fontStyles.caption2Light, { textAlign: 'center' }]} >{'© Sultan Groups - All Rights reserved 2021-2022'}</Text>
+    </View>
+  );
 }
-
 
 export const AuthOptionsScreen = () => {
+
+  const [selectedState, setState] = useState<StatePage>('login');
+  const navigation = useNavigation();
 
   return (
     <View testID="AuthOptionsScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
-        <View style={styles.inputWrapper}>
-          {footerNavButton('auth.appleSignUp', 'login', BUTTON_STYLE)}
-          {footerNavButton('auth.googleSignUp', 'login', BUTTON_STYLE)}
-          {footerNavButton('auth.loginWithEmail', 'login', LIGHT_BUTTON_STYLE)}
+        <Header
+        headerText={'Sultan Medical Labs'}
+          leftIcon={"pin"}
+          onLeftPress={() => navigation.navigate("mainStack", { screen: "map" })}
+        />
+        <View style={ROW}>
+          <View style={[selectedState === 'login' && SELECTED, { marginLeft: scaleByDeviceWidth(16) }]}>
+            <Text style={fontStyles.bodyBold} textColor={selectedState === 'login' ? color.palette.primaryRed : color.palette.lightGrey} onPress={() => setState('login')}>{t('auth.login')}</Text>
+          </View>
+          <View style={[selectedState === 'signup' && SELECTED, { marginLeft: scaleByDeviceWidth(32) }]}>
+            <Text style={fontStyles.bodyBold} onPress={() => setState('signup')} textColor={selectedState === 'signup' ? color.palette.primaryRed : color.palette.lightGrey}>{t('auth.signup')}</Text>
+          </View>
         </View>
+        {selectedState === 'login' &&
+          <LoginScreen />
+        }
+        {selectedState === 'signup' &&
+          <SignUpScreen />
+        }
+
       </Screen>
+      {renderCopyrights()}
     </View>
   )
 }
