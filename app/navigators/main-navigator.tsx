@@ -92,9 +92,7 @@ export const AuthStack = () => {
         headerShown: false,
       }}
     >
-      <Auth.Screen name="login" component={LoginScreen} />
       <Auth.Screen name="authOptions" component={AuthOptionsScreen} />
-      <Auth.Screen name="signup" component={SignUpScreen} />
       <Auth.Screen name="forgotPassword" component={ForgotPasswordScreen} />
       <Auth.Screen name="otp" component={OtpScreen} />
       <Auth.Screen name="confirmAccount" component={ConfirmAccountScreen} />
