@@ -9,6 +9,7 @@
 // It's easier just to leave it here.
 import App from "./app/app.tsx"
 import { AppRegistry } from "react-native"
+import fbconfigs from './fb-configs';
 
 AppRegistry.registerComponent("sultanLabs", () => App)
 export default App

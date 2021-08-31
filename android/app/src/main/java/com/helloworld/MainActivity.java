@@ -1,4 +1,4 @@
-package com.helloworld;
+package com.sultanlabs.app;
 
 import com.facebook.react.ReactActivity;
 

@@ -8,6 +8,9 @@ platform :ios, '10.0'
 rn_maps_path = '../node_modules/react-native-maps'
 pod 'react-native-google-maps', :path => rn_maps_path
 pod 'GoogleSignIn', '~> 5.0.2'
+# Override Firebase SDK Version
+$FirebaseSDKVersion = '8.5.0'
+pod 'Firebase/Analytics'
 
 target 'sultanLabs' do
   use_unimodules!
