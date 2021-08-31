@@ -1,5 +1,6 @@
-import auth from "@react-native-firebase/auth"
+import { firebase } from "./../../../fb-configs"
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin"
+import { googleWebClientID, googleBasicProfileAccess, googleIosClientID } from "./auth-configs"
 
 /*
 **************************************
@@ -8,7 +9,8 @@ import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-si
 */
 
 const signinWithEmailPassword = (email: string, password: string) => {
-  auth()
+  firebase
+    .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userInfo) => {
       console.log("User account created & signed in!", userInfo)
@@ -30,14 +32,23 @@ const signinWithEmailPassword = (email: string, password: string) => {
     Google signin
 ****************************************
 */
+// ------------------------ Google Events ------------------------
+const configureGoogleSigin = () => {
+  GoogleSignin.configure({
+    webClientId: googleWebClientID, // client ID of type WEB for your server (needed to verify user ID and offline access)
+    scopes: googleBasicProfileAccess,
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: googleIosClientID,
+  })
+}
 
 const signinWithGoogleAccount = async () => {
   try {
-    await GoogleSignin.hasPlayServices();
+    await GoogleSignin.hasPlayServices()
     const userInfo = await GoogleSignin.signIn();
 
-    console.log(userInfo);
-    
+    console.log(userInfo)
+
     // do something on successfully login
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -52,4 +63,4 @@ const signinWithGoogleAccount = async () => {
   }
 }
 
-export { signinWithEmailPassword, signinWithGoogleAccount }
+export { configureGoogleSigin, signinWithEmailPassword, signinWithGoogleAccount }

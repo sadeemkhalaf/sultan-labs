@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from "react"
 import { View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
@@ -23,12 +24,36 @@ const LIGHT_BUTTON_STYLE: ViewStyle = {
   backgroundColor: color.palette.lightGrey,
 }
 
+const horizontalView: ViewStyle = {
+  display: "flex",
+  borderRadius: moderateScale(20),
+  backgroundColor: color.palette.white,
+  shadowOffset: { width: 3, height: 1 },
+  shadowColor: color.palette.lightGrey,
+  shadowOpacity: 0.12,
+  padding: moderateScale(8),
+  justifyContent: "center",
+  alignItems: "flex-start",
+  height: verticalScale(60),
+  width: scaleByDeviceWidth(200),
+}
+
+const greetingView: ViewStyle = {
+  flexDirection: "row",
+  display: "flex",
+  marginTop: moderateScale(16),
+  alignItems: "center",
+  justifyContent: "space-between",
+}
+
+// export {greetingView, horizontalView, BUTTON_STYLE, LIGHT_BUTTON_STYLE, CONTAINER, FULL}
+
 export const HomeScreen = observer(function HomeScreen() {
   const navigation = useNavigation()
 
   return (
     <View testID="HomeScreen" style={FULL}>
-      <Screen style={[CONTAINER]} preset="fixed" backgroundColor={color.background}>
+      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
         <Header
           rightIcon={"heart"}
           leftIcon={"pin"}
@@ -38,13 +63,7 @@ export const HomeScreen = observer(function HomeScreen() {
 
         {/* Greeting */}
         <View
-          style={{
-            flexDirection: "row",
-            display: "flex",
-            marginTop: moderateScale(16),
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
+          style={greetingView}
         >
           <View style={{ flexDirection: "row" }}>
             <Text textColor={color.palette.darkBlue} style={fontStyles.subHeadRegular}>
@@ -74,19 +93,7 @@ export const HomeScreen = observer(function HomeScreen() {
             showsHorizontalScrollIndicator={false}
           >
             <View
-              style={{
-                display: "flex",
-                borderRadius: moderateScale(20),
-                backgroundColor: color.palette.white,
-                shadowOffset: { width: 3, height: 1 },
-                shadowColor: color.palette.lightGrey,
-                shadowOpacity: 0.12,
-                padding: moderateScale(8),
-                justifyContent: "center",
-                alignItems: "flex-start",
-                height: verticalScale(60),
-                width: scaleByDeviceWidth(200),
-              }}
+              style={horizontalView}
             >
               <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
                 {"PCR Test"}
@@ -96,20 +103,7 @@ export const HomeScreen = observer(function HomeScreen() {
               </Text>
             </View>
             <View
-              style={{
-                display: "flex",
-                borderRadius: moderateScale(20),
-                backgroundColor: color.palette.white,
-                shadowOffset: { width: 3, height: 3 },
-                shadowColor: color.palette.lightGrey,
-                shadowOpacity: 0.2,
-                padding: moderateScale(8),
-                justifyContent: "center",
-                alignItems: "flex-start",
-                height: verticalScale(60),
-                width: scaleByDeviceWidth(200),
-                marginHorizontal: moderateScale(16),
-              }}
+              style={horizontalView}
             >
               <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
                 {"PCR Test"}
@@ -141,8 +135,8 @@ export const HomeScreen = observer(function HomeScreen() {
 
             {Card("COVID-19", "get to know more about covid-19 insights")}
 
-            {footerNavButton("common.lab", "labDetails", LIGHT_BUTTON_STYLE)}
-            {footerNavButton("auth.logout", "login", BUTTON_STYLE)}
+            {/* {footerNavButton("common.lab", "labDetails", LIGHT_BUTTON_STYLE)} */}
+            {footerNavButton("auth.logout", "AuthOptionsScreen", BUTTON_STYLE)}
           </ScrollView>
         </View>
       </Screen>

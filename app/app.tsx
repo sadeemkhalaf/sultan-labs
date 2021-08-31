@@ -16,6 +16,7 @@ import { NavigationContainerRef } from "@react-navigation/native"
 import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context"
 import { initFonts } from "./theme/fonts" // expo
 import * as storage from "./utils/storage"
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import {
   useBackButtonHandler,
   RootNavigator,
@@ -24,12 +25,16 @@ import {
   useNavigationPersistence,
 } from "./navigators"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
+import { store } from './store/Store';
 
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
 import { enableScreens } from "react-native-screens"
+import { configureGoogleSigin } from "./utils/auth/auth-api"
+import { persistStore } from "redux-persist"
+import { Provider } from "react-redux"
 enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
@@ -50,11 +55,13 @@ function App() {
 
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
-    ;(async () => {
+    configureGoogleSigin();
+    ; (async () => {
       await initFonts() // expo
       setupRootStore().then(setRootStore)
     })()
   }, [])
+
 
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background
@@ -63,16 +70,23 @@ function App() {
   if (!rootStore) return null
 
   // otherwise, we're ready to render the app
+
+  const persistor = persistStore(store);
+
   return (
-      <RootStoreProvider value={rootStore}>
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <RootNavigator
-            ref={navigationRef}
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
-        </SafeAreaProvider>
-      </RootStoreProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RootStoreProvider value={rootStore}>
+          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+            <RootNavigator
+              ref={navigationRef}
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            />
+          </SafeAreaProvider>
+        </RootStoreProvider>
+      </PersistGate>
+    </Provider>
   )
 }
 

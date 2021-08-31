@@ -33,7 +33,7 @@ const FOOTER_CONTENT: ViewStyle = {
 
 export const footerNavButton = (text = '', screen, buttonStyle?: ViewStyle) => {
   const navigation = useNavigation()
-  const nextScreen = () => navigation.navigate(screen)
+  const nextScreen = () => navigation.navigate('authStack',{screen: screen})
   return (<Button
     testID="next-screen-button"
     style={[CONTINUE, {...buttonStyle}]}

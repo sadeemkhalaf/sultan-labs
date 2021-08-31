@@ -14,6 +14,7 @@ import { ROW } from ".."
 import { Facebook, Google } from "../../../../assets/images/svg"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
 import { signinWithGoogleAccount } from "../../../utils/auth/auth-api"
+import { useDispatch } from "react-redux"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
@@ -29,6 +30,8 @@ const SOCIALBUTTON: ViewStyle = {
 
 export const LoginScreen = observer(function LoginScreen() {
   const navigate = useNavigation();
+  const dispatch = useDispatch();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
@@ -60,7 +63,7 @@ export const LoginScreen = observer(function LoginScreen() {
         {EmailInputField(email, setEmail, emailRef)}
         {PasswordInputField(password, setPassword, passwrordRef)}
       </View>
-      <Button text={t('auth.login')} textStyle={fontStyles.bodyRegular}></Button>
+      <Button onPress={() => navigate.navigate('mainStack',{screen:'home'})} text={t('auth.login')} textStyle={fontStyles.bodyRegular}></Button>
       <View >
         {!keyboardOpen && <>
           <Text textColor={color.palette.black} style={[fontStyles.caption1Regular, { textAlign: 'center', marginVertical: scaleByDeviceWidth(32) }]}>{'Or, Login with'}</Text>
