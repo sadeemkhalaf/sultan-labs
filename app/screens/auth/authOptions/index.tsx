@@ -3,12 +3,13 @@ import { useNavigation } from "@react-navigation/native";
 import { t } from "i18n-js";
 import React, { useState } from "react"
 import { View, ViewStyle } from "react-native"
+import { SignUpScreen } from "..";
 import { Header, Screen, Text } from "../../../components"
 import { color } from "../../../theme"
 import { fontStyles } from "../../../theme/fonts";
 import { scaleByDeviceWidth } from "../../../theme/scalingUtil";
-import { LoginScreen } from "../login";
-import { SignUpScreen } from "../signup";
+import { LoginScreen } from "./login";
+
 
 
 

@@ -7,7 +7,7 @@ import { ScrollView } from "react-native-gesture-handler"
 import { Header, Screen, Text, Card } from "../../components"
 import { color, spacing } from "../../theme"
 import { footerNavButton } from "../../components/footer/footer"
-import { styles } from "../auth/login/styles"
+import { styles } from "../auth/authOptions/login/styles"
 import { fontStyles } from "../../theme/fonts"
 import { moderateScale, scaleByDeviceWidth, verticalScale } from "../../theme/scalingUtil"
 

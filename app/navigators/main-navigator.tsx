@@ -48,39 +48,7 @@ export type PrimaryParamList = {
 const Auth = createStackNavigator<AuthParamList>()
 const Stack = createStackNavigator<PrimaryParamList>()
 
-/*
 
-const Navigator = props => {
-const baseHeaderSettings = { ......... }
-     
-   const mainStack = () => {
-        return(
-         <Stack.Navigator screenOptions={baseHeaderOptions}>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Details" component={DetailsScreen}/>
-         </Stack.Navigator>
-      )
-   }
-const secondStack = () => { //Import the other screens you use!
-        return(
-         <Stack.Navigator screenOptions={baseHeaderOptions}>
-          <Stack.Screen name="Other" component={OtherScreen} />
-          <Stack.Screen name="Screens" component={DiffScreen}/>
-         </Stack.Navigator>
-      )
-   }
-
-return (
-      <NavigationContainer>
-        <Drawer.Navigator>
-          <Drawer.Screen name="Main" component={mainStack} />
-          <Drawer.Screen name="Second" component={secondStack}/>
-        </Tabs.Navigator>
-      </NavigationContainer>
-   )
-}
-
-*/
 
 export const AuthStack = () => {
   return (

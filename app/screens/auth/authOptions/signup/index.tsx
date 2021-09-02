@@ -1,17 +1,17 @@
 import React, { useRef, useState } from "react"
 import { View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { Button, Text } from "../../../components"
-import { color } from "../../../theme"
-import { EmailInputField, TextInputField, } from "../shared-components"
+import { Button, Text } from "../../../../components"
+import { color } from "../../../../theme"
+import { EmailInputField, TextInputField, } from "../../shared-components"
 import { styles } from "./styles"
 import { useNavigation } from "@react-navigation/native"
-import { fontStyles } from "../../../theme/fonts"
-import { scaleByDeviceWidth, width } from "../../../theme/scalingUtil"
+import { fontStyles } from "../../../../theme/fonts"
+import { scaleByDeviceWidth, width } from "../../../../theme/scalingUtil"
 import { t } from "i18n-js"
-import { Facebook, Google } from "../../../../assets/images/svg"
-import { useKeyboard } from "../../../utils/hooks/useKeyboard"
-import { ROW } from "../authOptions"
+import { Facebook, Google } from "../../../../../assets/images/svg"
+import { useKeyboard } from "../../../../utils/hooks/useKeyboard"
+import { ROW } from "../../authOptions"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
@@ -57,15 +57,13 @@ export const SignUpScreen = observer(function SignUpScreen() {
         {TextInputField(mobile, setMobile, 'Mobile Number', mobileRef)}
       </View>
       <Button text={t('auth.signup')} textStyle={fontStyles.bodyRegular}></Button>
-      {/* <View > */}
-        {!keyboardOpen && <>
-          <Text textColor={color.palette.black} style={[fontStyles.caption1Regular, { textAlign: 'center', marginVertical: scaleByDeviceWidth(32) }]}>{'Or, Sign up with'}</Text>
-          <View style={[ROW, { width: '100%', justifyContent: 'space-between' }]}>
-            {renderSocialButton('google')}
-            {renderSocialButton('facebook')}
-          </View>
-        </>}
-      {/* </View> */}
+      {!keyboardOpen && <>
+        <Text textColor={color.palette.black} style={[fontStyles.caption1Regular, { textAlign: 'center', marginVertical: scaleByDeviceWidth(32) }]}>{'Or, Sign up with'}</Text>
+        <View style={[ROW, { width: '100%', justifyContent: 'space-between' }]}>
+          {renderSocialButton('google')}
+          {renderSocialButton('facebook')}
+        </View>
+      </>}
     </View>
   )
 })
