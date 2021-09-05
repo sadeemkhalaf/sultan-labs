@@ -37,27 +37,27 @@ const PasswordInputField = (password, setPassword, inputRef) => {
 
 const EmailInputField = (email, setEmail, inputRef) => {
     return (
-        <View>
-            <TextField
-                forwardedRef={inputRef}
-                value={email}
-                onChangeText={setEmail}
-                label={'Email'}
-            />
-        </View>
+
+        <TextField
+            forwardedRef={inputRef}
+            value={email}
+            onChangeText={setEmail}
+            label={'Email'}
+        />
+
     )
 }
 
 const TextInputField = (text, setText, label = '', inputRef) => {
     return (
-        <View>
-            <TextField
-                forwardedRef={inputRef}
-                value={text}
-                onChangeText={setText}
-                label={label}
-            />
-        </View>
+
+        <TextField
+            forwardedRef={inputRef}
+            value={text}
+            onChangeText={setText}
+            label={label}
+        />
+
     )
 }
 

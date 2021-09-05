@@ -31,8 +31,10 @@ const RootStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        cardStyle: { backgroundColor: color.palette.white },
+        cardStyle: { backgroundColor: color.palette.black },
         headerShown: false,
+        gestureDirection: 'horizontal',
+        gestureEnabled: true,
       }}
     >
       <Stack.Screen name="authStack" component={AuthStack} options={{
