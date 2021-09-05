@@ -77,7 +77,7 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RootStoreProvider value={rootStore}>
-          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <SafeAreaProvider initialMetrics={initialWindowMetrics} style={{backgroundColor: 'white'}}>
             <RootNavigator
               ref={navigationRef}
               initialState={initialNavigationState}

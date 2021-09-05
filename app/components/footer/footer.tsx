@@ -47,7 +47,7 @@ export const Footer = (props) => {
   const navigation = useNavigation()
   const nextScreen = () => navigation.navigate('mainStack', {screen: "home"})
   return (
-    <SafeAreaView style={FOOTER}>
+    <SafeAreaView style={[FOOTER, {backgroundColor:"white"}]}>
       <View style={FOOTER_CONTENT}>
         <Button
           testID="next-screen-button"

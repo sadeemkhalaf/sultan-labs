@@ -40,7 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> unimodules = Arrays.<ReactPackage>asList(
             new ModuleRegistryAdapter(mModuleRegistryProvider)
           );
-          packages.append(new RNGoogleSigninPackage());
+          // packages.append(new RNGoogleSigninPackage());
           packages.addAll(unimodules);
           
           return packages;

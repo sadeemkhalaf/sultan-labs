@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:8258525560:android:96f0557b3cf7a3a008508d",
+        "mobilesdk_app_id": "1:8258525560:android:88eff4b42dfba1c708508d",
         "android_client_info": {
           "package_name": "com.sultanlabs.app"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "8258525560-q03rkgbf5mgqc3am9j2ocmpa0am159e7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sultanlabs.app",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
         {
           "client_id": "8258525560-44td7h29fegu0majv4nm0frf7qgrlomt.apps.googleusercontent.com",
           "client_type": 3
