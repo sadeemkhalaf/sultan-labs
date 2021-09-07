@@ -15,6 +15,7 @@ import { LoginScreen } from "./login";
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
+  flex: 1,
   backgroundColor: color.palette.white,
   paddingHorizontal: scaleByDeviceWidth(24),
 }
@@ -45,8 +46,7 @@ export const AuthOptionsScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View testID="AuthOptionsScreen" style={FULL}>
-      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
+      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background} statusBarColor={'white'}>
         <Header
         headerText={'Sultan Medical Labs'}
           onLeftPress={() => navigation.navigate("mainStack", { screen: "map" })}
@@ -66,8 +66,8 @@ export const AuthOptionsScreen = () => {
           <SignUpScreen />
         }
 
-      </Screen>
       {renderCopyrights()}
-    </View>
+      </Screen>
+
   )
 }

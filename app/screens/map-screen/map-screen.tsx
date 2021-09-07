@@ -19,7 +19,7 @@ export const MapScreen = observer(function HomeScreen() {
     <View testID="HomeScreen" style={FULL}>
       <Wallpaper />
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
-        <CloseButton />
+        <CloseButton text={'authOptions'}/>
         <Header onLeftPress={() => navigation.goBack()} leftIcon={'back'} headerText='Where do you want to go?' />
         <MapsView />
       </Screen>

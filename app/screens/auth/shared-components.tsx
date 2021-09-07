@@ -88,7 +88,7 @@ const OptionsMenuField = (text, setText, label = '') => {
 
 const CLOSE_STYLE: ViewStyle = {
     backgroundColor: color.palette.white,
-    zIndex: 100,
+    zIndex: 1001,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

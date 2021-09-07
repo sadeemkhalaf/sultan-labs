@@ -56,6 +56,7 @@ const MapsView = () => {
 
 
   useEffect(() => {
+    console.log(mapRef.current);
     Geolocation.getCurrentPosition((geo) =>
       setGeoLocation({ latitude: geo.coords.latitude, longitude: geo.coords.longitude }),
     )

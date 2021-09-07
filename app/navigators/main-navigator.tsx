@@ -53,7 +53,6 @@ const Auth = createStackNavigator<AuthParamList>()
 const Stack = createStackNavigator<PrimaryParamList>()
 
 
-
 export const AuthStack = () => {
   return (
     <Auth.Navigator
@@ -62,6 +61,9 @@ export const AuthStack = () => {
         cardOverlayEnabled: true,
         cardShadowEnabled: true,
         headerShown: false,
+        animationEnabled: true,
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
       }}
     >
       <Auth.Screen name="authOptions" component={AuthOptionsScreen} />
@@ -79,8 +81,13 @@ export function MainNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
         cardStyle: { backgroundColor: "transparent" },
+        cardOverlayEnabled: true,
+        cardShadowEnabled: true,
+        headerShown: false,
+        animationEnabled: true,
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
       }}
     >
       <Stack.Screen name="home" component={HomeScreen} />
