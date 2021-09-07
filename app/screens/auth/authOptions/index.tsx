@@ -49,7 +49,6 @@ export const AuthOptionsScreen = () => {
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
         <Header
         headerText={'Sultan Medical Labs'}
-          leftIcon={"pin"}
           onLeftPress={() => navigation.navigate("mainStack", { screen: "map" })}
         />
         <View style={ROW}>

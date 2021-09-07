@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useRef, useState } from "react"
-import { View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Button, Text } from "../../../../components"
 import { color } from "../../../../theme"
@@ -56,22 +56,42 @@ export const LoginScreen = observer(function LoginScreen() {
 
   const handleGoogleSignin = async () => await signinWithGoogleAccount()
 
+  const renderSocialLogin = () => {
+    const SOCIALROW: ViewStyle = {
+      width: '100%', justifyContent:
+        'space-between'
+    }
+    const TITLE: TextStyle = {
+      textAlign: 'center',
+      marginVertical: scaleByDeviceWidth(32)
+    }
+    return (<>
+      <Text textColor={color.palette.black}
+        style={[fontStyles.caption1Regular, TITLE]}>
+        {'Or, Login with'}
+      </Text>
+      <View style={[ROW, SOCIALROW]}>
+        {renderSocialButton('google', handleGoogleSignin)}
+        {renderSocialButton('facebook', handleGoogleSignin)}
+      </View>
+    </>)
+  }
+
+
+
   return (
     <View testID="LoginScreen" style={FULL}>
       <Text style={[fontStyles.largeTitleBold, { marginBottom: scaleByDeviceWidth(32) }]} textColor={color.palette.black}>{'Welcome Back!'}</Text>
       <View style={styles.inputWrapper}>
         {EmailInputField(email, setEmail, emailRef)}
         {PasswordInputField(password, setPassword, passwrordRef)}
+        <Text style={fontStyles.caption2Medium} textColor={color.palette.purple} onPress={() => true}>{t('auth.forgotPassword')}</Text>
       </View>
       <Button onPress={() => navigate.navigate('mainStack', { screen: 'home' })} text={t('auth.login')} textStyle={fontStyles.bodyRegular}></Button>
 
-        {!keyboardOpen && <>
-          <Text textColor={color.palette.black} style={[fontStyles.caption1Regular, { textAlign: 'center', marginVertical: scaleByDeviceWidth(32) }]}>{'Or, Login with'}</Text>
-          <View style={[ROW, { width: '100%', justifyContent: 'space-between' }]}>
-            {renderSocialButton('google', handleGoogleSignin)}
-            {renderSocialButton('facebook', () => true)}
-          </View>
-        </>}
+      {!keyboardOpen && <>
+        {renderSocialLogin()}
+      </>}
 
     </View>
   )

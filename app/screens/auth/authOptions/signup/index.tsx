@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Button, Text } from "../../../../components"
 import { color } from "../../../../theme"
@@ -49,6 +49,27 @@ export const SignUpScreen = observer(function SignUpScreen() {
     )
   }
 
+  const renderSocialSignup = () => {
+    const SOCIALROW: ViewStyle = {
+      width: '100%', justifyContent:
+        'space-between'
+    }
+    const TITLE: TextStyle = {
+      textAlign: 'center',
+      marginVertical: scaleByDeviceWidth(32)
+    }
+    return (<>
+      <Text textColor={color.palette.black}
+        style={[fontStyles.caption1Regular, TITLE]}>
+        {'Or, Sign up with'}
+      </Text>
+      <View style={[ROW, SOCIALROW]}>
+        {renderSocialButton('google')}
+        {renderSocialButton('facebook')}
+      </View>
+    </>)
+  }
+
   return (
     <View testID="SignUpScreen" style={FULL}>
       <Text style={[fontStyles.largeTitleBold, { marginBottom: scaleByDeviceWidth(32) }]} textColor={color.palette.black}>{'Create an Account'}</Text>
@@ -56,13 +77,10 @@ export const SignUpScreen = observer(function SignUpScreen() {
         {EmailInputField(email, setEmail, emailRef)}
         {TextInputField(mobile, setMobile, 'Mobile Number', mobileRef)}
       </View>
-      <Button text={t('auth.signup')} textStyle={fontStyles.bodyRegular}></Button>
+      <Button onPress={() => navigate.navigate('authStack', { screen: 'otp' })} text={t('auth.signup')} textStyle={fontStyles.bodyRegular}></Button>
+      
       {!keyboardOpen && <>
-        <Text textColor={color.palette.black} style={[fontStyles.caption1Regular, { textAlign: 'center', marginVertical: scaleByDeviceWidth(32) }]}>{'Or, Sign up with'}</Text>
-        <View style={[ROW, { width: '100%', justifyContent: 'space-between' }]}>
-          {renderSocialButton('google')}
-          {renderSocialButton('facebook')}
-        </View>
+        {renderSocialSignup()}
       </>}
     </View>
   )

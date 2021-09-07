@@ -19,5 +19,7 @@ export const palette = {
   primaryRed: '#F27B7B',
   fieldGrey: '#F8F9FD',
   lightBlue: '#9399B1',
+  dustyBlue: '#6B7196',
+  underLineFieldBorder: '#EAEDF7',
 
 }

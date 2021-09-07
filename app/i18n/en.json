@@ -5,7 +5,9 @@
     "back": "Back",
     "schedule": "Book In-house test",
     "lab": "Lab",
-    "viewMap": "View Map"
+    "viewMap": "View Map",
+    "next": "Next",
+    "confirm": "Confirm"
   },
   "errors": {
     "invalidEmail": "Invalid email address."
@@ -21,7 +23,11 @@
     "logout": "Logout",
     "appleSignUp": "Signup with AppleID",
     "googleSignUp": "Signup with Google",
-    "loginWithEmail": "Login with E-mail"
+    "loginWithEmail": "Login with E-mail",
+    "forgotPassword": "Forgot Password?",
+    "verifyotp": "We have sent you OTP number via SMS for mobile verification.",
+    "resend": "Resend OTP?",
+    "firstaccount": "Create your first Account"
   },
   "demoScreen": {
     "howTo": "HOW TO",

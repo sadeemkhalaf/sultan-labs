@@ -31,6 +31,9 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.64.2)
   - Firebase/Analytics (8.5.0):
     - Firebase/Core
+  - Firebase/AnalyticsWithoutAdIdSupport (8.5.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics/WithoutAdIdSupport (~> 8.5.0)
   - Firebase/Auth (8.5.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.5.0)
@@ -52,6 +55,15 @@ PODS:
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
     - GoogleAppMeasurement (= 8.5.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/MethodSwizzler (~> 7.4)
+    - GoogleUtilities/Network (~> 7.4)
+    - "GoogleUtilities/NSData+zlib (~> 7.4)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAnalytics/WithoutAdIdSupport (8.5.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.5.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/MethodSwizzler (~> 7.4)
     - GoogleUtilities/Network (~> 7.4)
@@ -101,6 +113,12 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 7.4)"
     - nanopb (~> 2.30908.0)
   - GoogleAppMeasurement/AdIdSupport (8.5.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/MethodSwizzler (~> 7.4)
+    - GoogleUtilities/Network (~> 7.4)
+    - "GoogleUtilities/NSData+zlib (~> 7.4)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (8.5.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/MethodSwizzler (~> 7.4)
     - GoogleUtilities/Network (~> 7.4)
@@ -422,7 +440,7 @@ PODS:
   - RNCMaskedView (0.1.10):
     - React
   - RNFBAnalytics (12.7.3):
-    - Firebase/Analytics (= 8.5.0)
+    - Firebase/AnalyticsWithoutAdIdSupport (= 8.5.0)
     - React-Core
     - RNFBApp
   - RNFBApp (12.7.3):
@@ -732,7 +750,7 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   RNCAsyncStorage: 56a3355a10b5d660c48c6e37325ac85ebfd09885
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNFBAnalytics: efc3661d7bcaa3b62b89c36b5da9d6b387edc1e7
+  RNFBAnalytics: 9d63f25fcf725e5e63550e324c0dfe7b87724712
   RNFBApp: da93e9e705c7f0fb5f381818ac51c078fc817f8c
   RNFBAuth: f6a4ec4e91b395e0b51ba1472919993278c7f42c
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
@@ -755,6 +773,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 4c60b43eaf3cb05a164bc9113258a171c18b7bf7
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: 33e3aec89c953e1bf02cbfb224f96ae0724e27a4
+PODFILE CHECKSUM: d67454f2538b95995a5215bde8f14828e6f5964f
 
 COCOAPODS: 1.10.2

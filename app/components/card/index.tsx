@@ -6,6 +6,7 @@ import { Text } from "../index"
 import { moderateScale, scaleByDeviceWidth } from "../../theme/scalingUtil"
 import { SvgIconButton } from "../icon/icon"
 
+
 const CardContainer: ViewStyle = {
   width: "100%",
   height: scaleByDeviceWidth(120),
@@ -17,25 +18,37 @@ const CardContainer: ViewStyle = {
   padding: moderateScale(16),
 }
 
+const CIRCLE: ViewStyle = {
+  height: 40,
+  width: 40,
+  alignItems: 'center',
+  justifyContent: 'center'
+}
+
+const ICONVIEW: ViewStyle = { position: "absolute", bottom: 16, right: 8, zIndex: 1000 }
+
 export const Card = (
   title: string,
   description?: string,
   bg = color.palette.primaryRed,
+  textColor = color.palette.white,
   navigateTp?: () => void,
 ) => {
   return (
     <TouchableOpacity onPress={navigateTp}>
       <View style={[CardContainer, { backgroundColor: bg }]}>
-        <Text style={fontStyles.bodyTitleBold} textColor={color.palette.white}>
+        <Text style={fontStyles.bodyTitleBold} textColor={textColor}>
           {title}
         </Text>
-        <Text style={fontStyles.bodyRegular} textColor={color.palette.white}>
+        <Text style={fontStyles.bodyRegular} textColor={textColor}>
           {description || ""}
         </Text>
       </View>
-      <View style={{ position: "absolute", bottom: 16, right: 8, zIndex: 1000 }}>
-        <SvgIconButton type={"next-circle"} fill={color.palette.white} size={20} viewStyle={{height: 40, width: 40, alignItems: 'center', justifyContent: 'center'}} />
+      <View style={ICONVIEW}>
+        <SvgIconButton type={"next-circle"} fill={textColor} size={20} viewStyle={CIRCLE} />
+        
       </View>
+ 
     </TouchableOpacity>
   )
 }

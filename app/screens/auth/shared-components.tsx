@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import DropDownPicker from 'react-native-dropdown-picker';
 import { Close } from '../../../assets/images/svg';
-import { SvgIconButton, TextField } from '../../components';
+import { SvgIconButton, TextField, Text } from '../../components';
 import { color } from '../../theme';
-import { scaleByDeviceWidth } from '../../theme/scalingUtil';
-
+import { moderateScale, scaleByDeviceWidth } from '../../theme/scalingUtil';
 
 export const sharedStyle = StyleSheet.create({
     svgIconStyle: {
@@ -16,7 +16,7 @@ export const sharedStyle = StyleSheet.create({
 
 });
 
-const PasswordInputField = (password, setPassword, inputRef) => {
+const PasswordInputField = (password, setPassword, inputRef, title?: string) => {
 
     const [show, setShow] = useState(true);
     const handleShow = () => setShow(!show)
@@ -27,7 +27,7 @@ const PasswordInputField = (password, setPassword, inputRef) => {
                 forwardedRef={inputRef}
                 value={password}
                 onChangeText={setPassword}
-                label={'Password'}
+                label={title ? title : 'Password'}
                 secureTextEntry={show}
             />
             <SvgIconButton type={'show'} size={16} viewStyle={sharedStyle.svgIconStyle} onPress={handleShow} />
@@ -44,20 +44,44 @@ const EmailInputField = (email, setEmail, inputRef) => {
             onChangeText={setEmail}
             label={'Email'}
         />
-
     )
 }
 
 const TextInputField = (text, setText, label = '', inputRef) => {
     return (
-
         <TextField
             forwardedRef={inputRef}
             value={text}
             onChangeText={setText}
             label={label}
         />
+    )
+}
 
+const OptionsMenuField = (text, setText, label = '') => {
+
+    const [open, setOpen] = useState(false);
+    const [items, setItems] = useState([
+        { label: 'Apple', value: 'apple' },
+        { label: 'Banana', value: 'banana' }
+    ]);
+
+    const BOXSTYLE: ViewStyle = { borderWidth: 0, borderBottomWidth: scaleByDeviceWidth(1), borderBottomColor: color.palette.underLineFieldBorder, marginBottom: scaleByDeviceWidth(16), width: '100%' }
+    return (
+        <>
+            <View>
+                <Text textColor={color.palette.dustyBlue} preset="fieldLabel" style={{ marginBottom: moderateScale(8) }} text={label} />
+            </View>
+            <DropDownPicker
+                style={BOXSTYLE}
+                open={open}
+                value={text}
+                items={items}
+                setOpen={setOpen}
+                setValue={setText}
+                setItems={setItems}
+            />
+        </>
     )
 }
 
@@ -89,4 +113,4 @@ export const CloseButton = ({ text = '' }) => {
     );
 };
 
-export { PasswordInputField, EmailInputField, TextInputField };
+export { PasswordInputField, OptionsMenuField, EmailInputField, TextInputField };

@@ -33,6 +33,7 @@ const horizontalView: ViewStyle = {
   shadowOpacity: 0.12,
   padding: moderateScale(8),
   justifyContent: "center",
+  marginHorizontal: scaleByDeviceWidth(8),
   alignItems: "flex-start",
   height: verticalScale(60),
   width: scaleByDeviceWidth(200),
@@ -56,8 +57,6 @@ export const HomeScreen = observer(function HomeScreen() {
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
         <Header
           rightIcon={"heart"}
-          leftIcon={"pin"}
-          onLeftPress={() => navigation.navigate("mainStack", { screen: "map" })}
           onRightPress={() => console.log("on going tests")}
         />
 
@@ -118,9 +117,10 @@ export const HomeScreen = observer(function HomeScreen() {
         {/* content scroll */}
         <View style={styles.inputWrapper}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Text style={fontStyles.bodyTitleBold} textColor={color.palette.darkBlue}>
-              {"COVID-19"}
-            </Text>
+            <Text style={[fontStyles.bodyTitleBold, { marginTop: scaleByDeviceWidth(16) }]} textColor={color.palette.black}>{'Services'}</Text>
+            {Card("Test A", "get to know more about Test-A insights", color.palette.underLineFieldBorder, color.palette.black)}
+
+            <Text style={[fontStyles.bodyTitleBold, { marginTop: scaleByDeviceWidth(16) }]} textColor={color.palette.black}>{'COVID-19'}</Text>
             {Card("COVID-19", "get to know more about covid-19 insights", color.palette.lightRed)}
 
             <Text
@@ -129,14 +129,12 @@ export const HomeScreen = observer(function HomeScreen() {
             >
               {"Most Viewd Tests"}
             </Text>
-            {Card("Test", "book a test now!", color.palette.primaryRed, () => {
-              navigation.navigate("mainStack", { screen: "testDetails" })
-            })}
 
-            {Card("COVID-19", "get to know more about covid-19 insights")}
+            {Card("Test C", "get to know more about Test-C insights", color.palette.underLineFieldBorder, color.palette.black)}
 
-            {/* {footerNavButton("common.lab", "labDetails", LIGHT_BUTTON_STYLE)} */}
-            {footerNavButton("auth.logout", "AuthOptionsScreen", BUTTON_STYLE)}
+            {Card("Test B", "get to know more about Test-B insights", color.palette.underLineFieldBorder, color.palette.black)}
+
+            {footerNavButton("auth.logout", "authOptions", BUTTON_STYLE)}
           </ScrollView>
         </View>
       </Screen>

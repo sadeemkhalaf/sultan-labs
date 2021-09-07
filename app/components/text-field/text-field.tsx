@@ -17,13 +17,14 @@ const INPUT: TextStyle = {
   height: verticalScale(42),
   fontSize: moderateScale(16),
   backgroundColor: color.palette.white,
-  borderBottomColor: color.palette.lighterGrey,
+  borderBottomColor: color.palette.underLineFieldBorder,
   borderBottomWidth: moderateScale(1),
-  paddingHorizontal: moderateScale(24),
+  paddingHorizontal: moderateScale(16),
 
   // borderRadius: moderateScale(13),
 
 }
+
 
 const focusedInput: ViewStyle = {
   borderBottomColor: color.palette.orange,
@@ -101,7 +102,7 @@ export function TextField(props: TextFieldProps) {
 
   return (
     <View style={containerStyles}>
-      <Text preset="fieldLabel" style={{marginBottom: moderateScale(8)}} tx={labelTx} text={label} />
+      <Text textColor={color.palette.dustyBlue} preset="fieldLabel" style={{marginBottom: moderateScale(8)}} tx={labelTx} text={label} />
       <TextInput
         onFocus={() => handleFocus(true)}
         onBlur={() => handleFocus(false)}
