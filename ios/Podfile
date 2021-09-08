@@ -11,7 +11,7 @@ pod 'GoogleSignIn', '~> 5.0.2'
 # Override Firebase SDK Version
 $FirebaseSDKVersion = '8.5.0'
 pod 'Firebase/Analytics'
-$RNFirebaseAnalyticsWithoutAdIdSupport=true
+# $RNFirebaseAnalyticsWithoutAdIdSupport=true
 
 target 'sultanLabs' do
   use_unimodules!
@@ -23,6 +23,14 @@ target 'sultanLabs' do
     :hermes_enabled => false
   )
 
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+     target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+     end
+    end
+   end
+   
   target 'sultanLabsTests' do
     inherit! :complete
     # Pods for testing
