@@ -39,6 +39,7 @@ const EmailInputField = (email, setEmail, inputRef) => {
     return (
 
         <TextField
+            autoCapitalize={'none'}
             forwardedRef={inputRef}
             value={email}
             onChangeText={setEmail}

@@ -87,6 +87,7 @@ export function TextField(props: TextFieldProps) {
     style: styleOverride,
     inputStyle: inputStyleOverride,
     forwardedRef,
+    autoCapitalize,
     ...rest
   } = props
 
@@ -104,6 +105,7 @@ export function TextField(props: TextFieldProps) {
     <View style={containerStyles}>
       <Text textColor={color.palette.dustyBlue} preset="fieldLabel" style={{marginBottom: moderateScale(8)}} tx={labelTx} text={label} />
       <TextInput
+        autoCapitalize={'none'}
         onFocus={() => handleFocus(true)}
         onBlur={() => handleFocus(false)}
         placeholder={actualPlaceholder}

@@ -38,6 +38,7 @@ export interface UserCountry {
 export interface AccountReducer {
   userType?: "user" | "guest"
   user?: User
+  uid?: string,
   loggedIn?: boolean
   location?: Location
 }

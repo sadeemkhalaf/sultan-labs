@@ -9,22 +9,9 @@ import { googleWebClientID, googleBasicProfileAccess, googleIosClientID } from "
 */
 
 const signinWithEmailPassword = (email: string, password: string) => {
-  firebase
+  return firebase
     .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((userInfo) => {
-      console.log("User account created & signed in!", userInfo)
-    })
-    .catch((error) => {
-      if (error.code === "auth/email-already-in-use") {
-        console.log("That email address is already in use!")
-      }
-      if (error.code === "auth/invalid-email") {
-        console.log("That email address is invalid!")
-      } else {
-        // some other error happened
-      }
-    })
+    .createUserWithEmailAndPassword(email, password);
 }
 
 /*

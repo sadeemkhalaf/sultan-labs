@@ -13,8 +13,9 @@ import { t } from "i18n-js"
 import { ROW } from "../.."
 import { Facebook, Google } from "../../../../../assets/images/svg"
 import { useKeyboard } from "../../../../utils/hooks/useKeyboard"
-import { signinWithGoogleAccount } from "../../../../utils/auth/auth-api"
+import { signinWithEmailPassword, signinWithGoogleAccount } from "../../../../utils/auth/auth-api"
 import { useDispatch } from "react-redux"
+import { loginUser, setToken } from "../../../../store/Action"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
@@ -77,6 +78,24 @@ export const LoginScreen = observer(function LoginScreen() {
     </>)
   }
 
+  const handleLogin = async () => {
+    signinWithEmailPassword(email, password).then((userInfo) => {
+      console.log("User account created & signed in!", userInfo);
+      dispatch(setToken(userInfo.user?.refreshToken))
+      dispatch(loginUser({user: userInfo.user.email, uid: userInfo.user?.uid}))
+      navigate.navigate('mainStack', { screen: 'home' });
+    })
+    .catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        console.log("That email address is already in use!")
+      }
+      if (error.code === "auth/invalid-email") {
+        console.log("That email address is invalid!")
+      } else {
+        // some other error happened
+      }
+    });
+  }
 
 
   return (
@@ -87,7 +106,7 @@ export const LoginScreen = observer(function LoginScreen() {
         {PasswordInputField(password, setPassword, passwrordRef)}
         <Text style={fontStyles.caption2Medium} textColor={color.palette.purple} onPress={() => true}>{t('auth.forgotPassword')}</Text>
       </View>
-      <Button onPress={() => navigate.navigate('mainStack', { screen: 'home' })} text={t('auth.login')} textStyle={fontStyles.bodyRegular}></Button>
+      <Button onPress={handleLogin} text={t('auth.login')} textStyle={fontStyles.bodyRegular}></Button>
 
       {!keyboardOpen && <>
         {renderSocialLogin()}
