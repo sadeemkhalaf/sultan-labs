@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { View, ViewStyle, StyleSheet, TextStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { t } from "i18n-js"
@@ -9,6 +9,7 @@ import { fontStyles } from "../../../theme/fonts"
 import { scaleByDeviceWidth } from "../../../theme/scalingUtil"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
 import { useNavigation } from "@react-navigation/native"
+import { auth } from "../../../../fb-configs"
 
 
 
@@ -18,11 +19,15 @@ const CONTAINER: ViewStyle = {
   paddingHorizontal: spacing[4],
 }
 
-export const OtpScreen = observer(function OtpScreen() {
+
+//  observer(function OtpScreen({ route, navigation }) observer(function OtpScreen()
+export const OtpScreen = ({ route, navigation }) => {
 
   const [keyboardOpen] = useKeyboard();
   const navigate = useNavigation();
   const [code, setCode] = useState('');
+
+  const { mobile } = route.params;
 
 
   const OTPVIEW: ViewStyle = {
@@ -45,6 +50,35 @@ export const OtpScreen = observer(function OtpScreen() {
     marginBottom: scaleByDeviceWidth(24)
   }
 
+  const [confirm, setConfirm] = useState<any>(null);
+  const [, setCodeStatus] = useState<boolean>();
+  const [codeError, setCodeError] = useState(false);
+
+  
+  useEffect (() => {
+    // signInWithPhoneNumber(mobile)
+  }, [])
+
+
+  const signInWithPhoneNumber = async (phoneNumber: string) => {
+    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+    setConfirm(confirmation);
+    // await updateVerifiedMobileNumber();
+  };
+
+  const confirmCode = async () => {
+
+    try {
+      await confirm.confirm(code);
+      setCodeStatus(true);
+      navigate.navigate("VerifyEmail");
+      setCodeError(false);
+    } catch (error) {
+      setCodeStatus(false);
+      setCodeError(true);
+    }
+  };
+  
   return (
     <View testID="OtpScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
@@ -62,7 +96,8 @@ export const OtpScreen = observer(function OtpScreen() {
             codeInputFieldStyle={styles.underlineStyleBase}
             codeInputHighlightStyle={styles.underlineStyleHighLighted}
             onCodeFilled={(code => {
-              console.log(`Code is ${code}, you are good to go!`)
+              // console.log(`Code is ${code}, you are good to go!`)
+              confirmCode()
             })}
           />
         </View>
@@ -73,7 +108,7 @@ export const OtpScreen = observer(function OtpScreen() {
     </View>
 
   )
-})
+};
 
 const styles = StyleSheet.create({
   underlineStyleBase: {

@@ -77,7 +77,7 @@ export const SignUpScreen = observer(function SignUpScreen() {
         {EmailInputField(email, setEmail, emailRef)}
         {TextInputField(mobile, setMobile, 'Mobile Number', mobileRef)}
       </View>
-      <Button onPress={() => navigate.navigate('authStack', { screen: 'otp' })} text={t('auth.signup')} textStyle={fontStyles.bodyRegular}></Button>
+      <Button onPress={() => navigate.navigate('authStack', { screen: 'otp', params: {mobile: mobile} })} text={t('auth.signup')} textStyle={fontStyles.bodyRegular}></Button>
       
       {!keyboardOpen && <>
         {renderSocialSignup()}

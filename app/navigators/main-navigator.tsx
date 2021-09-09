@@ -7,12 +7,16 @@
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
 import { HomeScreen, MapScreen } from "../screens"
-import { ForgotPasswordScreen, OtpScreen, ConfirmAccountScreen, AuthOptionsScreen } from "../screens/auth"
+import {
+  ForgotPasswordScreen,
+  OtpScreen,
+  ConfirmAccountScreen,
+  AuthOptionsScreen,
+} from "../screens/auth"
 import { LabDetailsScreen } from "../screens/lab/lab-details"
 import { TestDetailsScreen } from "../screens/test-details/test-details-screen"
 import { CreatePasswordScreen } from "../screens/auth/create-password"
 import { AccountDetailsScreen } from "../screens/auth/account-details/account-details"
-
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -32,7 +36,7 @@ export type AuthParamList = {
   authOptions: undefined
   signup: undefined
   confirmAccount: undefined
-  forgotPassword: undefined
+  forgotPassword: {mobile?: string}
   otp: undefined
   createPassword: undefined
   createAccount: undefined
@@ -52,7 +56,6 @@ export type PrimaryParamList = {
 const Auth = createStackNavigator<AuthParamList>()
 const Stack = createStackNavigator<PrimaryParamList>()
 
-
 export const AuthStack = () => {
   return (
     <Auth.Navigator
@@ -63,11 +66,15 @@ export const AuthStack = () => {
         headerShown: false,
         animationEnabled: true,
         gestureEnabled: true,
-        gestureDirection: 'horizontal',
+        gestureDirection: "horizontal",
       }}
     >
       <Auth.Screen name="authOptions" component={AuthOptionsScreen} />
-      <Auth.Screen name="forgotPassword" component={ForgotPasswordScreen} />
+      <Auth.Screen
+        name="forgotPassword"
+        component={ForgotPasswordScreen}
+        initialParams={{ mobile: "" }}
+      />
       <Auth.Screen name="otp" component={OtpScreen} />
       <Auth.Screen name="confirmAccount" component={ConfirmAccountScreen} />
       <Auth.Screen name="createPassword" component={CreatePasswordScreen} />
@@ -77,7 +84,6 @@ export const AuthStack = () => {
 }
 
 export function MainNavigator() {
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -87,14 +93,13 @@ export function MainNavigator() {
         headerShown: false,
         animationEnabled: true,
         gestureEnabled: true,
-        gestureDirection: 'horizontal',
+        gestureDirection: "horizontal",
       }}
     >
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="map" component={MapScreen} />
       <Stack.Screen name="testDetails" component={TestDetailsScreen} />
       <Stack.Screen name="labDetails" component={LabDetailsScreen} />
-
     </Stack.Navigator>
   )
 }
