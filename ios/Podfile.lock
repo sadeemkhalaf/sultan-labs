@@ -371,7 +371,7 @@ PODS:
     - React
   - react-native-geolocation (2.0.2):
     - React
-  - react-native-geolocation-service (5.3.0-beta.1):
+  - react-native-geolocation-service (5.3.0-beta.2):
     - React
   - react-native-google-maps (0.28.0):
     - Google-Maps-iOS-Utils (= 2.1.0)
@@ -445,18 +445,18 @@ PODS:
     - React-cxxreact (= 0.64.2)
     - React-jsi (= 0.64.2)
     - React-perflogger (= 0.64.2)
-  - RNCAsyncStorage (1.15.5):
+  - RNCAsyncStorage (1.15.7):
     - React-Core
   - RNCMaskedView (0.1.10):
     - React
-  - RNFBAnalytics (12.7.3):
+  - RNFBAnalytics (12.7.5):
     - Firebase/Analytics (= 8.5.0)
     - React-Core
     - RNFBApp
-  - RNFBApp (12.7.3):
+  - RNFBApp (12.7.5):
     - Firebase/CoreOnly (= 8.5.0)
     - React-Core
-  - RNFBAuth (12.7.3):
+  - RNFBAuth (12.7.5):
     - Firebase/Auth (= 8.5.0)
     - React-Core
     - RNFBApp
@@ -752,7 +752,7 @@ SPEC CHECKSUMS:
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
   react-native-fbsdk: 8e92c7a334fd8d9c2b5d8b8fcd7ae2c314161099
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-geolocation-service: 4030de78cdeb93ebef1fdc1971668bea6c0bc59b
+  react-native-geolocation-service: 94c7d2ffdbbf4dd431241e0c8e37d491ebd41430
   react-native-google-maps: 46dea4aa4acb7300beff508f64d9f8c84e9fb106
   react-native-maps: 2d405b4e8cee0282e4c02bac434d81450dfea877
   react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
@@ -768,11 +768,11 @@ SPEC CHECKSUMS:
   React-RCTVibration: 24600e3b1aaa77126989bc58b6747509a1ba14f3
   React-runtimeexecutor: a9904c6d0218fb9f8b19d6dd88607225927668f9
   ReactCommon: 149906e01aa51142707a10665185db879898e966
-  RNCAsyncStorage: 56a3355a10b5d660c48c6e37325ac85ebfd09885
+  RNCAsyncStorage: 7102fe8985f889579a3ae148d957bbb3f308122b
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNFBAnalytics: efc3661d7bcaa3b62b89c36b5da9d6b387edc1e7
-  RNFBApp: da93e9e705c7f0fb5f381818ac51c078fc817f8c
-  RNFBAuth: f6a4ec4e91b395e0b51ba1472919993278c7f42c
+  RNFBAnalytics: ea715117d4d4af958ea45413db8a33cd4c34fc8a
+  RNFBApp: 069331642164d48951a6aa004271675981bd3d41
+  RNFBAuth: 4a7ca03d1072b2621542d0b28be55f943b0a35cb
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNGoogleSignin: e64616a4080cf7d83f4b292fad82d174587444e2
   RNKeychain: b8e0711b959a19c5b057d1e970d3c83d159b6da5
@@ -793,6 +793,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 4c60b43eaf3cb05a164bc9113258a171c18b7bf7
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: 55d97d850a6628f9e96f244a8afcc5aca498511c
+PODFILE CHECKSUM: e058eb22ad34a39cd6940ec49fef5ad816e46230
 
 COCOAPODS: 1.10.1
