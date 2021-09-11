@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { View, ViewStyle, StyleSheet, TextStyle } from "react-native"
-import { observer } from "mobx-react-lite"
 import { t } from "i18n-js"
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { Screen, Header, Text, Button } from "../../../components"
@@ -8,10 +7,12 @@ import { color, spacing } from "../../../theme"
 import { fontStyles } from "../../../theme/fonts"
 import { scaleByDeviceWidth } from "../../../theme/scalingUtil"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
-import { useNavigation } from "@react-navigation/native"
+import { StackActions, useNavigation } from "@react-navigation/native"
 import { auth } from "../../../../fb-configs"
-
-
+import { useDispatch, useSelector } from "react-redux"
+import { loginUser, updateUser } from "../../../store/Action"
+import { AccountReducer } from "../../../store/Action/types"
+import { RootState } from "../../../store/Reducer"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -21,14 +22,6 @@ const CONTAINER: ViewStyle = {
 
 
 //  observer(function OtpScreen({ route, navigation }) observer(function OtpScreen()
-export const OtpScreen = ({ route, navigation }) => {
-
-  const [keyboardOpen] = useKeyboard();
-  const navigate = useNavigation();
-  const [code, setCode] = useState('');
-
-  const { mobile } = route.params;
-
 
   const OTPVIEW: ViewStyle = {
     width: '100%',
@@ -50,35 +43,53 @@ export const OtpScreen = ({ route, navigation }) => {
     marginBottom: scaleByDeviceWidth(24)
   }
 
-  const [confirm, setConfirm] = useState<any>(null);
-  const [, setCodeStatus] = useState<boolean>();
-  const [codeError, setCodeError] = useState(false);
 
-  
-  useEffect (() => {
-    // signInWithPhoneNumber(mobile)
+export const OtpScreen = ({ route, navigation }) => {
+
+  const { mobile } = route.params;
+
+  const [confirm, setConfirm] = useState<any>(null);
+  const [codeError, setCodeError] = useState(false);
+  const [, setCodeStatus] = useState<boolean>();
+  const [code, setCode] = useState('');
+
+  const [keyboardOpen] = useKeyboard();
+  const navigate = useNavigation();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (mobile) {
+      signInWithPhoneNumber(mobile)
+    }
   }, [])
 
 
   const signInWithPhoneNumber = async (phoneNumber: string) => {
     const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+    console.log('confirmation: ', confirmation);
+    
     setConfirm(confirmation);
-    // await updateVerifiedMobileNumber();
   };
 
-  const confirmCode = async () => {
+  const accountStore = useSelector<RootState>(
+    (state) => state.Account,
+  ) as AccountReducer;
 
+  const confirmCode = async () => {
     try {
-      await confirm.confirm(code);
+      const conf = await confirm.confirm(code);
+      dispatch(updateUser({...accountStore, ...conf}));
+      
       setCodeStatus(true);
-      navigate.navigate("VerifyEmail");
+      navigate.dispatch(StackActions.replace('authStack', { screen: 'createPassword' }));
       setCodeError(false);
     } catch (error) {
       setCodeStatus(false);
       setCodeError(true);
     }
   };
-  
+
   return (
     <View testID="OtpScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
@@ -95,14 +106,16 @@ export const OtpScreen = ({ route, navigation }) => {
             autoFocusOnLoad
             codeInputFieldStyle={styles.underlineStyleBase}
             codeInputHighlightStyle={styles.underlineStyleHighLighted}
-            onCodeFilled={(code => {
+            onCodeFilled={(() => {
               // console.log(`Code is ${code}, you are good to go!`)
               confirmCode()
             })}
+            keyboardAppearance={'default'}
           />
+          
         </View>
         <Text style={[fontStyles.caption1Medium, RESEND]} textColor={color.palette.dustyBlue}>{t('auth.resend')}</Text>
-        <Button onPress={() => navigate.navigate('authStack', { screen: 'createPassword' })} text={t('common.next')} textStyle={fontStyles.bodyRegular} style={{ marginBottom: scaleByDeviceWidth(keyboardOpen ? 16 : 56) }}></Button>
+        <Button onPress={confirmCode} text={t('common.next')} textStyle={fontStyles.bodyRegular} style={{ marginBottom: scaleByDeviceWidth(keyboardOpen ? 16 : 56) }}></Button>
 
       </Screen>
     </View>

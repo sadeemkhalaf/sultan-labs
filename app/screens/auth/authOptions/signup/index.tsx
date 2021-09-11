@@ -12,6 +12,10 @@ import { t } from "i18n-js"
 import { Facebook, Google } from "../../../../../assets/images/svg"
 import { useKeyboard } from "../../../../utils/hooks/useKeyboard"
 import { ROW } from "../../authOptions"
+import { AccountReducer } from "../../../../store/Action/types"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../../../store/Reducer"
+import { loginUser } from "../../../../store/Action"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
@@ -27,14 +31,19 @@ const SOCIALBUTTON: ViewStyle = {
 
 export const SignUpScreen = observer(function SignUpScreen() {
   const navigate = useNavigation();
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("test2@test.com");
+  const [mobile, setMobile] = useState("+962792077863");
   const emailRef = useRef(null);
   const mobileRef = useRef(null);
   const [keyboardOpen] = useKeyboard();
+  const dispatch = useDispatch();
+
+  // test 
+  const accountStore = useSelector<RootState>(
+    (state) => state.Account,
+  ) as AccountReducer;
 
   const renderSocialButton = (socialMediaType: 'facebook' | 'google') => {
-
     const Icon = (icon) => {
       switch (icon) {
         case 'facebook':
@@ -43,6 +52,7 @@ export const SignUpScreen = observer(function SignUpScreen() {
           return <Google height={24} width={24} />
       }
     }
+
 
     return (
       <Button style={SOCIALBUTTON} text={t('auth.login')}>{Icon(socialMediaType)}</Button>
@@ -69,6 +79,10 @@ export const SignUpScreen = observer(function SignUpScreen() {
       </View>
     </>)
   }
+  const handleSignUp = () => {
+    dispatch(loginUser({ tempAccount: { email: email, mobileNumber: mobile } }));
+    navigate.navigate('authStack', { screen: 'otp', params: {mobile: mobile} })
+  }
 
   return (
     <View testID="SignUpScreen" style={FULL}>
@@ -77,8 +91,8 @@ export const SignUpScreen = observer(function SignUpScreen() {
         {EmailInputField(email, setEmail, emailRef)}
         {TextInputField(mobile, setMobile, 'Mobile Number', mobileRef)}
       </View>
-      <Button onPress={() => navigate.navigate('authStack', { screen: 'otp', params: {mobile: mobile} })} text={t('auth.signup')} textStyle={fontStyles.bodyRegular}></Button>
-      
+      <Button onPress={handleSignUp} text={t('auth.signup')} textStyle={fontStyles.bodyRegular} disabled={mobile.length < 1 || email.length < 1}></Button>
+
       {!keyboardOpen && <>
         {renderSocialSignup()}
       </>}

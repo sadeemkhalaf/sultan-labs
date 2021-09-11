@@ -13,12 +13,13 @@ import { t } from "i18n-js"
 import { ROW } from "../.."
 import { Facebook, Google } from "../../../../../assets/images/svg"
 import { useKeyboard } from "../../../../utils/hooks/useKeyboard"
-import { signinWithEmailPassword, signinWithGoogleAccount } from "../../../../utils/auth/auth-api"
+import { checkUserExists, signinWithEmailPassword, signinWithGoogleAccount } from "../../../../utils/auth/auth-api"
 import { useDispatch } from "react-redux"
 import { loginUser, setToken } from "../../../../store/Action"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
+  paddingRight: scaleByDeviceWidth(16),
   flex: 1,
 }
 
@@ -38,6 +39,11 @@ export const LoginScreen = observer(function LoginScreen() {
   const emailRef = useRef(null);
   const passwrordRef = useRef(null);
   const [keyboardOpen] = useKeyboard();
+
+  // test 
+  // const accountStore = useSelector<RootState>(
+  //   (state) => state.Account,
+  // ) as AccountReducer;
 
   const renderSocialButton = (socialMediaType: 'facebook' | 'google', handleOnPress) => {
 
@@ -79,22 +85,47 @@ export const LoginScreen = observer(function LoginScreen() {
   }
 
   const handleLogin = async () => {
-    signinWithEmailPassword(email, password).then((userInfo) => {
-      console.log("User account created & signed in!", userInfo);
-      dispatch(setToken(userInfo.user?.refreshToken))
-      dispatch(loginUser({user: userInfo.user.email, uid: userInfo.user?.uid}))
-      navigate.navigate('mainStack', { screen: 'home' });
-    })
-    .catch((error) => {
-      if (error.code === "auth/email-already-in-use") {
-        console.log("That email address is already in use!")
-      }
-      if (error.code === "auth/invalid-email") {
-        console.log("That email address is invalid!")
-      } else {
-        // some other error happened
-      }
-    });
+    const exists = await checkUserExists(email);
+    if (exists && exists.length > 0 && exists.find((method) => method === 'password')) {
+      signinWithEmailPassword(email, password).then((userInfo) => {
+        dispatch(setToken(userInfo.user?.refreshToken))
+        dispatch(loginUser({ user: userInfo.user, uid: userInfo.user?.uid, userType: 'user', loggedIn: true }))
+        navigate.navigate('mainStack', { screen: 'home' });
+        /*
+        response
+        {
+        "additionalUserInfo": {
+          "isNewUser": true,
+          "profile": null,
+          "providerId": "password",
+          "username": null
+        }, 
+        "user": {
+          "displayName": null, 
+          "email": "sadeem.kh992@gmail.com",
+          "emailVerified": false,
+          "isAnonymous": false,
+          "metadata": [Object],
+          "phoneNumber": null,
+          "photoURL": null,
+          "providerData": [Array],
+          "providerId": "firebase",
+          "refreshToken": "string..."}}
+        */
+      })
+        .catch((error) => {
+
+          if (error.code === "auth/email-already-in-use") {
+            console.log("That email address is already in use!")
+          }
+          if (error.code === "auth/invalid-email") {
+            console.log("That email address is invalid!")
+          } else {
+            console.log('error: ', error);
+            // some other error happened
+          }
+        });
+    }
   }
 
 
@@ -106,7 +137,7 @@ export const LoginScreen = observer(function LoginScreen() {
         {PasswordInputField(password, setPassword, passwrordRef)}
         <Text style={fontStyles.caption2Medium} textColor={color.palette.purple} onPress={() => true}>{t('auth.forgotPassword')}</Text>
       </View>
-      <Button onPress={handleLogin} text={t('auth.login')} textStyle={fontStyles.bodyRegular}></Button>
+      <Button disabled={email.length < 1 || password.length < 1} onPress={handleLogin} text={t('auth.login')} textStyle={fontStyles.bodyRegular}></Button>
 
       {!keyboardOpen && <>
         {renderSocialLogin()}

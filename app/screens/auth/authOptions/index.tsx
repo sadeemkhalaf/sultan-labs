@@ -1,13 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from "@react-navigation/native";
 import { t } from "i18n-js";
-import React, { useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
 import { View, ViewStyle } from "react-native"
+import { FlatList } from "react-native-gesture-handler";
 import { SignUpScreen } from "..";
 import { Header, Screen, Text } from "../../../components"
 import { color } from "../../../theme"
 import { fontStyles } from "../../../theme/fonts";
-import { scaleByDeviceWidth } from "../../../theme/scalingUtil";
+import { scaleByDeviceWidth, width } from "../../../theme/scalingUtil";
 import { LoginScreen } from "./login";
 
 
@@ -44,30 +45,48 @@ export const AuthOptionsScreen = () => {
 
   const [selectedState, setState] = useState<StatePage>('login');
   const navigation = useNavigation();
+  const flatRef = useRef(null);
+
+  const pages = [{ page: <LoginScreen /> }, { page: <SignUpScreen /> }]
+
+  const handleOnPageSelected = useCallback(itemIndex => {
+    flatRef?.current.scrollToOffset({offset: scaleByDeviceWidth(itemIndex * width)})
+  }, []);
 
   return (
+    <>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background} statusBarColor={'white'}>
         <Header
-        headerText={'Sultan Medical Labs'}
+          headerText={'Sultan Medical Labs'}
           onLeftPress={() => navigation.navigate("mainStack", { screen: "map" })}
         />
         <View style={ROW}>
           <View style={[selectedState === 'login' && SELECTED, { marginLeft: scaleByDeviceWidth(16) }]}>
-            <Text style={fontStyles.bodyBold} textColor={selectedState === 'login' ? color.palette.primaryRed : color.palette.lightGrey} onPress={() => setState('login')}>{t('auth.login')}</Text>
+            <Text style={fontStyles.bodyBold} textColor={selectedState === 'login' ? color.palette.primaryRed : color.palette.lightGrey} onPress={() => {setState('login'); handleOnPageSelected(0)}}>{t('auth.login')}</Text>
           </View>
           <View style={[selectedState === 'signup' && SELECTED, { marginLeft: scaleByDeviceWidth(32) }]}>
-            <Text style={fontStyles.bodyBold} onPress={() => setState('signup')} textColor={selectedState === 'signup' ? color.palette.primaryRed : color.palette.lightGrey}>{t('auth.signup')}</Text>
+            <Text style={fontStyles.bodyBold} onPress={() => {setState('signup'); handleOnPageSelected(1)}} textColor={selectedState === 'signup' ? color.palette.primaryRed : color.palette.lightGrey}>{t('auth.signup')}</Text>
           </View>
         </View>
-        {selectedState === 'login' &&
+        {/* {selectedState === 'login' &&
           <LoginScreen />
         }
         {selectedState === 'signup' &&
           <SignUpScreen />
-        }
-
-      {renderCopyrights()}
+        } */}
+        <FlatList
+          ref={flatRef}
+          data={pages}
+          renderItem={(item) => item.item.page}
+          keyExtractor={(item) => item.index}
+          pagingEnabled
+          horizontal
+          bounces={false}
+          showsHorizontalScrollIndicator={false}
+        />
       </Screen>
+      {renderCopyrights()}
+    </>
 
   )
 }
