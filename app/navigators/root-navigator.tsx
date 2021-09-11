@@ -9,6 +9,7 @@ import { NavigationContainer, NavigationContainerRef } from "@react-navigation/n
 import { createStackNavigator } from "@react-navigation/stack"
 import { AuthStack, MainNavigator } from "./main-navigator"
 import { color } from "../theme"
+import Splash from "../screens/Splash"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -21,6 +22,7 @@ import { color } from "../theme"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type RootParamList = {
+  splash: undefined
   mainStack: undefined
   authStack: undefined
 }
@@ -37,6 +39,9 @@ const RootStack = () => {
         gestureEnabled: true,
       }}
     >
+      <Stack.Screen name="splash" component={Splash} options={{
+        headerShown: false,
+      }} />
       <Stack.Screen name="authStack" component={AuthStack} options={{
         headerShown: false,
       }} />
