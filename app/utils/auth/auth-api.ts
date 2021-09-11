@@ -10,9 +10,21 @@ import { googleWebClientID, googleBasicProfileAccess, googleIosClientID } from "
 
 const signinWithEmailPassword = (email: string, password: string) => {
   return firebase
+    .auth().signInWithEmailAndPassword(email, password);
+}
+
+const signupWithEmailPassword = (email: string, password: string) => {
+  return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password);
 }
+
+
+const checkUserExists = (email: string) => {
+  return firebase.auth().fetchSignInMethodsForEmail(email);
+}
+
+
 
 /*
 ****************************************
@@ -50,4 +62,4 @@ const signinWithGoogleAccount = async () => {
   }
 }
 
-export { configureGoogleSigin, signinWithEmailPassword, signinWithGoogleAccount }
+export { configureGoogleSigin, signupWithEmailPassword, signinWithEmailPassword, signinWithGoogleAccount, checkUserExists }

@@ -39,8 +39,9 @@ export interface AccountReducer {
   userType?: "user" | "guest"
   user?: User
   uid?: string,
-  loggedIn?: boolean
-  location?: Location
+  loggedIn?: boolean,
+  location?: Location,
+  tempAccount?: {email? , mobileNumber?, password?, checkPassword?}
 }
 export interface ConfigsReducer {
   loggedIn: boolean

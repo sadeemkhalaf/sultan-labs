@@ -8,6 +8,7 @@ import {
 const initialState: AccountReducer = {
   user: {},
   userType: 'guest',
+  uid: '',
   location: {},
 };
 
