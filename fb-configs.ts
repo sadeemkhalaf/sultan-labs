@@ -1,5 +1,6 @@
 import auth from "@react-native-firebase/auth";
 import firebase from "@react-native-firebase/app";
+import firestore from '@react-native-firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAEsfqv9d9uHojEsHNCxJgonUsdGjWMnXI",
@@ -15,4 +16,7 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
-export { firebase, auth };
+// General Collections
+const usersCollection = firestore().collection('Users');
+
+export { firebase, auth, firestore, usersCollection };
