@@ -9,7 +9,8 @@ const firebaseConfig = {
   storageBucket: "sultan-labs.appspot.com",
   messagingSenderId: "8258525560",
   appId: "1:8258525560:web:cf57c7dd3d9b3f8308508d",
-  measurementId: "G-Y8PLYFLKSH"
+  measurementId: "G-Y8PLYFLKSH",
+  databaseURL: "https://sultan-labs-default-rtdb.firebaseio.com/"
 };
 
 if (!firebase.apps.length) {
