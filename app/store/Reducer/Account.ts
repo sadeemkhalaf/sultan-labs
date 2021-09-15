@@ -2,6 +2,7 @@ import {
   AccountReducer,
   ActionTypes,
   LOGOUT,
+  TEMP_USER,
   UPDATE_USER,
 } from '../Action/types';
 
@@ -10,6 +11,7 @@ const initialState: AccountReducer = {
   userType: 'guest',
   uid: '',
   location: {},
+  tempAccount: {}
 };
 
 export default (state = initialState, action: ActionTypes): AccountReducer => {
@@ -18,6 +20,11 @@ export default (state = initialState, action: ActionTypes): AccountReducer => {
       return {
         ...state,
         user: action.payload,
+      };
+      case TEMP_USER:
+      return {
+        ...state,
+        tempAccount: action.payload,
       };
     case LOGOUT:
       return {

@@ -5,6 +5,7 @@ export const SET_FCM_TOKEN = "SET_FCM_TOKEN"
 export const UPDATE_LANGUAGE = "UPDATE_LANGUAGE"
 export const UPDATE_USER = "UPDATE_USER"
 export const VERIFY_USER = "VERIFY_USER"
+export const TEMP_USER = "TEMP_USER"
 export const SET_USER_TYPE = "SET_USER_TYPE"
 export const SET_USER_LOCATION = "SET_USER_LOCATION"
 export const SET_USER_COUNTRY = "SET_USER_COUNTRY"
@@ -20,6 +21,12 @@ export interface User {
   nationalId?: { filename?: string }
   hasConfirmedEmail?: boolean
   hasConfirmedPhone?: boolean
+}
+
+export interface TempAccount {
+  email?: string,
+  mobile?: string,
+  uid?: string,
 }
 export interface Location {
   geometry?: {
@@ -75,4 +82,9 @@ interface SetFcmToken {
   payload: string
 }
 
-export type ActionTypes = LoginAction | LogoutAction | UpdateUserAction | SetFcmToken | SetToken
+interface SetTempUser {
+  type: typeof TEMP_USER
+  payload: TempAccount
+}
+
+export type ActionTypes = LoginAction | LogoutAction | UpdateUserAction | SetFcmToken | SetToken | SetTempUser

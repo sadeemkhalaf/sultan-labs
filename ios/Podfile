@@ -11,7 +11,8 @@ pod 'GoogleSignIn', '~> 5.0.2'
 # Override Firebase SDK Version
 $FirebaseSDKVersion = '8.5.0'
 pod 'Firebase/Analytics'
-# $RNFirebaseAnalyticsWithoutAdIdSupport=true
+pod 'Firebase/Firestore'
+$RNFirebaseAnalyticsWithoutAdIdSupport=true
 
 target 'sultanLabs' do
   use_unimodules!

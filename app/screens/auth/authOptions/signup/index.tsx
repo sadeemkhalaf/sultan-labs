@@ -15,7 +15,7 @@ import { ROW } from "../../authOptions"
 import { AccountReducer } from "../../../../store/Action/types"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../../store/Reducer"
-import { loginUser } from "../../../../store/Action"
+import { tempUser, updateUser } from "../../../../store/Action"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
@@ -80,7 +80,7 @@ export const SignUpScreen = observer(function SignUpScreen() {
     </>)
   }
   const handleSignUp = () => {
-    dispatch(loginUser({ tempAccount: { email: email, mobileNumber: mobile } }));
+    dispatch(tempUser({ email: email, mobile: mobile }));
     navigate.navigate('authStack', { screen: 'otp', params: {mobile: mobile} })
   }
 

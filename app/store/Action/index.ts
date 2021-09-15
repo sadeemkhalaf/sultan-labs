@@ -5,6 +5,8 @@ import {
   LOGOUT,
   SET_FCM_TOKEN,
   SET_TOKEN,
+  TempAccount,
+  TEMP_USER,
   UPDATE_USER,
   User,
 } from "./types"
@@ -17,6 +19,11 @@ export const loginUser = (user: AccountReducer): ActionTypes => ({
 export const updateUser = (user: User): ActionTypes => ({
   type: UPDATE_USER,
   payload: user,
+})
+
+export const tempUser = (tempUser: TempAccount): ActionTypes => ({
+  type: TEMP_USER,
+  payload: tempUser,
 })
 
 export const logoutUser = (): ActionTypes => ({

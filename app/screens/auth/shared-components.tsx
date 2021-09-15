@@ -48,13 +48,15 @@ const EmailInputField = (email, setEmail, inputRef) => {
     )
 }
 
-const TextInputField = (text, setText, label = '', inputRef) => {
+const TextInputField = (text: string, setText: (text: string) => void, label = '', inputRef, handleBlur, active = true) => {
     return (
         <TextField
             forwardedRef={inputRef}
             value={text}
             onChangeText={setText}
             label={label}
+            onBlur={handleBlur}
+            editable={active}
         />
     )
 }
