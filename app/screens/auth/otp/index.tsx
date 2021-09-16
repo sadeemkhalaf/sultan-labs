@@ -80,7 +80,6 @@ export const OtpScreen = ({ route, navigation }) => {
     try {
       const conf = await confirm.confirm(code);
       dispatch(updateUser({...accountStore, ...conf}));
-      
       setCodeStatus(true);
       navigate.dispatch(StackActions.replace('authStack', { screen: 'createPassword' }));
       setCodeError(false);

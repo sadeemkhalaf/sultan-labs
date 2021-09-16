@@ -10,10 +10,11 @@ import { footerNavButton } from "../../components/footer/footer"
 import { styles } from "../auth/authOptions/login/styles"
 import { fontStyles } from "../../theme/fonts"
 import { moderateScale, scaleByDeviceWidth, verticalScale } from "../../theme/scalingUtil"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AccountReducer } from "../../store/Action/types"
 import { RootState } from "../../store/Reducer"
 import { getUserInfo } from "../../utils/auth/auth-api"
+import { logoutUser } from "../../store/Action"
 
 const FULL: ViewStyle = { flexGrow: 1, flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -55,19 +56,23 @@ const greetingView: ViewStyle = {
 
 export const HomeScreen = observer(function HomeScreen() {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
+
   const [userData, setUserData] = useState({})
 
   const { user, uid } = useSelector<RootState>((state) => state.Account) as AccountReducer
 
+  const handleLogout = () => {
+    dispatch(logoutUser())
+  }
   useEffect(() => {
-    console.log(uid, user.id);
-    
+    console.log(uid, user.id)
+
     getUserInfo(uid)
       .get()
       .then((data) => {
         setUserData(data.data())
-        console.log(data.data());
-        
+        console.log(data.data())
       })
       .catch(() => {})
   }, [])
@@ -174,7 +179,7 @@ export const HomeScreen = observer(function HomeScreen() {
               color.palette.black,
             )}
 
-            {footerNavButton("auth.logout", "authOptions", BUTTON_STYLE)}
+            {footerNavButton("auth.logout", "authOptions", BUTTON_STYLE, handleLogout)}
           </ScrollView>
         </View>
       </Screen>

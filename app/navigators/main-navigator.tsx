@@ -17,6 +17,7 @@ import { LabDetailsScreen } from "../screens/lab/lab-details"
 import { TestDetailsScreen } from "../screens/test-details/test-details-screen"
 import { CreatePasswordScreen } from "../screens/auth/create-password"
 import { AccountDetailsScreen } from "../screens/auth/account-details/account-details"
+import { SettingsScreen } from "../screens/account-settings/settings"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -47,6 +48,7 @@ export type PrimaryParamList = {
   demo: undefined
   demoList: undefined
   map: undefined
+  settings: undefined
   labDetails: { id?: string }
   testDetails: { id?: string }
   auth: undefined
@@ -98,6 +100,7 @@ export function MainNavigator() {
     >
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="map" component={MapScreen} />
+      <Stack.Screen name="settings" component={SettingsScreen} />
       <Stack.Screen name="testDetails" component={TestDetailsScreen} />
       <Stack.Screen name="labDetails" component={LabDetailsScreen} />
     </Stack.Navigator>

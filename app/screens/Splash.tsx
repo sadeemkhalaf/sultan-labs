@@ -53,7 +53,7 @@ const Splash = () => {
               duration: 1500,
               useNativeDriver: true,
             }).start(),
-      3000,
+      2000,
     )
 
     return () => clearTimeout(timeout)
@@ -64,11 +64,19 @@ const Splash = () => {
       <LinearGradient colors={[color.palette.primaryRed, color.palette.lightRed]} angle={45}>
         <StyledView>
           <Animated.View style={[AnimatedViewStyle, { opacity: LogoFadeIn }]}>
-            <Logo height={scaleByDeviceWidth(165)} width={scaleByDeviceWidth(165)}/>
+            <Logo height={scaleByDeviceWidth(165)} width={scaleByDeviceWidth(165)} />
           </Animated.View>
 
-          <Animated.View style={[AnimatedOptionsStyle, { opacity: ButtonsFadeIn }]}>
+          <Animated.View
+            style={[
+              AnimatedOptionsStyle,
+              {
+                opacity: ButtonsFadeIn,
+              },
+            ]}
+          >
             <SkipButton
+              css={{ borderBottomColor: color.palette.white, borderBottomWidth: 1 }}
               onPress={() => dispatch(StackActions.replace("authStack", { screen: "authOptions" }))}
             >
               <Text style={{ fontSize: scaleByDeviceWidth(18) }} textColor={color.palette.white}>

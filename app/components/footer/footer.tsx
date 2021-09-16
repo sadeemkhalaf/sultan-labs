@@ -31,9 +31,12 @@ const FOOTER_CONTENT: ViewStyle = {
   paddingHorizontal: spacing[4],
 }
 
-export const footerNavButton = (text = '', screen, buttonStyle?: ViewStyle) => {
+export const footerNavButton = (text = '', screen, buttonStyle?: ViewStyle, action = () => {}) => {
   const navigation = useNavigation()
-  const nextScreen = () => navigation.navigate('authStack',{screen: screen})
+  const nextScreen = () => {
+    navigation.navigate('authStack',{screen: screen});
+    action();
+  }
   return (<Button
     testID="next-screen-button"
     style={[CONTINUE, {...buttonStyle}]}

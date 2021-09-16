@@ -52,7 +52,7 @@ export function Header(props: HeaderProps) {
       </View>
       {profile && (
         <View style={{marginRight: scaleByDeviceWidth(8)}}>
-          <SvgIconButton onPress={() => navigation.navigate("mainStack", { screen: "map" })} type={'person'} size={20} />
+          <SvgIconButton onPress={() => navigation.navigate("mainStack", { screen: "settings" })} type={'person'} size={20} />
         </View>
       )}
       {rightIcon ? (
