@@ -7,14 +7,14 @@ import { color } from "../../../theme"
 import { fontStyles } from "../../../theme/fonts"
 import { scaleByDeviceWidth } from "../../../theme/scalingUtil"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
-import { styles } from "../authOptions/styles"
-import { TextInputField } from "../shared-components"
 import { Header, Screen, Button, Text } from "./../../../components"
 import * as Yup from "yup"
 import { useDispatch, useSelector } from "react-redux"
 import { AccountReducer } from "../../../store/Action/types"
 import { RootState } from "../../../store/Reducer"
+import { TextInputField } from "../../auth/shared-components"
 import { firestore } from "../../../../fb-configs"
+import { styles } from "../../auth/authOptions/styles"
 
 const CONTAINER: ViewStyle = {
   backgroundColor: color.palette.white,
@@ -78,7 +78,7 @@ const AccountDetailsScreen = () => {
   const cityRef = useRef(null)
   const addressRef = useRef(null)
 
-  const addUserDetails = async () => {
+  const updateUserDetails = async () => {
     const uid = accountStore?.user?.user?._user?.uid
 
     firestore().collection("users")
@@ -89,7 +89,7 @@ const AccountDetailsScreen = () => {
     // fs.collection('users').get().then((changes) => console.log(changes))
   }
   const handleSubmitForm = () => {
-    addUserDetails()
+    updateUserDetails()
     navigate.navigate("mainStack", { screen: "home" })
   }
 

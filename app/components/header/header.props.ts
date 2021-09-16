@@ -43,4 +43,6 @@ export interface HeaderProps {
    * Title style overrides.
    */
   titleStyle?: StyleProp<TextStyle>
+
+  profile?: boolean
 }

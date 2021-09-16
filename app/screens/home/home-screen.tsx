@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { useNavigation } from "@react-navigation/native"
@@ -10,6 +10,10 @@ import { footerNavButton } from "../../components/footer/footer"
 import { styles } from "../auth/authOptions/login/styles"
 import { fontStyles } from "../../theme/fonts"
 import { moderateScale, scaleByDeviceWidth, verticalScale } from "../../theme/scalingUtil"
+import { useSelector } from "react-redux"
+import { AccountReducer } from "../../store/Action/types"
+import { RootState } from "../../store/Reducer"
+import { getUserInfo } from "../../utils/auth/auth-api"
 
 const FULL: ViewStyle = { flexGrow: 1, flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -43,7 +47,7 @@ const greetingView: ViewStyle = {
   flexDirection: "row",
   display: "flex",
   marginTop: moderateScale(16),
-  alignItems: "center",
+  alignItems: "flex-end",
   justifyContent: "space-between",
 }
 
@@ -51,28 +55,43 @@ const greetingView: ViewStyle = {
 
 export const HomeScreen = observer(function HomeScreen() {
   const navigation = useNavigation()
+  const [userData, setUserData] = useState({})
+
+  const { user, uid } = useSelector<RootState>((state) => state.Account) as AccountReducer
+
+  useEffect(() => {
+    console.log(uid, user.id);
+    
+    getUserInfo(uid)
+      .get()
+      .then((data) => {
+        setUserData(data.data())
+        console.log(data.data());
+        
+      })
+      .catch(() => {})
+  }, [])
 
   return (
     <View testID="HomeScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
-        <Header
-          rightIcon={"heart"}
-          onRightPress={() => console.log("on going tests")}
-        />
+        <Header profile rightIcon={"heart"} onRightPress={() => console.log("on going tests")} />
 
         {/* Greeting */}
-        <View
-          style={greetingView}
-        >
-          <View style={{ flexDirection: "row" }}>
+        <View style={greetingView}>
+          <View style={{ flexDirection: "column" }}>
             <Text textColor={color.palette.darkBlue} style={fontStyles.subHeadRegular}>
               {"Welcome, "}
             </Text>
             <Text textColor={color.palette.darkBlue} style={fontStyles.subHeadBold}>
-              {"User 1"}
+              {userData?.fullName || "User"}
             </Text>
           </View>
-          <Text textColor={color.palette.primaryRed} style={fontStyles.bodyBold} onPress={() => navigation.navigate("mainStack", { screen: "map" })}>
+          <Text
+            textColor={color.palette.primaryRed}
+            style={fontStyles.bodyBold}
+            onPress={() => navigation.navigate("mainStack", { screen: "map" })}
+          >
             {"Discover Labs"}
           </Text>
         </View>
@@ -91,9 +110,7 @@ export const HomeScreen = observer(function HomeScreen() {
             style={{ paddingVertical: moderateScale(8) }}
             showsHorizontalScrollIndicator={false}
           >
-            <View
-              style={horizontalView}
-            >
+            <View style={horizontalView}>
               <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
                 {"PCR Test"}
               </Text>
@@ -101,9 +118,7 @@ export const HomeScreen = observer(function HomeScreen() {
                 {"test 1"}
               </Text>
             </View>
-            <View
-              style={horizontalView}
-            >
+            <View style={horizontalView}>
               <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
                 {"PCR Test"}
               </Text>
@@ -117,10 +132,25 @@ export const HomeScreen = observer(function HomeScreen() {
         {/* content scroll */}
         <View style={styles.inputWrapper}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Text style={[fontStyles.bodyTitleBold, { marginTop: scaleByDeviceWidth(16) }]} textColor={color.palette.black}>{'Services'}</Text>
-            {Card("Test A", "get to know more about Test-A insights", color.palette.underLineFieldBorder, color.palette.black)}
+            <Text
+              style={[fontStyles.bodyTitleBold, { marginTop: scaleByDeviceWidth(16) }]}
+              textColor={color.palette.black}
+            >
+              {"Services"}
+            </Text>
+            {Card(
+              "Test A",
+              "get to know more about Test-A insights",
+              color.palette.underLineFieldBorder,
+              color.palette.black,
+            )}
 
-            <Text style={[fontStyles.bodyTitleBold, { marginTop: scaleByDeviceWidth(16) }]} textColor={color.palette.black}>{'COVID-19'}</Text>
+            <Text
+              style={[fontStyles.bodyTitleBold, { marginTop: scaleByDeviceWidth(16) }]}
+              textColor={color.palette.black}
+            >
+              {"COVID-19"}
+            </Text>
             {Card("COVID-19", "get to know more about covid-19 insights", color.palette.lightRed)}
 
             <Text
@@ -130,9 +160,19 @@ export const HomeScreen = observer(function HomeScreen() {
               {"Most Viewd Tests"}
             </Text>
 
-            {Card("Test C", "get to know more about Test-C insights", color.palette.underLineFieldBorder, color.palette.black)}
+            {Card(
+              "Test C",
+              "get to know more about Test-C insights",
+              color.palette.underLineFieldBorder,
+              color.palette.black,
+            )}
 
-            {Card("Test B", "get to know more about Test-B insights", color.palette.underLineFieldBorder, color.palette.black)}
+            {Card(
+              "Test B",
+              "get to know more about Test-B insights",
+              color.palette.underLineFieldBorder,
+              color.palette.black,
+            )}
 
             {footerNavButton("auth.logout", "authOptions", BUTTON_STYLE)}
           </ScrollView>

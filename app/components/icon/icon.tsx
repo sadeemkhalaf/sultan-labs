@@ -24,6 +24,7 @@ export type SvgIconType =
   | "search"
   | "heart"
   | "pin"
+  | "person"
 
 interface SvgIconButtonProps {
   type: IconTypePreset | SvgIconType
@@ -42,39 +43,74 @@ export const SvgIconButton = ({
   fill = color.palette.darkBlue,
   onPress = () => {},
 }: SvgIconButtonProps) => {
-  const sizeScaled = scaleByDeviceWidth(size);
+  const sizeScaled = scaleByDeviceWidth(size)
   const getIconType = () => {
-    let icon = <SvgIcons.Show width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill}/>
+    let icon = (
+      <SvgIcons.Show width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+    )
     switch (type) {
       case "close":
-        icon = <SvgIcons.Close width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.Close width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
         break
       case "show":
-        icon = <SvgIcons.Show width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.Show width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
         break
       case "hide":
-        icon = <SvgIcons.Hide width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.Hide width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
         break
       case "back":
-        icon = <SvgIcons.ArrowBack width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.ArrowBack
+            width={sizeScaled}
+            height={sizeScaled}
+            style={iconStyle}
+            fill={fill}
+          />
+        )
         break
       case "next":
-        icon = <SvgIcons.Next width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.Next width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
         break
       case "next-circle":
-        icon = <SvgIcons.NextCircle width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.NextCircle
+            width={sizeScaled}
+            height={sizeScaled}
+            style={iconStyle}
+            fill={fill}
+          />
+        )
         break
       case "search":
-        icon = <SvgIcons.Search width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.Search width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
         break
       case "calendar":
-        icon = <SvgIcons.Calendar width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.Calendar width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
         break
       case "pin":
         icon = <SvgIcons.Pin width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
         break
       case "heart":
-        icon = <SvgIcons.Heart width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        icon = (
+          <SvgIcons.Heart width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
+        break
+      case "person":
+        icon = (
+          <SvgIcons.Person width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
         break
       default:
         icon = <SvgIcons.Car width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />

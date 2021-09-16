@@ -7,6 +7,7 @@ import { SvgIconButton } from "../icon/icon"
 import { translate } from "../../i18n/"
 import { color } from "../../theme"
 import { scaleByDeviceWidth } from "../../theme/scalingUtil"
+import { useNavigation } from "@react-navigation/core"
 
 // static styles
 const ROOT: ViewStyle = {
@@ -34,8 +35,10 @@ export function Header(props: HeaderProps) {
     headerTx,
     style,
     titleStyle,
+    profile
   } = props
   const header = headerText || (headerTx && translate(headerTx)) || ""
+  const navigation = useNavigation();
 
   return (
     <View style={[ROOT, style]}>
@@ -47,6 +50,11 @@ export function Header(props: HeaderProps) {
       <View style={TITLE_MIDDLE}>
         <Text style={[TITLE, titleStyle]} text={header} />
       </View>
+      {profile && (
+        <View style={{marginRight: scaleByDeviceWidth(8)}}>
+          <SvgIconButton onPress={() => navigation.navigate("mainStack", { screen: "map" })} type={'person'} size={20} />
+        </View>
+      )}
       {rightIcon ? (
         <View>
           <SvgIconButton onPress={onRightPress} type={rightIcon} size={20} />

@@ -17,12 +17,8 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
-export const fs = firebase.firestore();
 
 // General Collections
 const usersCollection = firestore().collection('Users');
-usersCollection.onSnapshot((querySnapshot) => {
-  console.log(querySnapshot)
-})
 
 export { firebase, auth, firestore, usersCollection };

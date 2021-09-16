@@ -12,7 +12,7 @@ pod 'GoogleSignIn', '~> 5.0.2'
 $FirebaseSDKVersion = '8.5.0'
 pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
-$RNFirebaseAnalyticsWithoutAdIdSupport=true
+# $RNFirebaseAnalyticsWithoutAdIdSupport=true
 
 target 'sultanLabs' do
   use_unimodules!

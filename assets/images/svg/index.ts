@@ -11,8 +11,14 @@ import Heart from "./heart.svg"
 import Pin from "./pin.svg"
 import Facebook from './facebook.svg';
 import Google from './google.svg';
+import Logo from './logo.svg';
+
+// outlined
+import Person from './outlined/002-stick-man.svg'
 
 export {
+    Logo,
+    Person,
     Facebook,
     Google,
     Pin,

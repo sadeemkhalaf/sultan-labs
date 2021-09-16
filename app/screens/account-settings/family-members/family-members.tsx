@@ -9,7 +9,7 @@ import { scaleByDeviceWidth } from "../../../theme/scalingUtil"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
 import { styles } from "../authOptions/styles"
 import { TextInputField } from "../shared-components"
-import { Header, Screen, Button, Text } from "./../../../components"
+import { Header, Screen, Button, Text } from "../../../components"
 import * as Yup from "yup"
 import { useDispatch, useSelector } from "react-redux"
 import { AccountReducer } from "../../../store/Action/types"
@@ -38,7 +38,7 @@ const RegisterSchema = Yup.object().shape({
   address: Yup.string(),
 })
 
-const AccountDetailsScreen = () => {
+const FamilyMembersScreen = () => {
   const dispatch = useDispatch()
 
   // test
@@ -200,4 +200,4 @@ const AccountDetailsScreen = () => {
   )
 }
 
-export { AccountDetailsScreen }
+export { FamilyMembersScreen }

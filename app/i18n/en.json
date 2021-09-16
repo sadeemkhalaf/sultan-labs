@@ -8,7 +8,8 @@
     "viewMap": "View Map",
     "next": "Next",
     "confirm": "Confirm",
-    "skip": "Skip"
+    "skip": "Skip",
+    "start": "Start"
   },
   "errors": {
     "invalidEmail": "Invalid email address."

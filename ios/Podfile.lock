@@ -392,9 +392,6 @@ PODS:
     - FBSDKCoreKit (~> 8.2.0)
   - Firebase/Analytics (8.5.0):
     - Firebase/Core
-  - Firebase/AnalyticsWithoutAdIdSupport (8.5.0):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics/WithoutAdIdSupport (~> 8.5.0)
   - Firebase/Auth (8.5.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.5.0)
@@ -419,15 +416,6 @@ PODS:
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
     - GoogleAppMeasurement (= 8.5.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
-    - GoogleUtilities/MethodSwizzler (~> 7.4)
-    - GoogleUtilities/Network (~> 7.4)
-    - "GoogleUtilities/NSData+zlib (~> 7.4)"
-    - nanopb (~> 2.30908.0)
-  - FirebaseAnalytics/WithoutAdIdSupport (8.5.0):
-    - FirebaseCore (~> 8.0)
-    - FirebaseInstallations (~> 8.0)
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.5.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/MethodSwizzler (~> 7.4)
     - GoogleUtilities/Network (~> 7.4)
@@ -490,12 +478,6 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 7.4)"
     - nanopb (~> 2.30908.0)
   - GoogleAppMeasurement/AdIdSupport (8.5.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
-    - GoogleUtilities/MethodSwizzler (~> 7.4)
-    - GoogleUtilities/Network (~> 7.4)
-    - "GoogleUtilities/NSData+zlib (~> 7.4)"
-    - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (8.5.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/MethodSwizzler (~> 7.4)
     - GoogleUtilities/Network (~> 7.4)
@@ -858,7 +840,7 @@ PODS:
   - RNCMaskedView (0.1.10):
     - React
   - RNFBAnalytics (12.7.5):
-    - Firebase/AnalyticsWithoutAdIdSupport (= 8.5.0)
+    - Firebase/Analytics (= 8.5.0)
     - React-Core
     - RNFBApp
   - RNFBApp (12.7.5):
@@ -1149,7 +1131,7 @@ SPEC CHECKSUMS:
   EXLocalization: 8b9463c81843da214476b541a27811dd885c9a76
   EXPermissions: 17d4846ad1880f6891c74ae58ca1acb43e47ed47
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 7abbebe341f731897ffeba3e985ac1ae14e2dfd5
+  FBReactNativeSpec: d8146813a245ba2de6ee1a11ee6a5aeffb8124a9
   FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
   FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
   FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
@@ -1206,7 +1188,7 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   RNCAsyncStorage: 7102fe8985f889579a3ae148d957bbb3f308122b
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNFBAnalytics: db27e6df29e8f9df0ef77e79300b1c9717932197
+  RNFBAnalytics: ea715117d4d4af958ea45413db8a33cd4c34fc8a
   RNFBApp: 069331642164d48951a6aa004271675981bd3d41
   RNFBAuth: 4a7ca03d1072b2621542d0b28be55f943b0a35cb
   RNFBFirestore: bc7282a7e3f5c5f776a50b17c1215469413a3f53
@@ -1230,6 +1212,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 4c60b43eaf3cb05a164bc9113258a171c18b7bf7
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: bc3a0a3a6e6c61de308d8592a7d35ba04d81ecf5
+PODFILE CHECKSUM: 821dc2e2b34114f7a31124c6baa9c74c059d2a4c
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1

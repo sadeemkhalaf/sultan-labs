@@ -11,7 +11,7 @@ import { scaleByDeviceWidth, width } from "../../../../theme/scalingUtil"
 import { t } from "i18n-js"
 import { Facebook, Google } from "../../../../../assets/images/svg"
 import { useKeyboard } from "../../../../utils/hooks/useKeyboard"
-import { ROW } from "../../authOptions"
+import { ROW } from ".."
 import { AccountReducer } from "../../../../store/Action/types"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../../store/Reducer"
@@ -19,6 +19,8 @@ import { tempUser, updateUser } from "../../../../store/Action"
 
 const FULL: ViewStyle = {
   marginVertical: scaleByDeviceWidth(32),
+  paddingLeft: scaleByDeviceWidth(24),
+  width: width - 48,
   flex: 1,
 }
 
@@ -26,7 +28,7 @@ const SOCIALBUTTON: ViewStyle = {
   borderColor: color.palette.lighterGrey,
   borderWidth: 1,
   backgroundColor: 'transparent',
-  width: scaleByDeviceWidth((width / 2) - 48),
+  width: scaleByDeviceWidth((width / 2) - 56),
 }
 
 export const SignUpScreen = observer(function SignUpScreen() {

@@ -35,7 +35,7 @@ const PasswordInputField = (password, setPassword, inputRef, title?: string) => 
     );
 }
 
-const EmailInputField = (email, setEmail, inputRef) => {
+const EmailInputField = (email, setEmail, inputRef, handleBlur = () => {}) => {
     return (
 
         <TextField
@@ -103,13 +103,13 @@ const CLOSE_STYLE: ViewStyle = {
     borderRadius: scaleByDeviceWidth(30)
 }
 
-export const CloseButton = ({ text = '' }) => {
+export const CloseButton = ({ text = 'authStack', screen= 'authOptions' }) => {
     const navigate = useNavigation();
 
     return (
         <TouchableOpacity style={CLOSE_STYLE}
             onPress={() => {
-                text.length > 0 ? navigate.navigate('authStack', { screen: text }) : navigate.goBack()
+                text.length > 0 ? navigate.navigate(text, { screen: screen }) : navigate.goBack()
             }}>
             <Close height={16} width={16} fill={color.palette.black} />
         </TouchableOpacity>
