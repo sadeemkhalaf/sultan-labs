@@ -15,6 +15,7 @@ import { AccountReducer } from "../../store/Action/types"
 import { RootState } from "../../store/Reducer"
 import { getUserInfo } from "../../utils/auth/auth-api"
 import { logoutUser } from "../../store/Action"
+import { renderCopyrights } from "../auth"
 
 const FULL: ViewStyle = { flexGrow: 1, flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -66,13 +67,10 @@ export const HomeScreen = observer(function HomeScreen() {
     dispatch(logoutUser())
   }
   useEffect(() => {
-    console.log(uid, user.id)
-
     getUserInfo(uid)
       .get()
       .then((data) => {
         setUserData(data.data())
-        console.log(data.data())
       })
       .catch(() => {})
   }, [])

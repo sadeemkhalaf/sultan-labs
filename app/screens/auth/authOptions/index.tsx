@@ -29,9 +29,9 @@ const SELECTED: ViewStyle = {
 }
 
 type StatePage = "login" | "signup"
-const renderCopyrights = () => {
+export const renderCopyrights = () => {
   return (
-    <View style={{ backgroundColor: color.palette.white, paddingBottom: scaleByDeviceWidth(48) }}>
+    <View style={{ backgroundColor: color.palette.white, paddingBottom: scaleByDeviceWidth(48), paddingTop: scaleByDeviceWidth(8) }}>
       <Text
         textColor={color.palette.lightBlue}
         style={[fontStyles.caption2Light, { textAlign: "center" }]}

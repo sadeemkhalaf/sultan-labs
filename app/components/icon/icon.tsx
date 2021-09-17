@@ -25,6 +25,7 @@ export type SvgIconType =
   | "heart"
   | "pin"
   | "person"
+  | "family"
 
 interface SvgIconButtonProps {
   type: IconTypePreset | SvgIconType
@@ -110,6 +111,11 @@ export const SvgIconButton = ({
       case "person":
         icon = (
           <SvgIcons.Person width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
+        )
+        break
+      case "family":
+        icon = (
+          <SvgIcons.Family width={sizeScaled} height={sizeScaled} style={iconStyle} fill={fill} />
         )
         break
       default:
