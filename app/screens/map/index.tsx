@@ -121,8 +121,8 @@ const MapsView = () => {
           <Marker
             key={index}
             coordinate={coords}
-            title={'MedLab'}
-            description={'Medlab Jordan'}
+            title={'Sultan Medica'}
+            description={'Sultan Medica Jordan'}
 
           />
         )}

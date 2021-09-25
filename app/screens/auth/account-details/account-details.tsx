@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { AccountReducer } from "../../../store/Action/types"
 import { RootState } from "../../../store/Reducer"
 import { firestore } from "../../../../fb-configs"
+import { loginUser } from "../../../store/Action"
 
 const CONTAINER: ViewStyle = {
   backgroundColor: color.palette.white,
@@ -84,7 +85,10 @@ const AccountDetailsScreen = () => {
     firestore().collection("users")
       .doc(uid)
       .set({ ...values, _id: uid })
-      .then((data) => {})
+      .then((data) => {
+        console.log(data);
+        dispatch(loginUser({user: {...values, id: uid, _id: uid }, uid: uid, loggedIn: true, userType: 'user'}))
+      })
       .then((err) => console.log(err))
     // fs.collection('users').get().then((changes) => console.log(changes))
   }

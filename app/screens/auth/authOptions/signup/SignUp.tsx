@@ -91,7 +91,7 @@ export const SignUpScreen = observer(function SignUpScreen() {
       <Text style={[fontStyles.largeTitleBold, { marginBottom: scaleByDeviceWidth(32) }]} textColor={color.palette.black}>{'Create an Account'}</Text>
       <View style={styles.inputWrapper}>
         {EmailInputField(email, setEmail, emailRef)}
-        {TextInputField(mobile, setMobile, 'Mobile Number', mobileRef)}
+        {TextInputField(mobile, setMobile, 'Mobile Number', mobileRef, () => true)}
       </View>
       <Button onPress={handleSignUp} text={t('auth.signup')} textStyle={fontStyles.bodyRegular} disabled={mobile.length < 1 || email.length < 1}></Button>
 
