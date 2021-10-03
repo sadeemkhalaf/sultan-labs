@@ -25,7 +25,8 @@ export interface User {
 
 export interface TempAccount {
   email?: string,
-  mobile?: string,
+  mobileNumber?: string,
+  fullName?: string;
   uid?: string,
 }
 export interface Location {

@@ -35,7 +35,7 @@ const PasswordInputField = (password, setPassword, inputRef, title?: string) => 
     );
 }
 
-const EmailInputField = (email, setEmail, inputRef, handleBlur = () => {}) => {
+const EmailInputField = (email, setEmail, inputRef, title, handleBlur = () => { }) => {
     return (
 
         <TextField
@@ -43,7 +43,7 @@ const EmailInputField = (email, setEmail, inputRef, handleBlur = () => {}) => {
             forwardedRef={inputRef}
             value={email}
             onChangeText={setEmail}
-            label={'Email'}
+            label={title || 'Email'}
         />
     )
 }
@@ -103,7 +103,7 @@ const CLOSE_STYLE: ViewStyle = {
     borderRadius: scaleByDeviceWidth(30)
 }
 
-export const CloseButton = ({ text = 'authStack', screen= 'authOptions' }) => {
+export const CloseButton = ({ text = 'authStack', screen = 'authOptions' }) => {
     const navigate = useNavigation();
 
     return (

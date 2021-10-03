@@ -2,14 +2,14 @@
 import { useNavigation } from "@react-navigation/native"
 import { t } from "i18n-js"
 import React, { useCallback, useRef, useState } from "react"
-import { View, ViewStyle } from "react-native"
-import { FlatList } from "react-native-gesture-handler"
+import { View, ViewStyle, FlatList } from "react-native"
 import { Header, Screen, Text } from "../../../components"
 import { color } from "../../../theme"
 import { fontStyles } from "../../../theme/fonts"
 import { scaleByDeviceWidth, width } from "../../../theme/scalingUtil"
 import { SignUpScreen } from ".."
 import { LoginScreen } from "./login/Login"
+import { useKeyboard } from "../../../utils/hooks/useKeyboard"
 
 const CONTAINER: ViewStyle = {
   flex: 1,
@@ -44,6 +44,7 @@ export const renderCopyrights = () => {
 
 export const AuthOptionsScreen = () => {
   const [selectedState, setState] = useState<StatePage>("login")
+  const [keyboardOpen] = useKeyboard();
   const navigation = useNavigation()
   const flatRef = useRef(null)
 
@@ -59,10 +60,11 @@ export const AuthOptionsScreen = () => {
   return (
     <>
       <Screen
+        statusBarColor={"white"}
+        statusBar={'dark-content'}
         preset="fixed"
         backgroundColor={color.background}
-        statusBarColor={"white"}
-        style={{width: '100%', flex: 1, paddingHorizontal: scaleByDeviceWidth(24)}}
+        style={{ width: '100%', flex: 1, paddingHorizontal: scaleByDeviceWidth(24) }}
       >
         <Header
           headerText={"Sultan Medical Labs"}
@@ -143,7 +145,7 @@ export const AuthOptionsScreen = () => {
           showsHorizontalScrollIndicator={false}
         />
       </Screen>
-      {renderCopyrights()}
+      {!keyboardOpen && renderCopyrights()}
     </>
   )
 }

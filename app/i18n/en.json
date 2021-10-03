@@ -27,8 +27,8 @@
     "googleSignUp": "Signup with Google",
     "loginWithEmail": "Login with E-mail",
     "forgotPassword": "Forgot Password?",
-    "verifyotp": "We have sent you OTP number via SMS for mobile verification.",
-    "resend": "Resend OTP?",
+    "verifyotp": "We have sent you a verification code number via SMS for mobile verification.",
+    "resend": "Resend verification code?",
     "firstaccount": "Create your first Account"
   },
   "demoScreen": {

@@ -1560,6 +1560,21 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@eva-design/dss@^2.0.0":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@eva-design/dss/-/dss-2.1.1.tgz#bd8da793e13a0dcac91d852b91ebf05e6fbdc0ee"
+  integrity sha512-Z6rZSodsQHWW1yDuiop1glJU8xKJSdKTPoWWCBsQWXYMNwTAEPgcZV69HNlnerB+T++jwj2jeoBzO24CTc0PmQ==
+
+"@eva-design/eva@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@eva-design/eva/-/eva-2.1.1.tgz#ad237ae76d63e7c474b3a0755c697490bbe5a4bc"
+  integrity sha512-WS1ykETXyq0Kxa0aFlPMBeftEtBeTDv9qEUeQ4VvbTETMc7hsZPSkPr2HudtQhFihiM72GFfwAK6GIAlF6GXdQ==
+
+"@eva-design/processor@^2.0.0":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@eva-design/processor/-/processor-2.1.1.tgz#33a59efa52ee2d206ac4d912dae801d12f9275a8"
+  integrity sha512-lbxZLm5ARhuk/wxWkaiWhw5XeZ+Xcp1JGCjcZl+S5rUbLppfp4U47jfq861EY27BP1dpQ5PyTVFCbl5eHlRFdg==
+
 "@expo/config-plugins@1.0.33":
   version "1.0.33"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-1.0.33.tgz#8ee78ea6f939f7e04606e9afa22b32139ea974a0"
@@ -1735,6 +1750,11 @@
   integrity sha512-HHJtvEp2h/EyOKX+iCkOLBaFt1iRupF+zJcgEX5TO+o51CceempZYIf9o7pBo/u8BBM+ntsAeLauFvHIPqHBKw==
   dependencies:
     which-polygon "^2.2.0"
+
+"@invertase/react-native-apple-authentication@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@invertase/react-native-apple-authentication/-/react-native-apple-authentication-2.1.5.tgz#a66d7a6185724ccf3c4dab8ecc7448164dc6c0ea"
+  integrity sha512-qX6Wm/F12pkzc95q6NHPtleA6tgWw1JLatAt/pbFhifxnMRgUU38/+JsLiDbtL7mzjtKAjWDETGYZ4dKGZQ8Wg==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -2436,7 +2456,7 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
-"@react-native-community/clipboard@^1.2.2":
+"@react-native-community/clipboard@^1.2.2", "@react-native-community/clipboard@^1.5.1":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/clipboard/-/clipboard-1.5.1.tgz#32abb3ea2eb91ee3f9c5fb1d32d5783253c9fabe"
   integrity sha512-AHAmrkLEH5UtPaDiRqoULERHh3oNv7Dgs0bTC0hO5Z2GdNokAMPT5w8ci8aMcRemcwbtdHjxChgtjbeA38GBdA==
@@ -3803,6 +3823,17 @@
   dependencies:
     "@typescript-eslint/types" "4.10.0"
     eslint-visitor-keys "^2.0.0"
+
+"@ui-kitten/components@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@ui-kitten/components/-/components-5.1.1.tgz#7e23b1995579778c86a2a04efab9a9750e759a33"
+  integrity sha512-iB4SE4qW2DjJZzzVSzKMkb182NHjZ4PST4lpFAZmZxv9ZgPcXTc4oQZZrpvk2BvQMUhMBe4g+m87BZ93skcPoQ==
+  dependencies:
+    "@eva-design/dss" "^2.0.0"
+    "@eva-design/processor" "^2.0.0"
+    fecha "3.0.3"
+    hoist-non-react-statics "^3.2.1"
+    lodash.merge "^4.6.1"
 
 "@unimodules/core@6.0.0", "@unimodules/core@~6.0.0":
   version "6.0.0"
@@ -8036,6 +8067,11 @@ fbjs@^3.0.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
+fecha@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/fecha/-/fecha-3.0.3.tgz#fabbd416497649a42c24d34bfa726b579203a1e2"
+  integrity sha512-6LQK/1jud/FZnfEEZJ7y81vw7ge81DNd/XEsX0hgMUjhS+QMljkb1C0czBaP7dMNRVrd5mw/J2J7qI2Nw+TWZw==
+
 figgy-pudding@^3.5.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.2.tgz#b4eee8148abb01dcf1d1ac34367d59e12fa61d6e"
@@ -9037,7 +9073,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
+hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.2.1, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -10914,6 +10950,11 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
+lodash.merge@^4.6.1:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
 lodash.pad@^4.5.1:
   version "4.5.1"

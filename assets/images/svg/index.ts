@@ -13,11 +13,19 @@ import Facebook from "./facebook.svg"
 import Google from "./google.svg"
 import Logo from "./logo.svg"
 
+import Apple from "./apple.svg"
+import Twitter from "./twitter.svg"
+import PhoneOtp from "./phone.svg"
+
+
 // outlined
 import Person from "./outlined/002-stick-man.svg"
 import Family from "./outlined/001-family.svg"
 
 export {
+  PhoneOtp,
+  Apple,
+  Twitter,
   Logo,
   Family,
   Person,

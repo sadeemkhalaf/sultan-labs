@@ -43,7 +43,7 @@ const CreatePasswordScreen = () => {
         try {
             await firebase.auth().currentUser.updateEmail(tempAccount.email)
             await firebase.auth().currentUser.updatePassword(password);
-            navigate.dispatch(StackActions.replace('authStack', { screen: 'createAccount' }))
+            navigate.navigate('authStack', { screen: 'createAccount' });
         } catch (error) {
             console.log('handleCreateAccount-Error: ', error)
         }

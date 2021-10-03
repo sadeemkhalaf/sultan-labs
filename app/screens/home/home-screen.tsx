@@ -1,9 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from "react"
-import { View, ViewStyle } from "react-native"
+import { View, ViewStyle, ScrollView } from "react-native"
 import { observer } from "mobx-react-lite"
 import { useNavigation } from "@react-navigation/native"
-import { ScrollView } from "react-native-gesture-handler"
 import { Header, Screen, Text, Card } from "../../components"
 import { color, spacing } from "../../theme"
 import { footerNavButton } from "../../components/footer/footer"
@@ -15,7 +14,6 @@ import { AccountReducer } from "../../store/Action/types"
 import { RootState } from "../../store/Reducer"
 import { getUserInfo } from "../../utils/auth/auth-api"
 import { logoutUser } from "../../store/Action"
-import { renderCopyrights } from "../auth"
 
 const FULL: ViewStyle = { flexGrow: 1, flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -62,6 +60,9 @@ export const HomeScreen = observer(function HomeScreen() {
   const [userData, setUserData] = useState({})
 
   const { user, uid } = useSelector<RootState>((state) => state.Account) as AccountReducer
+
+  console.log(user);
+  
 
   const handleLogout = () => {
     dispatch(logoutUser())

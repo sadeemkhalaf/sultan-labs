@@ -13,6 +13,8 @@ import "./i18n"
 import "./utils/ignore-warnings"
 import React, { useState, useEffect, useRef } from "react"
 import { NavigationContainerRef } from "@react-navigation/native"
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider } from '@ui-kitten/components';
 import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context"
 import { initFonts } from "./theme/fonts" // expo
 import * as storage from "./utils/storage"
@@ -35,6 +37,7 @@ import { enableScreens } from "react-native-screens"
 import { configureGoogleSigin } from "./utils/auth/auth-api"
 import { persistStore } from "redux-persist"
 import { Provider } from "react-redux"
+import { color } from "./theme";
 enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
@@ -77,12 +80,14 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RootStoreProvider value={rootStore}>
-          <SafeAreaProvider initialMetrics={initialWindowMetrics} style={{backgroundColor: 'white'}}>
+          <SafeAreaProvider initialMetrics={initialWindowMetrics} style={{backgroundColor: color.palette.white}}>
+          <ApplicationProvider {...eva} theme={eva.light}>
             <RootNavigator
               ref={navigationRef}
               initialState={initialNavigationState}
               onStateChange={onNavigationStateChange}
             />
+            </ApplicationProvider>
           </SafeAreaProvider>
         </RootStoreProvider>
       </PersistGate>

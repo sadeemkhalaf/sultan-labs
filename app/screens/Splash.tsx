@@ -9,6 +9,7 @@ import { RootState } from "../store/Reducer"
 import { scaleByDeviceWidth } from "../theme/scalingUtil"
 import { StackActions, useNavigation } from "@react-navigation/native"
 import { Logo } from "../../assets/images/svg"
+import { Screen } from "../components"
 
 const Splash = () => {
   const { dispatch } = useNavigation()
@@ -47,7 +48,7 @@ const Splash = () => {
 
 
   return (
-    <>
+    <Screen preset={'fixed'} unsafe statusBarColor={color.palette.red.level1} statusBar={'light-content'}>
       <LinearGradient colors={[color.palette.red.level1, color.palette.red.level3]} angle={45}>
         <StyledView>
           <Animated.View style={[AnimatedViewStyle, { opacity: LogoFadeIn }]}>
@@ -55,7 +56,7 @@ const Splash = () => {
           </Animated.View>
         </StyledView>
       </LinearGradient>
-    </>
+    </Screen>
   )
 }
 

@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { t } from "i18n-js"
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { View, ViewStyle } from "react-native"
 import { useFormik } from "formik"
 import { color } from "../../../theme"
@@ -16,6 +16,7 @@ import { AccountReducer } from "../../../store/Action/types"
 import { RootState } from "../../../store/Reducer"
 import { firestore } from "../../../../fb-configs"
 import { loginUser } from "../../../store/Action"
+import { IndexPath, Select, SelectItem } from "@ui-kitten/components"
 
 const CONTAINER: ViewStyle = {
   backgroundColor: color.palette.white,
@@ -41,14 +42,13 @@ const RegisterSchema = Yup.object().shape({
 
 const AccountDetailsScreen = () => {
   const dispatch = useDispatch()
-
-  // test
   const accountStore = useSelector<RootState>((state) => state.Account) as AccountReducer
-
+  
+  
   const { handleChange, handleSubmit, values, errors, dirty, resetForm, handleBlur } = useFormik({
     validationSchema: RegisterSchema,
     initialValues: {
-      fullName: "sadeem ahmad",
+      fullName: accountStore.tempAccount?.fullName || "",
       gender: "female",
       bloodType: "A+",
       birthDate: "1992-7-28",
@@ -61,8 +61,9 @@ const AccountDetailsScreen = () => {
     },
     onSubmit: (values) => {
       alert(`Full Name: ${values.fullName}, BloodType: ${values.bloodType}`)
-    },
+    }, enableReinitialize: true,
   })
+  
 
   const navigate = useNavigation()
   const [keyboardOpen] = useKeyboard()
@@ -79,28 +80,31 @@ const AccountDetailsScreen = () => {
   const cityRef = useRef(null)
   const addressRef = useRef(null)
 
+  console.log(accountStore.tempAccount);
   const addUserDetails = async () => {
-    const uid = accountStore?.user?.user?._user?.uid
+    const uid = accountStore.uid; 
+    
 
     firestore().collection("users")
       .doc(uid)
       .set({ ...values, _id: uid })
       .then((data) => {
-        console.log(data);
-        dispatch(loginUser({user: {...values, id: uid, _id: uid }, uid: uid, loggedIn: true, userType: 'user'}))
+        dispatch(loginUser({ user: { ...values, id: uid, _id: uid }, uid: uid, loggedIn: true, userType: 'user' }))
       })
       .then((err) => console.log(err))
     // fs.collection('users').get().then((changes) => console.log(changes))
   }
-  const handleSubmitForm = () => {
-    addUserDetails()
-    navigate.navigate("mainStack", { screen: "home" })
+  const handleSubmitForm = async () => {
+    await addUserDetails();
+    navigate.navigate("mainStack", { screen: "home" });
   }
+
+  const [selectedIndex, setSelectedIndex] = useState();
 
   return (
     <>
       <Screen style={CONTAINER} preset="scroll">
-        <Header leftIcon={"back"} onLeftPress={() => navigate.goBack()} />
+        <Header  leftIcon={"back"} onLeftPress={() => navigate.goBack()}/>
         <Text style={fontStyles.largeTitleBold} textColor={color.palette.black}>
           {"Create Account"}
         </Text>
@@ -125,6 +129,13 @@ const AccountDetailsScreen = () => {
             genderRef,
             handleBlur("gender"),
           )}
+          <Select
+            selectedIndex={selectedIndex}
+            onSelect={value => {setSelectedIndex(value); console.log(value)}}>
+            <SelectItem key={0} title='Female'/>
+            <SelectItem key={1} title='Male' />
+          </Select>
+
           {TextInputField(
             values.bloodType,
             handleChange("bloodType"),
@@ -154,7 +165,7 @@ const AccountDetailsScreen = () => {
           </Text>
           {TextInputField(
             values.mobileNumber,
-            handleChange("mobile"),
+            handleChange("mobileNumber"),
             "Mobile Number",
             mobileRef,
             handleBlur("mobile"),
