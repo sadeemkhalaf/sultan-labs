@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Header, Screen, Wallpaper } from "../../components"
@@ -14,14 +14,17 @@ const CONTAINER: ViewStyle = {
 }
 
 export const MapScreen = observer(function HomeScreen() {
+
   const navigation = useNavigation();
+  const [selectedLocation, setSelectedLocation] = useState<{ title, description, coords }>();
+
   return (
     <View testID="HomeScreen" style={FULL}>
-      <Wallpaper />
+      {/* <Wallpaper /> */}
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.background}>
-        <CloseButton text={'mainStack'} screen={'home'}/>
+        <CloseButton text={'mainStack'} screen={'home'} />
         <Header onLeftPress={() => navigation.goBack()} leftIcon={'back'} headerText='Where do you want to go?' />
-        <MapsView />
+        <MapsView setSelectedLocation={setSelectedLocation} selectedLocation={selectedLocation} />
       </Screen>
       {/* <Footer /> */}
     </View>
