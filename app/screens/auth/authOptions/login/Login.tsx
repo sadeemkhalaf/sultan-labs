@@ -10,7 +10,6 @@ import { useNavigation } from "@react-navigation/native"
 import { fontStyles } from "../../../../theme/fonts"
 import { scaleByDeviceWidth, width } from "../../../../theme/scalingUtil"
 import { t } from "i18n-js"
-import { ROW } from "../.."
 import { Apple, Facebook, Google, Twitter } from "../../../../../assets/images/svg"
 import { useKeyboard } from "../../../../utils/hooks/useKeyboard"
 import {
@@ -26,6 +25,14 @@ const FULL: ViewStyle = {
   paddingRight: scaleByDeviceWidth(24),
   width: width - 48,
   flex: 1,
+}
+
+const ROW: ViewStyle = {
+  flexDirection: "row",
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  width: '100%',
 }
 
 const SOCIALBUTTON: ViewStyle = {

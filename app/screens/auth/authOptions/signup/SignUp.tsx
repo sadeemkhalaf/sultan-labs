@@ -11,7 +11,6 @@ import { scaleByDeviceWidth, width } from "../../../../theme/scalingUtil"
 import { t } from "i18n-js"
 import { Apple, Facebook, Google, Twitter } from "../../../../../assets/images/svg"
 import { useKeyboard } from "../../../../utils/hooks/useKeyboard"
-import { ROW } from ".."
 import { AccountReducer } from "../../../../store/Action/types"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../../store/Reducer"
@@ -23,6 +22,14 @@ const FULL: ViewStyle = {
   paddingLeft: scaleByDeviceWidth(24),
   width: width - 48,
   flex: 1,
+}
+
+const ROW: ViewStyle = {
+  flexDirection: "row",
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  width: '100%',
 }
 
 const SOCIALBUTTON: ViewStyle = {
