@@ -15,7 +15,7 @@ import {
 } from "../screens/auth"
 import { LabDetailsScreen } from "../screens/lab/lab-details"
 import { TestDetailsScreen } from "../screens/test-details/test-details-screen"
-import { CreatePasswordScreen } from "../screens/auth/create-password"
+import { CreatePasswordScreen } from "../screens/auth/create-password/CreatePassword"
 import { AccountDetailsScreen } from "../screens/auth/account-details/account-details"
 import { SettingsScreen } from "../screens/account-settings/settings"
 
