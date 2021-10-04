@@ -17,6 +17,7 @@ const Splash = () => {
   const { loggedIn, token } = useSelector<RootState>(
     (state) => state.Configs,
   ) as ConfigsReducer
+  
 
   const LogoFadeIn = useRef(new Animated.Value(0)).current
 
@@ -38,7 +39,7 @@ const Splash = () => {
 
     const timeout = setTimeout(
       () =>
-        loggedIn && token
+        loggedIn || token
           ? dispatch(StackActions.replace("mainStack", { screen: "home" }))
           : dispatch(StackActions.replace("authStack", { screen: "authOptions" })),
       2000,
