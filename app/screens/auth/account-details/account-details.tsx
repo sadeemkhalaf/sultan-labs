@@ -5,7 +5,7 @@ import { View, ViewStyle } from "react-native"
 import { useFormik } from "formik"
 import { color } from "../../../theme"
 import { fontStyles } from "../../../theme/fonts"
-import { scaleByDeviceWidth } from "../../../theme/scalingUtil"
+import { moderateScale, scaleByDeviceWidth } from "../../../theme/scalingUtil"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
 import { styles } from "../authOptions/styles"
 import { TextInputField } from "../shared-components"
@@ -16,7 +16,9 @@ import { AccountReducer } from "../../../store/Action/types"
 import { RootState } from "../../../store/Reducer"
 import { firestore } from "../../../../fb-configs"
 import { loginUser } from "../../../store/Action"
-import { IndexPath, Select, SelectItem } from "@ui-kitten/components"
+import { Autocomplete, AutocompleteItem, Datepicker, IndexPath, Select, SelectItem } from "@ui-kitten/components"
+import { Blood, Calendar } from "../../../../assets/images/svg"
+import { InsuranceType, Gender, BloodType } from "./constants"
 
 const CONTAINER: ViewStyle = {
   backgroundColor: color.palette.white,
@@ -43,9 +45,9 @@ const RegisterSchema = Yup.object().shape({
 const AccountDetailsScreen = () => {
   const dispatch = useDispatch()
   const accountStore = useSelector<RootState>((state) => state.Account) as AccountReducer
-  
-  
-  const { handleChange, handleSubmit, values, errors, dirty, resetForm, handleBlur } = useFormik({
+
+
+  const { handleChange, handleSubmit, values, errors, dirty, resetForm, handleBlur, setFieldValue } = useFormik({
     validationSchema: RegisterSchema,
     initialValues: {
       fullName: accountStore.tempAccount?.fullName || "",
@@ -63,48 +65,84 @@ const AccountDetailsScreen = () => {
       alert(`Full Name: ${values.fullName}, BloodType: ${values.bloodType}`)
     }, enableReinitialize: true,
   })
-  
+
 
   const navigate = useNavigation()
   const [keyboardOpen] = useKeyboard()
 
   // fields' refs
   const nameRef = useRef(null)
-  const genderRef = useRef(null)
-  const bloodTypeRef = useRef(null)
   const bdRef = useRef(null)
   const mobileRef = useRef(null)
-  const insuranceRef = useRef(null)
   const emailRef = useRef(null)
   const countryRef = useRef(null)
   const cityRef = useRef(null)
   const addressRef = useRef(null)
 
-  console.log(accountStore.tempAccount);
+  const [birthDate, setBirthDate] = useState(new Date());
+  const [selectedGender, setSelectedGender] = useState<IndexPath | IndexPath[] | any>(new IndexPath(0));
+  const [selectedBloodtype, setSelectedBloodtype] = useState<IndexPath | IndexPath[] | any>(new IndexPath(0));
+
+  // autocomplete
+  const [value, setValue] = useState('');
+  const [insurance, setInsurance] = useState(InsuranceType);
+
+  const displayValue = (selected, list) => list[selected.row];
+
+  const onSelect = (index) => {
+    setValue(InsuranceType[index].title);
+  };
+
+  const filter = (item, query) => item.title.toLowerCase().includes(query.toLowerCase());
+
+  const onChangeText = (query) => {
+    setValue(query);
+    setFieldValue('insurance', query);
+    setInsurance(insurance.filter(item => filter(item, query)));
+  };
+
+  const renderOption = (title, index) => (
+    <SelectItem title={title} key={index} />
+  );
+
+  const renderAutoCompleteOption = (item, index) => (
+    <AutocompleteItem
+      key={index}
+      title={item.title}
+    />
+  );
+
+  const calendarBackdropStyle: ViewStyle = { backgroundColor: '#02020290' }
+  console.log(accountStore.uid);
+
   const addUserDetails = async () => {
-    const uid = accountStore.uid; 
+    const uid = accountStore?.uid ? accountStore?.uid : accountStore.user.user?.uid;
     
+    
+    const bloodValue = BloodType[selectedBloodtype?.row];
+    const genderValue = Gender[selectedGender?.row];
+
+    setFieldValue('birthDate', birthDate);
+    setFieldValue('bloodType', bloodValue);
+    setFieldValue('gender', genderValue)
 
     firestore().collection("users")
       .doc(uid)
       .set({ ...values, _id: uid })
-      .then((data) => {
+      .then(() => {
         dispatch(loginUser({ user: { ...values, id: uid, _id: uid }, uid: uid, loggedIn: true, userType: 'user' }))
       })
       .then((err) => console.log(err))
-    // fs.collection('users').get().then((changes) => console.log(changes))
   }
   const handleSubmitForm = async () => {
     await addUserDetails();
     navigate.navigate("mainStack", { screen: "home" });
   }
 
-  const [selectedIndex, setSelectedIndex] = useState();
-
   return (
     <>
       <Screen style={CONTAINER} preset="scroll">
-        <Header  leftIcon={"back"} onLeftPress={() => navigate.goBack()}/>
+        <Header leftIcon={"back"} onLeftPress={() => navigate.goBack()} />
         <Text style={fontStyles.largeTitleBold} textColor={color.palette.black}>
           {"Create Account"}
         </Text>
@@ -122,41 +160,47 @@ const AccountDetailsScreen = () => {
             nameRef,
             handleBlur("fullName"),
           )}
-          {TextInputField(
-            values.gender,
-            handleChange("gender"),
-            "Gender",
-            genderRef,
-            handleBlur("gender"),
-          )}
-          <Select
-            selectedIndex={selectedIndex}
-            onSelect={value => {setSelectedIndex(value); console.log(value)}}>
-            <SelectItem key={0} title='Female'/>
-            <SelectItem key={1} title='Male' />
-          </Select>
 
-          {TextInputField(
-            values.bloodType,
-            handleChange("bloodType"),
-            "Blood Type",
-            bloodTypeRef,
-            handleBlur("bloodType"),
-          )}
-          {TextInputField(
-            values.birthDate,
-            handleChange("birthDate"),
-            "Date of Birth",
-            bdRef,
-            handleBlur("birthDate"),
-          )}
-          {TextInputField(
-            values.insurance,
-            handleChange("insurance"),
-            "Insurance",
-            insuranceRef,
-            handleBlur("insurance"),
-          )}
+          <View style={{ marginTop: moderateScale(16), marginBottom: moderateScale(24) }}>
+            <Select
+              label={'Gender'}
+              value={displayValue(selectedGender, Gender)}
+              selectedIndex={selectedGender}
+              onSelect={index => setSelectedGender(index)}>
+              {Gender.map(renderOption)}
+            </Select>
+          </View>
+
+          <View style={{ marginTop: moderateScale(16), marginBottom: moderateScale(24) }}>
+            <Select
+              label={'Blood Type'}
+              value={displayValue(selectedBloodtype, BloodType)}
+              selectedIndex={selectedBloodtype}
+              accessoryRight={() => <Blood height={16} width={16} />}
+              onSelect={index => setSelectedBloodtype(index)}>
+              {BloodType.map(renderOption)}
+            </Select>
+          </View>
+
+          <View style={{ marginTop: moderateScale(16), marginBottom: moderateScale(24) }}>
+            <Datepicker
+              label='Birth Date'
+              placeholder='Pick your birthdate'
+              date={birthDate}
+              backdropStyle={calendarBackdropStyle}
+              accessoryRight={() => <Calendar height={16} width={16} />}
+              onSelect={nextDate => setBirthDate(nextDate)}
+            />
+          </View>
+
+          <Autocomplete
+            label={'Insurance'}
+            placeholder='Insurance'
+            value={value}
+            onSelect={onSelect}
+            onChangeText={onChangeText}>
+            {insurance.map(renderAutoCompleteOption)}
+          </Autocomplete>
           <Text
             style={[fontStyles.subHeadBold, { marginVertical: scaleByDeviceWidth(16) }]}
             textColor={color.palette.black}
