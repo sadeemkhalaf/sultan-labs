@@ -18,6 +18,7 @@ import Blood from "./blood.svg";
 import Apple from "./apple.svg"
 import Twitter from "./twitter.svg"
 import PhoneOtp from "./phone.svg"
+import Password from "./password.svg"
 
 
 // outlined
@@ -25,6 +26,7 @@ import Person from "./outlined/002-stick-man.svg"
 import Family from "./outlined/001-family.svg"
 
 export {
+  Password,
   Blood,
   PhoneOtp,
   Apple,
