@@ -8,6 +8,7 @@ import { translate } from "../../i18n/"
 import { color } from "../../theme"
 import { scaleByDeviceWidth } from "../../theme/scalingUtil"
 import { useNavigation } from "@react-navigation/core"
+import { LogoFull } from "../../../assets/images/svg"
 
 // static styles
 const ROOT: ViewStyle = {
@@ -39,19 +40,33 @@ export function Header(props: HeaderProps) {
   } = props
   const header = headerText || (headerTx && translate(headerTx)) || ""
   const navigation = useNavigation();
+  const HEART_DOT: ViewStyle = {
+    height: scaleByDeviceWidth(8),
+    width: scaleByDeviceWidth(8),
+    borderRadius: 4,
+    backgroundColor: color.palette.primaryRed,
+    position: "absolute",
+    top: -2,
+    right: -2,
+  }
 
   return (
     <View style={[ROOT, style]}>
       {leftIcon ? (
-        <SvgIconButton type={leftIcon} size={20} onPress={onLeftPress} />
+        <><SvgIconButton type={leftIcon} size={20} onPress={onLeftPress} />
+        <LogoFull heigh={50} width={50}/></>
       ) : (
+        <>
+         <LogoFull heigh={50} width={50}/>
         <View style={LEFT} />
+        </>
       )}
+     
       <View style={TITLE_MIDDLE}>
         <Text style={[TITLE, titleStyle]} text={header} />
       </View>
       {profile && (
-        <View style={{marginRight: scaleByDeviceWidth(8)}}>
+        <View style={{ marginRight: scaleByDeviceWidth(8) }}>
           <SvgIconButton onPress={() => navigation.navigate("mainStack", { screen: "settings" })} type={'person'} size={20} />
         </View>
       )}
@@ -60,15 +75,7 @@ export function Header(props: HeaderProps) {
           <SvgIconButton onPress={onRightPress} type={rightIcon} size={20} />
           {rightIcon === "heart" && (
             <View
-              style={{
-                height: scaleByDeviceWidth(8),
-                width: scaleByDeviceWidth(8),
-                borderRadius: 4,
-                backgroundColor: color.palette.primaryRed,
-                position: "absolute",
-                top: -2,
-                right: -2,
-              }}
+              style={HEART_DOT}
             />
           )}
         </View>
