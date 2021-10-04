@@ -2,6 +2,9 @@ import auth from "@react-native-firebase/auth";
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
 
+import { appleAuth } from '@invertase/react-native-apple-authentication';
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAEsfqv9d9uHojEsHNCxJgonUsdGjWMnXI",
   authDomain: "sultan-labs.firebaseapp.com",
@@ -21,4 +24,4 @@ if (!firebase.apps.length) {
 // General Collections
 const usersCollection = firestore().collection('Users');
 
-export { firebase, auth, firestore, usersCollection };
+export { firebase, auth, firestore, usersCollection, appleAuth };

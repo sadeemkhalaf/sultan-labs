@@ -1,9 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from "react"
-import { View, ViewStyle } from "react-native"
+import { View, ViewStyle, ScrollView } from "react-native"
 import { observer } from "mobx-react-lite"
 import { useNavigation } from "@react-navigation/native"
-import { ScrollView } from "react-native-gesture-handler"
 import { Header, Screen, Text, Card } from "../../components"
 import { color, spacing } from "../../theme"
 import { footerNavButton } from "../../components/footer/footer"
@@ -15,7 +14,6 @@ import { AccountReducer } from "../../store/Action/types"
 import { RootState } from "../../store/Reducer"
 import { getUserInfo } from "../../utils/auth/auth-api"
 import { logoutUser } from "../../store/Action"
-import { renderCopyrights } from "../auth"
 
 const FULL: ViewStyle = { flexGrow: 1, flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -55,6 +53,32 @@ const greetingView: ViewStyle = {
 
 // export {greetingView, horizontalView, BUTTON_STYLE, LIGHT_BUTTON_STYLE, CONTAINER, FULL}
 
+const OnGoingTests = () => {
+
+  const ListRow = () => <View style={horizontalView}>
+    <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
+      {"PCR Test"}
+    </Text>
+    <Text textColor={color.palette.lightBlue} style={fontStyles.bodyRegular}>
+      {"test 1"}
+    </Text>
+  </View>
+
+  return (
+    <View style={{ flexDirection: "row" }}>
+      <ScrollView
+        horizontal={true}
+        style={{ paddingVertical: moderateScale(8) }}
+        showsHorizontalScrollIndicator={false}
+      >
+        <ListRow />
+        <ListRow />
+        
+      </ScrollView>
+    </View>
+  )
+}
+
 export const HomeScreen = observer(function HomeScreen() {
   const navigation = useNavigation()
   const dispatch = useDispatch()
@@ -62,6 +86,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [userData, setUserData] = useState({})
 
   const { user, uid } = useSelector<RootState>((state) => state.Account) as AccountReducer
+
 
   const handleLogout = () => {
     dispatch(logoutUser())
@@ -72,7 +97,6 @@ export const HomeScreen = observer(function HomeScreen() {
       .then((data) => {
         setUserData(data.data())
       })
-      .catch(() => {})
   }, [])
 
   return (
@@ -107,30 +131,7 @@ export const HomeScreen = observer(function HomeScreen() {
         </Text>
 
         {/* horizontal view */}
-        <View style={{ flexDirection: "row" }}>
-          <ScrollView
-            horizontal={true}
-            style={{ paddingVertical: moderateScale(8) }}
-            showsHorizontalScrollIndicator={false}
-          >
-            <View style={horizontalView}>
-              <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
-                {"PCR Test"}
-              </Text>
-              <Text textColor={color.palette.lightBlue} style={fontStyles.bodyRegular}>
-                {"test 1"}
-              </Text>
-            </View>
-            <View style={horizontalView}>
-              <Text textColor={color.palette.darkBlue} style={fontStyles.bodyBold}>
-                {"PCR Test"}
-              </Text>
-              <Text textColor={color.palette.lightBlue} style={fontStyles.bodyRegular}>
-                {"test 1"}
-              </Text>
-            </View>
-          </ScrollView>
-        </View>
+        <OnGoingTests />
 
         {/* content scroll */}
         <View style={styles.inputWrapper}>

@@ -15,7 +15,7 @@ import {
 } from "../screens/auth"
 import { LabDetailsScreen } from "../screens/lab/lab-details"
 import { TestDetailsScreen } from "../screens/test-details/test-details-screen"
-import { CreatePasswordScreen } from "../screens/auth/create-password"
+import { CreatePasswordScreen } from "../screens/auth/create-password/CreatePassword"
 import { AccountDetailsScreen } from "../screens/auth/account-details/account-details"
 import { SettingsScreen } from "../screens/account-settings/settings"
 
@@ -37,7 +37,7 @@ export type AuthParamList = {
   authOptions: undefined
   signup: undefined
   confirmAccount: undefined
-  forgotPassword: {mobile?: string}
+  forgotPassword: {mobileNumber?: string}
   otp: undefined
   createPassword: undefined
   createAccount: undefined
@@ -75,7 +75,7 @@ export const AuthStack = () => {
       <Auth.Screen
         name="forgotPassword"
         component={ForgotPasswordScreen}
-        initialParams={{ mobile: "" }}
+        initialParams={{ mobileNumber: "" }}
       />
       <Auth.Screen name="otp" component={OtpScreen} />
       <Auth.Screen name="confirmAccount" component={ConfirmAccountScreen} />

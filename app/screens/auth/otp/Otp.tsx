@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react"
 import { View, ViewStyle, StyleSheet, TextStyle } from "react-native"
 import { t } from "i18n-js"
 import OTPInputView from '@twotalltotems/react-native-otp-input'
+import { StackActions, useNavigation } from "@react-navigation/native"
 import { Screen, Header, Text, Button } from "../../../components"
 import { color, spacing } from "../../../theme"
 import { fontStyles } from "../../../theme/fonts"
 import { scaleByDeviceWidth } from "../../../theme/scalingUtil"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
-import { StackActions, useNavigation } from "@react-navigation/native"
 import { auth } from "../../../../fb-configs"
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser, updateUser } from "../../../store/Action"
 import { AccountReducer } from "../../../store/Action/types"
 import { RootState } from "../../../store/Reducer"
+import { PhoneOtp } from "../../../../assets/images/svg"
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
@@ -50,7 +51,7 @@ export const OtpScreen = ({ route, navigation }) => {
 
   const [confirm, setConfirm] = useState<any>(null);
   const [codeError, setCodeError] = useState(false);
-  const [, setCodeStatus] = useState<boolean>();
+  const [codeStatus, setCodeStatus] = useState<boolean | null>(null);
   const [code, setCode] = useState('');
 
   const [keyboardOpen] = useKeyboard();
@@ -95,6 +96,9 @@ export const OtpScreen = ({ route, navigation }) => {
         <Header leftIcon={'back'} onLeftPress={() => navigate.goBack()} />
         <Text style={fontStyles.largeTitleBold} textColor={color.palette.black}>{'Confirm Account'}</Text>
         <Text style={[fontStyles.subHeadRegular, { marginBottom: scaleByDeviceWidth(32) }]} textColor={color.palette.dustyBlue}>{'Verify your phone number'}</Text>
+        {!keyboardOpen && <View style={{justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+        <PhoneOtp height={scaleByDeviceWidth(165)} width={scaleByDeviceWidth(165)} />
+        </View>}
         <View style={OTPCONTAINER}>
           <Text style={[fontStyles.caption2Regular, { paddingHorizontal: scaleByDeviceWidth(8), marginBottom: scaleByDeviceWidth(32) }]} textColor={color.palette.dustyBlue}>{t('auth.verifyotp')}</Text>
           <OTPInputView

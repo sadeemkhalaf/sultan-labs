@@ -28,8 +28,11 @@
     "clean-all": "npx react-native clean-project-auto"
   },
   "dependencies": {
+    "@eva-design/eva": "^2.1.1",
     "@ideditor/country-coder": "^5.0.3",
+    "@invertase/react-native-apple-authentication": "^2.1.5",
     "@react-native-async-storage/async-storage": "^1.14.1",
+    "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-firebase/analytics": "^12.7.3",
@@ -40,8 +43,9 @@
     "@react-navigation/native": "5.9.3",
     "@react-navigation/stack": "5.12.8",
     "@twotalltotems/react-native-otp-input": "^1.3.11",
+    "@ui-kitten/components": "^5.1.1",
     "@unimodules/core": "6.0.0",
-  "apisauce": "2.0.0",
+    "apisauce": "2.0.0",
     "expo-localization": "9.1.0",
     "formik": "^2.2.9",
     "i18n-js": "3.8.0",
