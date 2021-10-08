@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { View, ViewStyle } from 'react-native';
 import { color } from '../../../theme';
 import { Header, Screen, Text, Button } from '../../../components';
-import { scaleByDeviceWidth } from '../../../theme/scalingUtil';
+import { moderateScale, scaleByDeviceWidth } from '../../../theme/scalingUtil';
 import { fontStyles } from '../../../theme/fonts';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { styles } from '../authOptions/styles';
@@ -13,10 +13,12 @@ import { useSelector } from 'react-redux';
 import { AccountReducer } from '../../../store/Action/types';
 import { RootState } from '../../../store/Reducer';
 import { firebase } from '../../../../fb-configs';
+import { Password } from '../../../../assets/images/svg';
 
 const CONTAINER: ViewStyle = {
     backgroundColor: color.palette.white,
     paddingHorizontal: scaleByDeviceWidth(24),
+    justifyContent: 'space-between'
 }
 const INPUTVIEW: ViewStyle = {
     marginTop: scaleByDeviceWidth(32),
@@ -55,6 +57,9 @@ const CreatePasswordScreen = () => {
         <Screen style={CONTAINER} preset="fixed" >
             <Header />
             <Text style={fontStyles.largeTitleBold} textColor={color.palette.black}>{'Create Account\nPassword'}</Text>
+            {!keyboardOpen && <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%', paddingVertical: moderateScale(32) }}>
+                <Password height={scaleByDeviceWidth(135)} width={scaleByDeviceWidth(135)} />
+            </View>}
             <View style={[styles.inputWrapper, INPUTVIEW]}>
                 {PasswordInputField(password, setPassword, passwordRef)}
                 {PasswordInputField(checkPassword, setCheckPassword, checkPasswordRef, 'Confirm Password')}

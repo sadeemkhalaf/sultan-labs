@@ -10,7 +10,7 @@ import { scaleByDeviceWidth } from "../../../theme/scalingUtil"
 import { useKeyboard } from "../../../utils/hooks/useKeyboard"
 import { auth } from "../../../../fb-configs"
 import { useDispatch, useSelector } from "react-redux"
-import { loginUser, updateUser } from "../../../store/Action"
+import { updateUser } from "../../../store/Action"
 import { AccountReducer } from "../../../store/Action/types"
 import { RootState } from "../../../store/Reducer"
 import { PhoneOtp } from "../../../../assets/images/svg"
@@ -110,7 +110,6 @@ export const OtpScreen = ({ route, navigation }) => {
             codeInputFieldStyle={styles.underlineStyleBase}
             codeInputHighlightStyle={styles.underlineStyleHighLighted}
             onCodeFilled={(() => {
-              // console.log(`Code is ${code}, you are good to go!`)
               confirmCode()
             })}
             keyboardAppearance={'default'}
