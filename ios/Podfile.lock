@@ -368,6 +368,8 @@ PODS:
   - EXPermissions (10.0.0):
     - UMCore
     - UMPermissionsInterface
+  - FBAEMKit (12.2.1):
+    - FBSDKCoreKit_Basics (= 12.2.1)
   - FBLazyVector (0.64.2)
   - FBReactNativeSpec (0.64.2):
     - RCT-Folly (= 2020.01.13.00)
@@ -376,20 +378,14 @@ PODS:
     - React-Core (= 0.64.2)
     - React-jsi (= 0.64.2)
     - ReactCommon/turbomodule/core (= 0.64.2)
-  - FBSDKCoreKit (8.2.0):
-    - FBSDKCoreKit/Basics (= 8.2.0)
-    - FBSDKCoreKit/Core (= 8.2.0)
-  - FBSDKCoreKit/Basics (8.2.0)
-  - FBSDKCoreKit/Core (8.2.0):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (8.2.0):
-    - FBSDKLoginKit/Login (= 8.2.0)
-  - FBSDKLoginKit/Login (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
-  - FBSDKShareKit (8.2.0):
-    - FBSDKShareKit/Share (= 8.2.0)
-  - FBSDKShareKit/Share (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
+  - FBSDKCoreKit (12.2.1):
+    - FBAEMKit (= 12.2.1)
+    - FBSDKCoreKit_Basics (= 12.2.1)
+  - FBSDKCoreKit_Basics (12.2.1)
+  - FBSDKLoginKit (12.2.1):
+    - FBSDKCoreKit (= 12.2.1)
+  - FBSDKShareKit (12.2.1):
+    - FBSDKCoreKit (= 12.2.1)
   - Firebase/Analytics (8.5.0):
     - Firebase/Core
   - Firebase/Auth (8.5.0):
@@ -430,10 +426,10 @@ PODS:
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.6.0):
-    - GoogleDataTransport (~> 9.0)
-    - GoogleUtilities/Environment (~> 7.4)
-    - GoogleUtilities/Logger (~> 7.4)
+  - FirebaseCoreDiagnostics (8.12.0):
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
     - nanopb (~> 2.30908.0)
   - FirebaseFirestore (8.5.0):
     - abseil/algorithm (= 0.20200225.0)
@@ -448,10 +444,10 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (8.6.0):
+  - FirebaseInstallations (8.12.0):
     - FirebaseCore (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.4)
-    - GoogleUtilities/UserDefaults (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (< 3.0, >= 1.2)
   - glog (0.3.5)
   - Google-Maps-iOS-Utils (2.1.0):
@@ -483,7 +479,7 @@ PODS:
     - GoogleUtilities/Network (~> 7.4)
     - "GoogleUtilities/NSData+zlib (~> 7.4)"
     - nanopb (~> 2.30908.0)
-  - GoogleDataTransport (9.1.0):
+  - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
@@ -496,24 +492,24 @@ PODS:
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleUtilities/AppDelegateSwizzler (7.5.1):
+  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.5.1):
+  - GoogleUtilities/Environment (7.7.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.5.1):
+  - GoogleUtilities/Logger (7.7.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.5.1):
+  - GoogleUtilities/MethodSwizzler (7.7.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.5.1):
+  - GoogleUtilities/Network (7.7.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.5.1)"
-  - GoogleUtilities/Reachability (7.5.1):
+  - "GoogleUtilities/NSData+zlib (7.7.0)"
+  - GoogleUtilities/Reachability (7.7.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.5.1):
+  - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
   - "gRPC-C++ (1.28.2)":
     - "gRPC-C++/Implementation (= 1.28.2)"
@@ -542,7 +538,7 @@ PODS:
   - GTMAppAuth (1.2.2):
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - GTMSessionFetcher/Core (1.6.1)
+  - GTMSessionFetcher/Core (1.7.0)
   - leveldb-library (1.22.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -743,33 +739,33 @@ PODS:
     - React-jsi (= 0.64.2)
     - React-perflogger (= 0.64.2)
   - React-jsinspector (0.64.2)
-  - react-native-fbsdk (3.0.0):
-    - React
-    - react-native-fbsdk/Core (= 3.0.0)
-    - react-native-fbsdk/Login (= 3.0.0)
-    - react-native-fbsdk/Share (= 3.0.0)
-  - react-native-fbsdk/Core (3.0.0):
-    - FBSDKCoreKit (~> 8.1)
-    - React
-  - react-native-fbsdk/Login (3.0.0):
-    - FBSDKLoginKit (~> 8.1)
-    - React
-  - react-native-fbsdk/Share (3.0.0):
-    - FBSDKShareKit (~> 8.1)
-    - React
+  - react-native-fbsdk-next (7.0.1):
+    - React-Core
+    - react-native-fbsdk-next/Core (= 7.0.1)
+    - react-native-fbsdk-next/Login (= 7.0.1)
+    - react-native-fbsdk-next/Share (= 7.0.1)
+  - react-native-fbsdk-next/Core (7.0.1):
+    - FBSDKCoreKit (~> 12.2.1)
+    - React-Core
+  - react-native-fbsdk-next/Login (7.0.1):
+    - FBSDKLoginKit (~> 12.2.1)
+    - React-Core
+  - react-native-fbsdk-next/Share (7.0.1):
+    - FBSDKShareKit (~> 12.2.1)
+    - React-Core
   - react-native-geolocation (2.0.2):
     - React
-  - react-native-geolocation-service (5.3.0-beta.2):
+  - react-native-geolocation-service (5.3.0-beta.4):
     - React
-  - react-native-google-maps (0.28.0):
+  - react-native-google-maps (0.28.1):
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 3.5.0)
     - React-Core
-  - react-native-maps (0.28.0):
+  - react-native-maps (0.28.1):
     - React-Core
   - react-native-restart (0.0.22):
     - React-Core
-  - react-native-safe-area-context (3.1.8):
+  - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-perflogger (0.64.2)
   - React-RCTActionSheet (0.64.2):
@@ -837,7 +833,7 @@ PODS:
     - React-perflogger (= 0.64.2)
   - RNAppleAuthentication (2.1.5):
     - React-Core
-  - RNCAsyncStorage (1.15.7):
+  - RNCAsyncStorage (1.16.1):
     - React-Core
   - RNCClipboard (1.5.1):
     - React-Core
@@ -915,7 +911,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-  - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - react-native-fbsdk-next (from `../node_modules/react-native-fbsdk-next`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
@@ -968,7 +964,9 @@ SPEC REPOS:
     - AppAuth
     - boost-for-react-native
     - BoringSSL-GRPC
+    - FBAEMKit
     - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - FBSDKLoginKit
     - FBSDKShareKit
     - Firebase
@@ -1035,8 +1033,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
-  react-native-fbsdk:
-    :path: "../node_modules/react-native-fbsdk"
+  react-native-fbsdk-next:
+    :path: "../node_modules/react-native-fbsdk-next"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-geolocation-service:
@@ -1140,29 +1138,31 @@ SPEC CHECKSUMS:
   EXImageLoader: f96ec9992733a4224418bbd9382e5485c8948944
   EXLocalization: 8b9463c81843da214476b541a27811dd885c9a76
   EXPermissions: 17d4846ad1880f6891c74ae58ca1acb43e47ed47
+  FBAEMKit: 4cea610d0bc1680572f2aad7b25db7a2f2690d82
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 7abbebe341f731897ffeba3e985ac1ae14e2dfd5
-  FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
-  FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
-  FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
+  FBReactNativeSpec: 87455193840fe36d6dc35603d84521baf8a08544
+  FBSDKCoreKit: 5b1992fe65802ca26be7e68bc4fac5f59fa39908
+  FBSDKCoreKit_Basics: a6a92ca628e05f86f458a4721574c5ddfb058ba3
+  FBSDKLoginKit: 7467b7f988ca4fdf48f12a839bcfce4264752429
+  FBSDKShareKit: 25fe0e2cd0811918e5b5b1603cb3fc580154cc48
   Firebase: ff8c73105b90e33e1dc6c8e5445d7adc2ccdc7c1
   FirebaseAnalytics: 96325c1e0acbd2bb805c6a613028b1fe599d6a37
   FirebaseAuth: b152ea261b60eeb9419ae7e5bf34761382b33277
   FirebaseCore: 1c1ca72483b59b17050f5b4cec4fb748425a3901
-  FirebaseCoreDiagnostics: 3721920bde3a9a6d5aa093c1d25e9d3e47f694af
+  FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
   FirebaseFirestore: 9aa10de35bb76a5fe40fdf5c858669f0eac88a99
-  FirebaseInstallations: 0ede6ffcd215b8f93c19d9b06c1c54e2d4107e98
+  FirebaseInstallations: 25764cf322e77f99449395870a65b2bef88e1545
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleAppMeasurement: 8d10c1c470fcb0e5143ed74fddd164f0a0384800
-  GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
+  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GoogleUtilities: 3df19e3c24f7bbc291d8b5809aa6b0d41e642437
+  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
-  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
+  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
@@ -1177,13 +1177,13 @@ SPEC CHECKSUMS:
   React-jsi: 67747b9722f6dab2ffe15b011bcf6b3f2c3f1427
   React-jsiexecutor: 80c46bd381fd06e418e0d4f53672dc1d1945c4c3
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
-  react-native-fbsdk: 8e92c7a334fd8d9c2b5d8b8fcd7ae2c314161099
+  react-native-fbsdk-next: 800e60618cd7b861eb5d37ed4b653b5bc72e7ceb
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-geolocation-service: 94c7d2ffdbbf4dd431241e0c8e37d491ebd41430
-  react-native-google-maps: 46dea4aa4acb7300beff508f64d9f8c84e9fb106
-  react-native-maps: 2d405b4e8cee0282e4c02bac434d81450dfea877
+  react-native-geolocation-service: c0efb872258ed9240f1003a70fca9e9757e5c785
+  react-native-google-maps: 915cea64470a6e7581b782d8659bf8a7e2dee302
+  react-native-maps: 60a75aa547d576fdb91be1f95113665215b59461
   react-native-restart: 733a51ad137f15b0f8dc34c4082e55af7da00979
-  react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
+  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: 25373e382fed75ce768a443822f07098a15ab737
   React-RCTActionSheet: af7796ba49ffe4ca92e7277a5d992d37203f7da5
   React-RCTAnimation: 6a2e76ab50c6f25b428d81b76a5a45351c4d77aa
@@ -1197,7 +1197,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: a9904c6d0218fb9f8b19d6dd88607225927668f9
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   RNAppleAuthentication: 63c2127ace11985b94f852fc480eb84145653712
-  RNCAsyncStorage: 7102fe8985f889579a3ae148d957bbb3f308122b
+  RNCAsyncStorage: b49b4e38a1548d03b74b30e558a1d18465b94be7
   RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNFBAnalytics: ea715117d4d4af958ea45413db8a33cd4c34fc8a
@@ -1224,6 +1224,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 4c60b43eaf3cb05a164bc9113258a171c18b7bf7
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: 821dc2e2b34114f7a31124c6baa9c74c059d2a4c
+PODFILE CHECKSUM: 14ffef0dc339ffb5bb43e735ac9b8777f8478388
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

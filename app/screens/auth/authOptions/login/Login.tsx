@@ -28,8 +28,8 @@ const FULL: ViewStyle = {
 }
 
 const ROW: ViewStyle = {
-  flexDirection: "row",
   display: "flex",
+  flexDirection: "row",
   justifyContent: "flex-end",
   alignItems: "center",
   width: '100%',
@@ -39,7 +39,7 @@ const SOCIALBUTTON: ViewStyle = {
   borderColor: color.palette.lighterGrey,
   borderWidth: 1,
   backgroundColor: "transparent",
-  width: scaleByDeviceWidth(width / 2 - 56),
+  width: scaleByDeviceWidth(width / 3 - 48),
   marginVertical: scaleByDeviceWidth(8)
 }
 
@@ -94,7 +94,6 @@ export const LoginScreen = observer(function LoginScreen() {
 
   const renderSocialLogin = () => {
     const SOCIALROW: ViewStyle = {
-      width: "100%",
       justifyContent: "space-between",
       flexWrap: 'wrap'
     }
@@ -102,7 +101,6 @@ export const LoginScreen = observer(function LoginScreen() {
       <>
         <View style={[ROW, SOCIALROW]}>
           {renderSocialButton("google", handleGoogleSignin)}
-          {renderSocialButton("facebook", handleGoogleSignin)}
           {renderSocialButton("twitter", handleGoogleSignin)}
           {renderSocialButton("apple", handleGoogleSignin)}
         </View>
